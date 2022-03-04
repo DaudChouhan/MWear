@@ -1,0 +1,120 @@
+﻿@model IEnumerable<MWear.Models.WebImage>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminTable.cshtml";
+}
+
+
+<!-- CONTENT WRAPPER -->
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>Product</h1>
+                <p class="breadcrumbs">
+                    <span><a href="index.html">Home</a></span>
+                    <span><i class="mdi mdi-chevron-right"></i></span>Product
+                </p>
+            </div>
+            <div>
+                <a href="@Url.Action("AddWebImages","WebImages")" class="btn btn-primary"> Add Images</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table"
+                                   style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>IMG</th>
+                                        <th>AltText</th>
+                                        <th>Position</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var item in Model.OrderByDescending(x => x.ImageID))
+                                    {
+
+                                        <tr>
+
+                                            <td>@item.ImageID</td>
+                                            <td>@item.ImageName</td>
+
+                                            @if (item.ImagePath != "")
+                                            {
+
+                                                <td align="center">
+                                                    <img src="~/Images/Products/@item.ImagePath" alt="Image" width="300" />
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td align="center">N/A</td>
+                                            }
+                                            <td>@item.ImageAltText</td>
+
+                                            <td>@item.Position</td>
+                                            <td>
+                                                <div class="btn-group mb-1">
+                                                    <button type="button"
+                                                            class="btn btn-outline-success">
+                                                        Info
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                        <span class="sr-only">Info</span>
+                                                    </button>
+
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="@Url.Action("EditWebImages", "WebImages", new { webimages = item.ImageID})">Edit</a>
+                                                        <a class="dropdown-item" href="#" onclick="deleteimage(@item.ImageID)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Content -->
+</div> <!-- End Content Wrapper -->
+<script src="~/Theme/assets/Admin/plugins/jquery/jquery-3.5.1.min.js"></script>
+<script>
+    function deleteimage(imageid) {
+        $.ajax({
+            type: "GET",
+            url: "/WebImages/DeleteWebImages?imageid=" + imageid,
+            success: function (result) {
+                /*alert(result);*/
+                if (result == "Failed") {
+                    alert("Something went wrong!");
+                }
+                else {
+                    window.location.reload();
+                }
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+</script>
+
+

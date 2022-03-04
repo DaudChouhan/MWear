@@ -1,0 +1,66 @@
+﻿@model MWear.Models.Color
+@{
+    ViewBag.Title = "EditColor";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- CONTENT WRAPPER -->
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>Add Color</h1>
+                <p class="breadcrumbs">
+                    <span><a href="@Url.Action("Index","Admin")">Home</a></span>
+                    <span><i class="mdi mdi-chevron-right"></i></span>Add Color
+                </p>
+            </div>
+            <div>
+                <a href="@Url.Action("Index","Color")" class="btn btn-primary">
+                    View All
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                        <h2>Add Category</h2>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row ec-vendor-uploads">
+                            <div class="col-lg-12 col-sm-12">
+                                <div class="ec-vendor-upload-detail">
+
+
+                                    @using (Html.BeginForm("EditColor", "Color", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div class="col-md-12">
+
+                                            <input type="hidden" value="@Model.ColorID" name="ColorID" />
+                                            <label for="inputEmail4" class="form-label">Color name</label>
+                                            <input type="text" class="form-control slug-title" value="@Model.ColorName" name="ColorName" id="inputEmail4" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label for="inputEmail4" class="form-label">Color Hash Code</label>
+                                            <input type="text" class="form-control slug-title" value="@Model.ColorHash" name="ColorHash" id="inputEmail4" required>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label">Ful Detail</label>
+                                            <textarea class="form-control" name="ColorDescription" rows="4">@Model.ColorDescription</textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Content -->
+</div> <!-- End Content Wrapper -->

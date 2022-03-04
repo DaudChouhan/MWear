@@ -1,0 +1,347 @@
+﻿@model MWear.Models.Product
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    List<MWear.Models.Category> categories = ViewBag.Categories;
+    List<MWear.Models.Color> colors = ViewBag.Colors;
+    List<MWear.Models.Size> sizes = ViewBag.Sizes;
+}
+
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>Add Product</h1>
+                <p class="breadcrumbs">
+                    <span><a href="index.html">Home</a></span>
+                    <span><i class="mdi mdi-chevron-right"></i></span>Product
+                </p>
+            </div>
+            <div>
+                <a href="product-list.html" class="btn btn-primary">
+                    View All
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                        <h2>Add Product</h2>
+                    </div>
+                    @using (Html.BeginForm("EditProduct", "Product", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <div class="card-body">
+                            <div class="row ec-vendor-uploads">
+                                <div class="col-lg-4">
+                                    @*Pictures Start*@
+                                    <div class="ec-vendor-img-upload">
+                                        <div class="ec-vendor-main-img">
+                                            <div class="avatar-upload">
+                                                <div class="avatar-edit">
+
+                                                    <input type="hidden" value="@Model.ProductGUID" name="ProductGUID" />
+                                                    <input type='file' id="imageUpload" class="ec-image-upload"
+                                                           accept=".png, .jpg, .jpeg" name="primaryImage" />
+                                                    <label for="imageUpload">
+                                                        <img src="~/Theme/assets/Admin/img/icons/edit.svg"
+                                                             class="svg_img header_svg" alt="edit" />
+                                                    </label>
+                                                </div>
+                                                <div class="avatar-preview ec-preview">
+                                                    <div class="imagePreview ec-div-preview">
+                                                        <img class="ec-image-preview"
+                                                             src="~/Theme/assets/Admin/img/products/vender-upload-preview.jpg"
+                                                             alt="edit" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="thumb-upload-set colo-md-12">
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type='file' id="thumbUpload01" name="secondaryImage"
+                                                               class="ec-image-upload"
+                                                               accept=".png, .jpg, .jpeg" />
+                                                        <label for="imageUpload">
+                                                            <img src="~/Theme/assets/Admin/img/icons/edit.svg"
+                                                                 class="svg_img header_svg" alt="edit" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                 src="~/Theme/assets/Admin/img/products/vender-upload-thumb-preview.jpg"
+                                                                 alt="edit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type='file' id="thumbUpload02" name="secondaryImage"
+                                                               class="ec-image-upload"
+                                                               accept=".png, .jpg, .jpeg" />
+                                                        <label for="imageUpload">
+                                                            <img src="~/Theme/assets/Admin/img/icons/edit.svg"
+                                                                 class="svg_img header_svg" alt="edit" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                 src="~/Theme/assets/Admin/img/products/vender-upload-thumb-preview.jpg"
+                                                                 alt="edit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type='file' id="thumbUpload03" name="secondaryImage"
+                                                               class="ec-image-upload"
+                                                               accept=".png, .jpg, .jpeg" />
+                                                        <label for="imageUpload">
+                                                            <img src="~/Theme/assets/Admin/img/icons/edit.svg"
+                                                                 class="svg_img header_svg" alt="edit" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                 src="~/Theme/assets/Admin/img/products/vender-upload-thumb-preview.jpg"
+                                                                 alt="edit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type='file' id="thumbUpload04" name="secondaryImage"
+                                                               class="ec-image-upload"
+                                                               accept=".png, .jpg, .jpeg" />
+                                                        <label for="imageUpload">
+                                                            <img src="~/Theme/assets/Admin/img/icons/edit.svg"
+                                                                 class="svg_img header_svg" alt="edit" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                 src="~/Theme/assets/Admin/img/products/vender-upload-thumb-preview.jpg"
+                                                                 alt="edit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type='file' id="thumbUpload05" name="secondaryImage"
+                                                               class="ec-image-upload"
+                                                               accept=".png, .jpg, .jpeg" />
+                                                        <label for="imageUpload">
+                                                            <img src="~/Theme/assets/Admin/img/icons/edit.svg"
+                                                                 class="svg_img header_svg" alt="edit" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                 src="~/Theme/assets/Admin/img/products/vender-upload-thumb-preview.jpg"
+                                                                 alt="edit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="thumb-upload">
+                                                    <div class="thumb-edit">
+                                                        <input type='file' id="thumbUpload06" name="secondaryImage"
+                                                               class="ec-image-upload"
+                                                               accept=".png, .jpg, .jpeg" />
+                                                        <label for="imageUpload">
+                                                            <img src="~/Theme/assets/Admin/img/icons/edit.svg"
+                                                                 class="svg_img header_svg" alt="edit" />
+                                                        </label>
+                                                    </div>
+                                                    <div class="thumb-preview ec-preview">
+                                                        <div class="image-thumb-preview">
+                                                            <img class="image-thumb-preview ec-image-preview"
+                                                                 src="~/Theme/assets/Admin/img/products/vender-upload-thumb-preview.jpg"
+                                                                 alt="edit" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*Pictures End*@
+
+
+                                </div>
+
+                                @*Picture Table Start*@
+
+                                <div class="col-lg-8">
+                                    <div class="ec-vendor-upload-detail">
+
+                                        @*Form Start*@
+                                        <form class="row g-3">
+
+                                            @*Product Name*@
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">Product name</label>
+                                                <input type="text" class="form-control slug-title" value="@Model.ProductName" name="ProductName">
+                                            </div>
+
+                                            @*Product SKU*@
+                                            <div class="col-md-6">
+                                                <label for="inputEmail4" class="form-label">SKU</label>
+                                                <input type="text" class="form-control slug-title" value="@Model.SKU" name="SKU">
+                                            </div>
+
+                                            @*Short Description*@
+                                            <div class="col-md-12">
+                                                <label class="form-label">Short Description</label>
+                                                <textarea class="form-control" rows="1" name="ProductShortDesc">@Model.ProductShortDesc</textarea>
+                                            </div>
+
+                                            @*Long Description*@
+                                            <div class="col-md-12">
+                                                <label class="form-label">Long Description</label>
+                                                <textarea class="form-control" rows="2" name="ProductLongDesc">@Model.ProductLongDesc</textarea>
+                                            </div>
+
+                                            @*Quantity Per Unit*@
+                                            <div class="col-md-4">
+                                                <label class="form-label">Quantity Per Unit</label>
+                                                <input type="text" class="form-control slug-title" value="@Model.QuantityPerUnit" name="QuantityPerUnit">
+                                            </div>
+
+                                            @*Price*@
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Price</label>
+                                                <input type="text" class="form-control slug-title" value="@Model.Price" name="Price">
+                                            </div>
+
+                                            @*Multiple Categories*@
+
+
+
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Category</label>
+
+                                                <br />
+                                                <select class="form-select" name="category" multiple>
+                                                    @foreach (var item in categories)
+                                                    {
+                                                        <option value="@item.CategoryID">@item.CategoryName</option>
+                                                    }
+                                                </select>
+
+                                            </div>
+
+
+                                            @*Multiple Colors*@
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Color</label>
+                                                <br />
+                                                <select class="form-select" name="colors" multiple>
+                                                    @foreach (var item in colors)
+                                                    {
+                                                        <option value="@item.ColorID">@item.ColorName</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            @*Multiple Size*@
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Color</label>
+                                                <br />
+                                                <select class="form-select" name="sizes" multiple>
+                                                    @foreach (var item in sizes)
+                                                    {
+                                                        <option value="@item.SizeID">@item.SizeName</option>
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            @*Discount*@
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Discount</label>
+                                                <input type="text" class="form-control slug-title" value="@Model.Discount" name="Discount">
+                                            </div>
+
+                                            @*Unit Weight*@
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Unit Weight</label>
+                                                <input type="text" class="form-control slug-title" value="@Model.UnitWeight" name="UnitWeight">
+                                            </div>
+
+                                            @*Units In Stock*@
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Units in Stock</label>
+                                                <input type="text" class="form-control slug-title"value=" @Model.UnitsInStock" name="UnitsInStock">
+                                            </div>
+
+                                            @*Available Check*@
+                                            <div class="col-md-8 mb-25">
+                                                <label class="form-label">Available</label>
+                                                <div class="form-checkbox-box">
+                                                    <div class="form-check form-check-inline">
+                                                        @if (Model.Available == true)
+                                                        {
+
+                                                            <input type="checkbox" name="AvailableChechbox" checked>
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <input type="checkbox" name="AvailableChechbox">
+                                                        }
+                                                        <label>Yes</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            @*Note*@
+                                            <div class="col-md-12">
+                                                <label class="form-label">Note</label>
+                                                <textarea class="form-control" rows="2" name="Note">@Model.Note</textarea>
+                                            </div>
+
+
+                                            @*Featured Check*@
+                                            <div class="col-md-8 mb-25">
+                                                <label class="form-label">Is Featured</label>
+                                                <div class="form-checkbox-box">
+                                                    <div class="form-check form-check-inline">
+                                                        @if (Model.Featured == true)
+                                                        {
+
+                                                            <input type="checkbox" name="FeaturedChechbox" checked>
+                                                        }
+                                                        else
+                                                        {
+
+                                                            <input type="checkbox" name="FeaturedChechbox">
+                                                        }
+                                                        <label>Yes</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Content -->
+</div> <!-- End Content Wrapper -->

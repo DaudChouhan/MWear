@@ -1,0 +1,232 @@
+﻿<!-- LEFT MAIN SIDEBAR -->
+<div class="ec-left-sidebar ec-bg-sidebar">
+    <div id="sidebar" class="sidebar ec-sidebar-footer">
+
+        <div class="ec-brand">
+            <a href="index.html" title="Mwear   ">
+                <img class="ec-brand-icon" src="~/Theme/assets/Admin/img/logo/ec-site-logo.png" alt="" />
+            </a>
+        </div>
+
+        <!-- begin sidebar scrollbar -->
+        <div class="ec-navigation" data-simplebar>
+            <!-- sidebar menu -->
+            <ul class="nav sidebar-inner" id="sidebar-menu">
+                <!-- Dashboard -->
+                <li class="active">
+                    <a class="sidenav-item-link" href="@Url.Action("Index","Admin")">
+                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <span class="nav-text">Dashboard Area</span>
+                    </a>
+                    <hr>
+                </li>
+
+                <!-- Admins -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-account-group-outline"></i>
+                        <span class="nav-text">Admins</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="vendors" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Admin","Admin")">
+                                    <span class="nav-text">All Admins</span>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("AddAdmin","Admin")">
+                                    <span class="nav-text">Add Admins</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Users -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-account-group"></i>
+                        <span class="nav-text">Users</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="users" data-parent="#sidebar-menu">
+                            <li>
+                                <a class="sidenav-item-link" href="#">
+                                    <span class="nav-text">Users List</span>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a class="sidenav-item-link" href="user-list.html">
+                                    <span class="nav-text">Add User</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <hr>
+                </li>
+
+                <!-- Category -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-dns-outline"></i>
+                        <span class="nav-text">Categories</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="categorys" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","Category")">
+                                    <span class="nav-text">All Categories</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href=" @Url.Action("AddCategory", "Category")">
+                                    <span class="nav-text">Add Category</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Colors -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-brush"></i>
+                        <span class="nav-text">Colors</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","Color")">
+                                    <span class="nav-text">All Colors</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("AddColor","Color")">
+                                    <span class="nav-text">Add Colors</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Size -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-alpha"></i>
+                        <span class="nav-text">Sizes</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","Size")">
+                                    <span class="nav-text">All Size</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("AddSize","Size")">
+                                    <span class="nav-text">Add Size</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Products -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-palette-advanced"></i>
+                        <span class="nav-text">Products</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","Product")">
+                                    <span class="nav-text">All Product</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("AddProduct","Product")">
+                                    <span class="nav-text">Add Product</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Web Images -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-image"></i>
+                        <span class="nav-text">Web Images</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","WebImages")">
+                                    <span class="nav-text">All Images</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("AddWebImages","WebImages")">
+                                    <span class="nav-text">Add Images</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Orders -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-cart"></i>
+                        <span class="nav-text">Orders</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="#">
+                                    <span class="nav-text">New Order</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="#">
+                                    <span class="nav-text">Completed Orders</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="#">
+                                    <span class="nav-text">Pending Orders</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="#">
+                                    <span class="nav-text">All Orders</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+
+
+                <!-- Reviews -->
+                <li>
+                    <a class="sidenav-item-link" href="#">
+                        <i class="mdi mdi-star-half"></i>
+                        <span class="nav-text">Reviews</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+</div>
