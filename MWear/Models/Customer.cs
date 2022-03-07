@@ -22,11 +22,12 @@ namespace MWear.Models
         public string Address2 { get; set; }
         public string City { get; set; }
         public string Province { get; set; }
-        public int PostalCode { get; set; }
+        public Nullable<int> PostalCode { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string ShippingRegion { get; set; }
         public Nullable<System.DateTime> DateJoined { get; set; }
+        public string AspNetUserID { get; set; }
     }
 }

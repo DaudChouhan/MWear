@@ -5,6 +5,7 @@
     List<MWear.Models.Category> categories = ViewBag.Categories;
     List<MWear.Models.Color> colors = ViewBag.Colors;
     List<MWear.Models.Size> sizes = ViewBag.Sizes;
+    List<MWear.Models.ProductCategory> pcategory = ViewBag.productCategory;
 }
 
 <div class="ec-content-wrapper">
@@ -231,7 +232,15 @@
                                                 <select class="form-select" name="category" multiple>
                                                     @foreach (var item in categories)
                                                     {
-                                                        <option value="@item.CategoryID">@item.CategoryName</option>
+                                                        var pcatId = pcategory.Select(x => x.ProductCategoryID).ToList();
+                                                        if (pcatId.Contains(item.CategoryID))
+                                                        {
+                                                            <option value="@item.CategoryID" selected>@item.CategoryName</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.CategoryID">@item.CategoryName</option>
+                                                        }
                                                     }
                                                 </select>
 
@@ -277,7 +286,7 @@
                                             @*Units In Stock*@
                                             <div class="col-md-4">
                                                 <label for="inputEmail4" class="form-label">Units in Stock</label>
-                                                <input type="text" class="form-control slug-title"value=" @Model.UnitsInStock" name="UnitsInStock">
+                                                <input type="text" class="form-control slug-title" value=" @Model.UnitsInStock" name="UnitsInStock">
                                             </div>
 
                                             @*Available Check*@

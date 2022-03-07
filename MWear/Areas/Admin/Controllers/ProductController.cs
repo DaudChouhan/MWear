@@ -241,7 +241,10 @@ namespace MWear.Areas.Admin.Controllers
             ViewBag.Colors = colors;
             var sizes = db.Sizes.Where(x => x.Active == true).ToList();
             ViewBag.Sizes = sizes;
-
+            ///Abdul Rehman
+            var productCategory = db.ProductCategories.Where(x => x.Product == pid).ToList();
+            ViewBag.productCategory = productCategory;
+            //End
             var product = db.Products.Where(x => x.ProductGUID == pid).FirstOrDefault();
             return View(product);
         }

@@ -107,18 +107,19 @@
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Class" Type="varchar" MaxLength="20" />
-          <Property Name="Address1" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Address2" Type="varchar" MaxLength="100" />
-          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Province" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PostalCode" Type="int" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="1" />
-          <Property Name="Email" Type="varchar" MaxLength="1" />
-          <Property Name="Password" Type="varchar" MaxLength="1" />
-          <Property Name="ShippingRegion" Type="varchar" MaxLength="1" />
+          <Property Name="AspNetUserID" Type="varchar" MaxLength="255" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" />
+          <Property Name="Class" Type="varchar" MaxLength="255" />
+          <Property Name="Address1" Type="varchar" MaxLength="255" />
+          <Property Name="Address2" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="255" />
+          <Property Name="Province" Type="varchar" MaxLength="255" />
+          <Property Name="PostalCode" Type="int" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="ShippingRegion" Type="varchar" MaxLength="255" />
           <Property Name="DateJoined" Type="datetime" />
         </EntityType>
         <EntityType Name="OrderDetails">
@@ -431,19 +432,20 @@
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PostalCode" Type="Int32" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="ShippingRegion" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Class" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Province" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ShippingRegion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DateJoined" Type="DateTime" Precision="3" />
+          <Property Name="AspNetUserID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -727,6 +729,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="mwearModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="AspNetUserID" ColumnName="AspNetUserID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />

@@ -17,7 +17,7 @@ namespace MWear.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        mwearEntities db = new mwearEntities();
         public AccountController()
         {
         }
@@ -152,11 +152,19 @@ namespace MWear.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                Customer cust = new Customer();
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    cust.AspNetUserID = user.Id;
+                    cust.FirstName = model.FirstName;
+                    cust.LastName = model.LastName;
+                    cust.Password = model.Password;
+                    cust.DateJoined = DateTime.Now;
+                    db.Customers.Add(cust);
+                    db.SaveChanges();
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
