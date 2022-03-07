@@ -6,6 +6,8 @@
     List<MWear.Models.Color> colors = ViewBag.Colors;
     List<MWear.Models.Size> sizes = ViewBag.Sizes;
     List<MWear.Models.ProductCategory> pcategory = ViewBag.productCategory;
+    List<MWear.Models.AvailabeColor> pcolor = ViewBag.productColor;
+    List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
 }
 
 <div class="ec-content-wrapper">
@@ -254,19 +256,35 @@
                                                 <select class="form-select" name="colors" multiple>
                                                     @foreach (var item in colors)
                                                     {
-                                                        <option value="@item.ColorID">@item.ColorName</option>
+                                                        var pcolId = pcolor.Select(x => x.AvialableColorID).ToList();
+                                                        if (pcolId.Contains(item.ColorID))
+                                                        {
+                                                            <option value="@item.ColorID" selected>@item.ColorName</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.ColorID">@item.ColorName</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div>
 
                                             @*Multiple Size*@
                                             <div class="col-md-4">
-                                                <label for="inputEmail4" class="form-label">Color</label>
+                                                <label for="inputEmail4" class="form-label">Size</label>
                                                 <br />
                                                 <select class="form-select" name="sizes" multiple>
                                                     @foreach (var item in sizes)
                                                     {
-                                                        <option value="@item.SizeID">@item.SizeName</option>
+                                                        var psizId = psize.Select(x => x.AvialableSizeID).ToList();
+                                                        if (psizId.Contains(item.SizeID))
+                                                        {
+                                                            <option value="@item.SizeID" selected>@item.SizeName</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@item.SizeID">@item.SizeName</option>
+                                                        }
                                                     }
                                                 </select>
                                             </div>

@@ -26,7 +26,12 @@ namespace MWear.Areas.Admin.Controllers
             var productColors = db.AvailabeColors.ToList();
             ViewBag.AvailableColors = productColors;
             var procolids = productColors.Select(x => x.AvialableColor).ToList();
-            ViewBag.Colors = db.Colors.Where(x => procatids.Contains(x.ColorID)).ToList();
+            ViewBag.Colors = db.Colors.Where(x => procolids.Contains(x.ColorID)).ToList();
+
+            var productSizes = db.AvailableSizes.ToList();
+            ViewBag.AvailableSizes = productSizes;
+            var prosizids = productSizes.Select(x => x.AvialableSize).ToList();
+            ViewBag.Sizes = db.Sizes.Where(x => prosizids.Contains(x.SizeID)).ToList();
 
 
 
@@ -107,7 +112,7 @@ namespace MWear.Areas.Admin.Controllers
 
 
 
-            // Add selected category in product category list start
+            // Add selected Size in Available Size list start
             var size = collection["sizes"];
             if (size != null)
             {
@@ -125,8 +130,8 @@ namespace MWear.Areas.Admin.Controllers
                 }
                 db.AvailableSizes.AddRange(prosize);
             }
-            
-            // Add selected category in product category list end
+
+            // Add selected Size in Available Size list End
 
 
 
@@ -241,17 +246,32 @@ namespace MWear.Areas.Admin.Controllers
             ViewBag.Colors = colors;
             var sizes = db.Sizes.Where(x => x.Active == true).ToList();
             ViewBag.Sizes = sizes;
-            ///Abdul Rehman
+
+            //Abdul Rehman Selecting Existing Category
             var productCategory = db.ProductCategories.Where(x => x.Product == pid).ToList();
             ViewBag.productCategory = productCategory;
             //End
+
+            //Dawood Selecting Existing Color
+            var productColor = db.AvailabeColors.Where(x => x.Product == pid).ToList();
+            ViewBag.productColor = productColor;
+            //End
+
+            //Dawood Selecting Existing Color
+            var productSize = db.AvailableSizes.Where(x => x.Product == pid).ToList();
+            ViewBag.productSize = productSize;
+            //End
+
             var product = db.Products.Where(x => x.ProductGUID == pid).FirstOrDefault();
             return View(product);
         }
 
         [HttpPost]
-        public ActionResult EditProduct(Product product, string FeaturedChechbox, string AvailableChechbox)
+        public ActionResult EditProduct(Product product, string FeaturedChechbox, string AvailableChechbox, FormCollection collection)
         {
+            var productguid = product.ProductGUID;
+
+            // Product Table Edit Start
             Product pro = db.Products.Where(x => x.ProductGUID == product.ProductGUID).FirstOrDefault();
             pro.SKU = product.SKU;
             pro.ProductName = product.ProductName;
@@ -283,6 +303,78 @@ namespace MWear.Areas.Admin.Controllers
             pro.Active = true;
 
             db.Entry(pro).State = EntityState.Modified;
+            // Product Table Edit End
+
+
+            // Re-Add selected category in product category table start
+            var category = collection["category"];
+            List<ProductCategory> procat = new List<ProductCategory>();
+            if (category != null)
+            {
+                var existingcategory = db.ProductCategories.Where(x => x.Product == productguid).ToList();
+                db.ProductCategories.RemoveRange(existingcategory);
+
+                var catarr = category.Split(',');
+                for (int i = 0; i < catarr.Length; i++)
+                {
+                    procat.Add(new ProductCategory()
+                    {
+                        Product = productguid,
+                        Category = Convert.ToInt32(catarr[i])
+                    });
+                }
+                db.ProductCategories.AddRange(procat);
+            }
+            // Re-Add selected category in product category table End
+
+
+            // Re-Add selected color in available color list start
+            var color = collection["colors"];
+            List<AvailabeColor> procolor = new List<AvailabeColor>();
+            if (color != null)
+            {
+                var existingcolor = db.AvailabeColors.Where(x => x.Product == productguid).ToList();
+                db.AvailabeColors.RemoveRange(existingcolor);
+
+                var colorr = color.Split(',');
+                for (int i = 0; i < colorr.Length; i++)
+                {
+                    procolor.Add(new AvailabeColor()
+                    {
+                        Product = productguid,
+                        AvialableColor = Convert.ToInt32(colorr[i])
+                    });
+                }
+                db.AvailabeColors.AddRange(procolor);
+            }
+            // Re-Add selected color in avaiable color list end
+
+
+
+            // Add selected Size in Available Size list start
+            var size = collection["sizes"];
+            List<AvailableSize> prosize = new List<AvailableSize>();
+            if (size != null)
+            {
+                var existingsize = db.AvailableSizes.Where(x => x.Product == productguid).ToList();
+                db.AvailableSizes.RemoveRange(existingsize);
+
+                var sizee = size.Split(',');
+                for (int i = 0; i < sizee.Length; i++)
+                {
+                    prosize.Add(new AvailableSize()
+                    {
+                        Product = productguid,
+                        AvialableSize = Convert.ToInt32(sizee[i])
+                    });
+                }
+                db.AvailableSizes.AddRange(prosize);
+            }
+
+            // Add selected Size in Available Size list End
+
+
+            // Saving Changes and Redirecting
             db.SaveChanges();
             return RedirectToAction("Index");
         }

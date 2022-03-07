@@ -6,6 +6,8 @@
     List<MWear.Models.Category> categories = ViewBag.Categories;
     List<MWear.Models.AvailabeColor> procol = ViewBag.AvailableColors;
     List<MWear.Models.Color> colors = ViewBag.Colors;
+    List<MWear.Models.AvailableSize> prosiz = ViewBag.AvailableSizes;
+    List<MWear.Models.Size> sizes = ViewBag.Sizes;
 
 }
 
@@ -73,14 +75,13 @@
 
                                         }
 
-
                                         var colids = procol.Where(x => x.Product == item.ProductGUID).ToList();
                                         var colname = "";
-                                        var count1 = 1;
+                                        var colcount = 1;
                                         foreach (var items in colids)
                                         {
                                             var colename = colors.Where(x => x.ColorID == items.AvialableColor).FirstOrDefault().ColorName;
-                                            if (count1 == 1)
+                                            if (colcount == 1)
                                             {
                                                 colname = colename;
                                             }
@@ -88,8 +89,30 @@
                                             {
                                                 colname = colname + ", " + colename;
                                             }
-                                            count1 = count1 + 1;
+                                            colcount = colcount + 1;
+
                                         }
+
+                                        var sizids = prosiz.Where(x => x.Product == item.ProductGUID).ToList();
+                                        var sizname = "";
+                                        var sizcount = 1;
+                                        foreach (var items in sizids)
+                                        {
+                                            var sizename = sizes.Where(x => x.SizeID == items.AvialableSize).FirstOrDefault().SizeName;
+                                            if (colcount == 1)
+                                            {
+                                                sizname = sizename;
+                                            }
+                                            else
+                                            {
+                                                sizname = sizname + ", " + sizename;
+                                            }
+                                            sizcount = sizcount + 1;
+
+                                        }
+
+
+
 
 
                                         <tr>
@@ -101,11 +124,7 @@
                                             <td>@item.QuantityPerUnit</td>
                                             <td>@item.Price</td>
                                             <td>@catname</td>
-
-                                            <td>@item.Size</td>
-
-
-
+                                            <td>@sizname</td>
                                             <td>@colname</td>
                                             <td>@item.Discount</td>
                                             <td>@item.UnitsInStock</td>

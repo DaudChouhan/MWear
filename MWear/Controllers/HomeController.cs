@@ -13,8 +13,30 @@ namespace MWear.Controllers
         mwearEntities dbobj = new mwearEntities();
         public ActionResult Index()
         {
-            var images = dbobj.WebImages.Where(x => x.Active == true).ToList();
-            return View(images);
+            ViewBag.WebImages = dbobj.WebImages.Where(x => x.Active == true).ToList();
+            ViewBag.Products = dbobj.Products.Where(x => x.Active == true).ToList();
+
+            
+            var categories = dbobj.Categories.Where(x => x.Active == true).ToList();
+            ViewBag.Categories = categories;
+            var productCategory = dbobj.ProductCategories.ToList();
+            ViewBag.productCategory = productCategory;
+
+            var colors = dbobj.Colors.Where(x => x.Active == true).ToList();
+            ViewBag.Colors = colors;
+            var productColor = dbobj.AvailabeColors.ToList();
+            ViewBag.productColor = productColor;
+
+
+            var sizes = dbobj.Sizes.Where(x => x.Active == true).ToList();
+            ViewBag.Sizes = sizes;
+            var productSize = dbobj.AvailableSizes.ToList();
+            ViewBag.productSize = productSize;
+
+
+
+
+            return View();
         }
         public ActionResult Contact()
         {

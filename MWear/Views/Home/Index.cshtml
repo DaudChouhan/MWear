@@ -1,59 +1,37 @@
 ﻿@{
     ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
+
+    List<MWear.Models.WebImage> sliders = ViewBag.WebImages;
+    List<MWear.Models.Product> products = ViewBag.Products;
+    List<MWear.Models.Category> categories = ViewBag.Categories;
+    List<MWear.Models.Color> colors = ViewBag.Colors;
+    List<MWear.Models.Size> sizes = ViewBag.Sizes;
+    List<MWear.Models.ProductCategory> pcategory = ViewBag.productCategory;
+    List<MWear.Models.AvailabeColor> pcolor = ViewBag.productColor;
+    List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
+
 }
 <!-- Main Slider Start -->
 <div class="sticky-header-next-sec ec-main-slider section section-space-pb">
     <div class="ec-slider swiper-container main-slider-nav main-slider-dot">
         <!-- Main slider -->
         <div class="swiper-wrapper">
-            <div class="ec-slide-item swiper-slide d-flex ec-slide-1" style="background-image:url(../../Images/Products/banner15a.jpg); width:1536px; height:550px;">
-                <div class="container align-self-center">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
-                            <div class="ec-slide-content slider-animation">
-                                @*<h1 class="ec-slide-title">New Fashion Collection Summer Sale</h1>
-                                    <h2 class="ec-slide-stitle">Sale Offer</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>*@
-
-                                <a href="#" class="btn btn-lg btn-secondary" style="margin-top:400px">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="ec-slide-item swiper-slide d-flex ec-slide-1" style="background-image:url(../../Images/Products/banner15a.jpg); width:1536px; height:550px;">
-                <div class="container align-self-center">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
-                            <div class="ec-slide-content slider-animation">
-                                @*<h1 class="ec-slide-title">New Fashion Collection Summer Sale</h1>
-                                    <h2 class="ec-slide-stitle">Sale Offer</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>*@
-
-                                <a href="#" class="btn btn-lg btn-secondary" style="margin-top:400px">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*<div class="ec-slide-item swiper-slide d-flex ec-slide-2">
+            @foreach (var item in sliders)
+            {
+                <div class="ec-slide-item swiper-slide d-flex ec-slide-1" style="background-image:url(../../Images/Products/@item.ImagePath); width:1536px; height:550px;">
                     <div class="container align-self-center">
                         <div class="row">
-
                             <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
-
-                                <div class="ec-slide-content slider-animation"  >
-
-                                    <h1 class="ec-slide-title">Boat Headphone Sets</h1>
-                                    <h2 class="ec-slide-stitle">Sale Offer</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-                                    <a href="#" class="btn btn-lg btn-secondary">Order Now</a>
+                                <div class="ec-slide-content slider-animation">
+                                    <a href="#" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>*@
+                </div>
+            }
+            
         </div>
         <div class="swiper-pagination swiper-pagination-white"></div>
         <div class="swiper-buttons">
@@ -121,314 +99,124 @@
                         <div class="row">
                             <!-- Product Content -->
                             <!-- Custom Tile Starts -->
+                            @foreach (var items in products.Where(x => x.Available == true && x.Featured == true).OrderByDescending(x => x.ProductID).Take(8))
+                            {
 
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <!-- START single card -->
-                                <div class="ec-product-lsc" style="margin-top: 10px;">
-                                    <div class="ec-product-image">
-                                        <a href="~/Theme/#">
-                                            <img src="~/Images/Products/SPG-00173-1.jpg" class="img-center" alt="">
-                                        </a>
-                                        <span class="ec-product-ribbon">New</span>
-                                    </div>
-                                    <div class="ec-product-body">
-                                        <p class="ec-description"> Men's Fashion <span>In stock</span></p>
-                                        <h3 class="ec-title"><a href="~/Theme/#">Men's plain shirt</a></h3>
-                                        <div class="ec-el-price">
-                                            <p class="ec-o-price"> $200 </p>
-                                            <p class="ec-d-price"> $180 </p>
+                                var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
+                                var catname = "";
+                                var count = 1;
+                                foreach (var itemss in catids)
+                                {
+                                    var catename = categories.Where(x => x.CategoryID == itemss.Category).FirstOrDefault().CategoryName;
+                                    if (count == 1)
+                                            {
+                                                catname = catename;
+                                            }
+                                            else
+                                            {
+                                                catname = catname + ", " + catename;
+                                            }
+                                            count = count + 1;
+                                }
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <!-- START single card -->
+                                    <div class="ec-product-lsc" style="margin-top: 10px;">
+                                        <div class="ec-product-image">
+                                            <a href="#">
+                                                <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
+                                            </a>
+                                            <span class="ec-product-ribbon">New</span>
                                         </div>
-                                        <!-- <ul class="ec-rating">
+                                        <div class="ec-product-body">
+                                            
+                                            <p class="ec-description"> @catname <span>In stock</span></p>
+                                            
+                                            <h3 class="ec-title"><a href="#">@items.ProductName</a></h3>
+                                            <div class="ec-el-price">
+                                                @if (items.Discount != null)
+                                                {
+                                                    var ogprice = items.Price;
+                                                    var dcprice = items.Discount;
+                                                    var newprice = ogprice - dcprice;
+                                                    <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
+                                                    <br />
+                                                    <p class="ec-o-price"> Rs. @newprice </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="ec-o-price"> Rs. @items.Price </p>
+                                                }
+
+                                            </div>
+                                            <!-- <ul class="ec-rating">
                                             <li class="ecicon eci-star fill"></li>
                                             <li class="ecicon eci-star fill"></li>
                                             <li class="ecicon eci-star fill"></li>
                                             <li class="ecicon eci-star fill"></li>
                                             <li class="ecicon eci-star"></li>
                                         </ul> -->
-                                        <div class="ec-color">
-                                            <div class="ec-pro-color">
-                                                <span class="ec-pro-opt-label">Color</span>
-                                                <ul class="ec-opt-swatch ec-change-img">
-                                                    <li class="active">
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-src-hover="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-tooltip="Gray">
-                                                            <span style="background-color:#01f1f1;"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-src-hover="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-tooltip="Orange">
-                                                            <span style="background-color:#b89df8;"></span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                            <div class="ec-color">
+                                                <div class="ec-pro-color">
+                                                    <span class="ec-pro-opt-label">Color</span>
+                                                    <ul class="ec-opt-swatch ec-change-img">
+                                                        <li class="active">
+                                                            <a href="~/Theme/#" class="ec-opt-clr-img"
+                                                               data-src="~/Images/Products/@items.Picture"
+                                                               data-src-hover="~/Images/Products/@items.Picture"
+                                                               data-tooltip="Gray">
+                                                                <span style="background-color:#01f1f1;"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="~/Theme/#" class="ec-opt-clr-img"
+                                                               data-src="~/Theme/assets/images/product-image/@items.Picture"
+                                                               data-src-hover="~/Theme/assets/images/product-image/@items.Picture"
+                                                               data-tooltip="Orange">
+                                                                <span style="background-color:#b89df8;"></span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                            </div>
+                                            <br>
+
+                                            <br>
+                                            <div class="ec-size" style="margin-top: -15px;">
+                                                <a>S</a>
+                                                <a>M</a>
+                                                <a>L</a>
                                             </div>
 
-                                        </div>
-                                        <br>
 
-                                        <br>
-                                        <div class="ec-size" style="margin-top: -15px;">
-                                            <a href="~/Theme/#">S</a>
-                                            <a href="~/Theme/#">M</a>
-                                            <a href="~/Theme/#">L</a>
-                                        </div>
-
-
-                                        <div class="ec-link-btn">
-                                            <a class=" ec-add-to-cart" href="~/Theme/#">add to cart</a>
-                                            <div class="ec-link-icon">
-                                                <a href="~/Theme/#" data-tip="Add to Wishlist">
-                                                    <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                </a>
-                                                <a href="~/Theme/#" data-tip="Compare">
-                                                    <img src="~/Theme/assets/images/icons/compare.svg"
-                                                         class="svg_img pro_svg" alt="compare" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Custom tile Ends -->
-                            <!-- Custom Tile Starts -->
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <!-- START single card -->
-                                <div class="ec-product-lsc" style="margin-top: 10px;">
-                                    <div class="ec-product-image">
-                                        <a href="~/Theme/#">
-                                            <img src="~/Images/Products/SPG-00173-1.jpg" class="img-center" alt="">
-                                        </a>
-                                        <span class="ec-product-ribbon">New</span>
-                                    </div>
-                                    <div class="ec-product-body">
-                                        <p class="ec-description"> Men's Fashion <span>In stock</span></p>
-                                        <h3 class="ec-title"><a href="~/Theme/#">Men's plain shirt</a></h3>
-                                        <div class="ec-el-price">
-                                            <p class="ec-o-price"> $200 </p>
-                                            <p class="ec-d-price"> $180 </p>
-                                        </div>
-                                        <!-- <ul class="ec-rating">
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star"></li>
-                                        </ul> -->
-                                        <div class="ec-color">
-                                            <div class="ec-pro-color">
-                                                <span class="ec-pro-opt-label">Color</span>
-                                                <ul class="ec-opt-swatch ec-change-img">
-                                                    <li class="active">
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-src-hover="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-tooltip="Gray">
-                                                            <span style="background-color:#01f1f1;"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-src-hover="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-tooltip="Orange">
-                                                            <span style="background-color:#b89df8;"></span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <br>
-
-                                        <br>
-                                        <div class="ec-size" style="margin-top: -15px;">
-                                            <a href="~/Theme/#">S</a>
-                                            <a href="~/Theme/#">M</a>
-                                            <a href="~/Theme/#">L</a>
-                                        </div>
-
-
-                                        <div class="ec-link-btn">
-                                            <a class=" ec-add-to-cart" href="~/Theme/#">add to cart</a>
-                                            <div class="ec-link-icon">
-                                                <a href="~/Theme/#" data-tip="Add to Wishlist">
-                                                    <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                </a>
-                                                <a href="~/Theme/#" data-tip="Compare">
-                                                    <img src="~/Theme/assets/images/icons/compare.svg"
-                                                         class="svg_img pro_svg" alt="compare" />
-                                                </a>
+                                            <div class="ec-link-btn">
+                                                <a class=" ec-add-to-cart" href="#">View Product</a>
+                                                <div class="ec-link-icon">
+                                                    <a href="#" data-tip="Add to Wishlist">
+                                                        <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                             class="svg_img header_svg pro_svg" alt="wishlist" />
+                                                    </a>
+                                                    <a href="#" data-tip="Compare">
+                                                        <img src="~/Theme/assets/images/icons/compare.svg"
+                                                             class="svg_img pro_svg" alt="compare" />
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                            }
+                                <!-- Custom tile Ends -->
+                               
+
+
+
+
+                                <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
+
+
                             </div>
-                            <!-- Custom tile Ends -->
-                            <!-- Custom Tile Starts -->
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <!-- START single card -->
-                                <div class="ec-product-lsc" style="margin-top: 10px;">
-                                    <div class="ec-product-image">
-                                        <a href="~/Theme/#">
-                                            <img src="~/Images/Products/SPG-00173-1.jpg" class="img-center" alt="">
-                                        </a>
-                                        <span class="ec-product-ribbon">New</span>
-                                    </div>
-                                    <div class="ec-product-body">
-                                        <p class="ec-description"> Men's Fashion <span>In stock</span></p>
-                                        <h3 class="ec-title"><a href="~/Theme/#">Men's plain shirt</a></h3>
-                                        <div class="ec-el-price">
-                                            <p class="ec-o-price"> $200 </p>
-                                            <p class="ec-d-price"> $180 </p>
-                                        </div>
-                                        <!-- <ul class="ec-rating">
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star"></li>
-                                        </ul> -->
-                                        <div class="ec-color">
-                                            <div class="ec-pro-color">
-                                                <span class="ec-pro-opt-label">Color</span>
-                                                <ul class="ec-opt-swatch ec-change-img">
-                                                    <li class="active">
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-src-hover="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-tooltip="Gray">
-                                                            <span style="background-color:#01f1f1;"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-src-hover="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-tooltip="Orange">
-                                                            <span style="background-color:#b89df8;"></span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <br>
-
-                                        <br>
-                                        <div class="ec-size" style="margin-top: -15px;">
-                                            <a href="~/Theme/#">S</a>
-                                            <a href="~/Theme/#">M</a>
-                                            <a href="~/Theme/#">L</a>
-                                        </div>
-
-
-                                        <div class="ec-link-btn">
-                                            <a class=" ec-add-to-cart" href="~/Theme/#">add to cart</a>
-                                            <div class="ec-link-icon">
-                                                <a href="~/Theme/#" data-tip="Add to Wishlist">
-                                                    <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                </a>
-                                                <a href="~/Theme/#" data-tip="Compare">
-                                                    <img src="~/Theme/assets/images/icons/compare.svg"
-                                                         class="svg_img pro_svg" alt="compare" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Custom tile Ends -->
-                            <!-- Custom Tile Starts -->
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <!-- START single card -->
-                                <div class="ec-product-lsc" style="margin-top: 10px;">
-                                    <div class="ec-product-image">
-                                        <a href="~/Theme/#">
-                                            <img src="~/Images/Products/SPG-00173-1.jpg" class="img-center" alt="">
-                                        </a>
-                                        <span class="ec-product-ribbon">New</span>
-                                    </div>
-                                    <div class="ec-product-body">
-                                        <p class="ec-description"> Men's Fashion <span>In stock</span></p>
-                                        <h3 class="ec-title"><a href="~/Theme/#">Men's plain shirt</a></h3>
-                                        <div class="ec-el-price">
-                                            <p class="ec-o-price"> $200 </p>
-                                            <p class="ec-d-price"> $180 </p>
-                                        </div>
-                                        <!-- <ul class="ec-rating">
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star fill"></li>
-                                            <li class="ecicon eci-star"></li>
-                                        </ul> -->
-                                        <div class="ec-color">
-                                            <div class="ec-pro-color">
-                                                <span class="ec-pro-opt-label">Color</span>
-                                                <ul class="ec-opt-swatch ec-change-img">
-                                                    <li class="active">
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-src-hover="~/Images/Products/SPG-00173-1.jpg"
-                                                           data-tooltip="Gray">
-                                                            <span style="background-color:#01f1f1;"></span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="~/Theme/#" class="ec-opt-clr-img"
-                                                           data-src="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-src-hover="~/Theme/assets/images/product-image/7_2.jpg"
-                                                           data-tooltip="Orange">
-                                                            <span style="background-color:#b89df8;"></span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <br>
-
-                                        <br>
-                                        <div class="ec-size" style="margin-top: -15px;">
-                                            <a href="~/Theme/#">S</a>
-                                            <a href="~/Theme/#">M</a>
-                                            <a href="~/Theme/#">L</a>
-                                        </div>
-
-
-                                        <div class="ec-link-btn">
-                                            <a class=" ec-add-to-cart" href="~/Theme/#">add to cart</a>
-                                            <div class="ec-link-icon">
-                                                <a href="~/Theme/#" data-tip="Add to Wishlist">
-                                                    <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                </a>
-                                                <a href="~/Theme/#" data-tip="Compare">
-                                                    <img src="~/Theme/assets/images/icons/compare.svg"
-                                                         class="svg_img pro_svg" alt="compare" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Custom tile Ends -->
-
-
-
-
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
-
-
-                        </div>
                     </div>
 
                     <!-- ec 1st Product tab end -->
