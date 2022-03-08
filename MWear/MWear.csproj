@@ -2816,6 +2816,10 @@
     <Content Include="Views\UserProfile\Index.cshtml" />
     <Content Include="Views\WishList\Index.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\_cart.cshtml" />
+    <Content Include="Views\Shared\_floatingtools.cshtml" />
+    <Content Include="Views\Shared\_footernavigation.cshtml" />
     <Content Include="Views\ProductDetail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
