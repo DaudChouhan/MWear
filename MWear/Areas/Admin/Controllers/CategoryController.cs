@@ -12,18 +12,18 @@ namespace MWear.Areas.Admin.Controllers
     {
         // GET: Admin/Category
 
-        mwearEntities dbobj = new mwearEntities();
+        mwearEntities db = new mwearEntities();
         
 
         public ActionResult Index()
         {
-            var category = dbobj.Categories.Where(x => x.Active == true).ToList();
+            var category = db.Categories.Where(x => x.Active == true).ToList();
             return View(category);
         }
 
         public ActionResult AddCategory()
         {
-            var pcat = dbobj.Categories.Where(x => x.ParentCategory == null).ToList();
+            var pcat = db.Categories.Where(x => x.ParentCategory == null).ToList();
             ViewBag.PCat = pcat;
             return View();
         }
@@ -36,39 +36,39 @@ namespace MWear.Areas.Admin.Controllers
             cat.ParentCategory = category.ParentCategory;
             cat.CategoryDescription = category.CategoryDescription;
             cat.Active = true;
-            dbobj.Categories.Add(cat);
-            dbobj.SaveChanges();
+            db.Categories.Add(cat);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult EditCategory(int categoryId)
         {
-            var pcat = dbobj.Categories.Where(x => x.ParentCategory == null).ToList();
+            var pcat = db.Categories.Where(x => x.ParentCategory == null).ToList();
             ViewBag.PCat = pcat;
-            var cat = dbobj.Categories.Where(x => x.CategoryID == categoryId).FirstOrDefault();
+            var cat = db.Categories.Where(x => x.CategoryID == categoryId).FirstOrDefault();
             return View(cat);
         }
 
         [HttpPost]
         public ActionResult EditCategory(Category category)
         {
-            Category cat = dbobj.Categories.Where(x => x.CategoryID == category.CategoryID).FirstOrDefault();
+            Category cat = db.Categories.Where(x => x.CategoryID == category.CategoryID).FirstOrDefault();
             cat.CategoryName = category.CategoryName;
             cat.ParentCategory = category.ParentCategory;
             cat.CategoryDescription = category.CategoryDescription;
             cat.Active = true;
-            dbobj.Entry(cat).State = EntityState.Modified;
-            dbobj.SaveChanges();
+            db.Entry(cat).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
         public JsonResult DeleteCategory(int? categoryId)
         {
             if (categoryId != null)
             {
-                var cat = dbobj.Categories.Where(x => x.CategoryID == categoryId).FirstOrDefault();
+                var cat = db.Categories.Where(x => x.CategoryID == categoryId).FirstOrDefault();
                 cat.Active = false;
-                dbobj.Entry(cat).State = EntityState.Modified;
-                dbobj.SaveChanges();
+                db.Entry(cat).State = EntityState.Modified;
+                db.SaveChanges();
                 return Json("Success", JsonRequestBehavior.AllowGet);
             }
             return Json("Failed", JsonRequestBehavior.AllowGet);

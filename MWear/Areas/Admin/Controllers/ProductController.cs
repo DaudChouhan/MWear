@@ -149,10 +149,12 @@ namespace MWear.Areas.Admin.Controllers
                         if (item.ContentLength <= 4100000 && (item.ContentType == "image/jpeg" || item.ContentType == "image/png"))
                         {
                             var fname = item.FileName.Replace(' ', '-');
-                            fname = fname + DateTime.Now.ToString("ddMMyyyy HHmmss");
-                            string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Images" + "\\" + "Products" + "\\", fname);
-                            string fpath = "/Images/Products/" + fname;
-                            item.SaveAs(filepath);
+                            //fname = fname + DateTime.Now.ToString("ddMMyyyy HHmmss");
+                            //string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Images" + "\\" + "Products" + "\\", fname);
+                            //string fpath = "/Images/Products/" + fname;
+                            string fileimg = Path.Combine(Server.MapPath("~/Images/Products"), fname);
+                            string fpath = fname;
+                            item.SaveAs(fileimg);
                             productImage.Add(new Picture
                             {
                                 PictureName = fname,

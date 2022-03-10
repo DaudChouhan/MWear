@@ -10,28 +10,31 @@ namespace MWear.Controllers
     public class HomeController : Controller
     {
 
-        mwearEntities dbobj = new mwearEntities();
+        mwearEntities db = new mwearEntities();
         public ActionResult Index()
         {
-            ViewBag.WebImages = dbobj.WebImages.Where(x => x.Active == true).ToList();
-            ViewBag.Products = dbobj.Products.Where(x => x.Active == true).ToList();
+            ViewBag.WebImages = db.WebImages.Where(x => x.Active == true).ToList();
+            ViewBag.Products = db.Products.Where(x => x.Active == true).ToList();
 
             
-            var categories = dbobj.Categories.Where(x => x.Active == true).ToList();
+            var categories = db.Categories.Where(x => x.Active == true).ToList();
             ViewBag.Categories = categories;
-            var productCategory = dbobj.ProductCategories.ToList();
+            var productCategory = db.ProductCategories.ToList();
             ViewBag.productCategory = productCategory;
 
-            var colors = dbobj.Colors.Where(x => x.Active == true).ToList();
+            var colors = db.Colors.Where(x => x.Active == true).ToList();
             ViewBag.Colors = colors;
-            var productColor = dbobj.AvailabeColors.ToList();
+            var productColor = db.AvailabeColors.ToList();
             ViewBag.productColor = productColor;
 
 
-            var sizes = dbobj.Sizes.Where(x => x.Active == true).ToList();
+            var sizes = db.Sizes.Where(x => x.Active == true).ToList();
             ViewBag.Sizes = sizes;
-            var productSize = dbobj.AvailableSizes.ToList();
+            var productSize = db.AvailableSizes.ToList();
             ViewBag.productSize = productSize;
+
+            var pictures = db.Pictures.ToList();
+            ViewBag.Pictures = pictures;
 
 
 

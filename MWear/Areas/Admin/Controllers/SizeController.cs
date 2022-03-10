@@ -13,12 +13,12 @@ namespace MWear.Areas.Admin.Controllers
         // GET: Admin/Size
 
 
-        mwearEntities dbobj = new mwearEntities();
+        mwearEntities db = new mwearEntities();
        
 
         public ActionResult Index()
         {
-            var size = dbobj.Sizes.Where(x => x.Active == true).ToList();
+            var size = db.Sizes.Where(x => x.Active == true).ToList();
             return View(size);
         }
 
@@ -35,17 +35,17 @@ namespace MWear.Areas.Admin.Controllers
             siz.DisplayName = size.DisplayName;
             siz.SizeDescription = size.SizeDescription;
             siz.Active = true;
-            dbobj.Sizes.Add(siz);
-            dbobj.SaveChanges();
+            db.Sizes.Add(siz);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
 
         public ActionResult EditSize(int sizeid)
         {
-            //var pcat = dbobj.Categories.Where(x => x.ParentCategory == null).ToList();
+            //var pcat = db.Categories.Where(x => x.ParentCategory == null).ToList();
             //ViewBag.PCat = pcat;
-            var size = dbobj.Sizes.Where(x => x.SizeID == sizeid).FirstOrDefault();
+            var size = db.Sizes.Where(x => x.SizeID == sizeid).FirstOrDefault();
             return View(size);
         }
 
@@ -53,13 +53,13 @@ namespace MWear.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditSize(Size size)
         {
-            Size siz = dbobj.Sizes.Where(x => x.SizeID == size.SizeID).FirstOrDefault();
+            Size siz = db.Sizes.Where(x => x.SizeID == size.SizeID).FirstOrDefault();
             siz.SizeName = size.SizeName;
             siz.DisplayName = size.DisplayName;
             siz.SizeDescription = size.SizeDescription;
             siz.Active = true;
-            dbobj.Entry(siz).State = EntityState.Modified;
-            dbobj.SaveChanges();
+            db.Entry(siz).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -67,10 +67,10 @@ namespace MWear.Areas.Admin.Controllers
         {
             if (sizeid != null)
             {
-                var size = dbobj.Sizes.Where(x => x.SizeID == sizeid).FirstOrDefault();
+                var size = db.Sizes.Where(x => x.SizeID == sizeid).FirstOrDefault();
                 size.Active = false;
-                dbobj.Entry(size).State = EntityState.Modified;
-                dbobj.SaveChanges();
+                db.Entry(size).State = EntityState.Modified;
+                db.SaveChanges();
                 return Json("Success", JsonRequestBehavior.AllowGet);
             }
             return Json("Failed", JsonRequestBehavior.AllowGet);

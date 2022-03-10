@@ -13,12 +13,12 @@ namespace MWear.Areas.Admin.Controllers
         // GET: Admin/Color
 
 
-        mwearEntities dbobj = new mwearEntities();
+        mwearEntities db = new mwearEntities();
 
 
         public ActionResult Index()
         {
-            var color = dbobj.Colors.Where(x => x.Active == true).ToList();
+            var color = db.Colors.Where(x => x.Active == true).ToList();
             return View(color);
         }
 
@@ -35,15 +35,15 @@ namespace MWear.Areas.Admin.Controllers
             col.ColorHash = color.ColorHash;
             col.ColorDescription = color.ColorDescription;
             col.Active = true;
-            dbobj.Colors.Add(col);
-            dbobj.SaveChanges();
+            db.Colors.Add(col);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult EditColor(int colorid)
         {
 
-            var color = dbobj.Colors.Where(x => x.ColorID == colorid).FirstOrDefault();
+            var color = db.Colors.Where(x => x.ColorID == colorid).FirstOrDefault();
             return View(color);
         }
 
@@ -51,13 +51,13 @@ namespace MWear.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult EditColor(Color color)
         {
-            Color col = dbobj.Colors.Where(x => x.ColorID == color.ColorID).FirstOrDefault();
+            Color col = db.Colors.Where(x => x.ColorID == color.ColorID).FirstOrDefault();
             col.ColorName = color.ColorName;
             col.ColorHash = color.ColorHash;
             col.ColorDescription = color.ColorDescription;
             col.Active = true;
-            dbobj.Entry(col).State = EntityState.Modified;
-            dbobj.SaveChanges();
+            db.Entry(col).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -66,10 +66,10 @@ namespace MWear.Areas.Admin.Controllers
         {
             if (colorid != null)
             {
-                var color = dbobj.Colors.Where(x => x.ColorID == colorid).FirstOrDefault();
+                var color = db.Colors.Where(x => x.ColorID == colorid).FirstOrDefault();
                 color.Active = false;
-                dbobj.Entry(color).State = EntityState.Modified;
-                dbobj.SaveChanges();
+                db.Entry(color).State = EntityState.Modified;
+                db.SaveChanges();
                 return Json("Success", JsonRequestBehavior.AllowGet);
             }
             return Json("Failed", JsonRequestBehavior.AllowGet);

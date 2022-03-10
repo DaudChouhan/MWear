@@ -33,6 +33,9 @@ namespace MWear.Controllers
             var productSize = db.AvailableSizes.ToList();
             ViewBag.productSize = productSize;
 
+            var pictures = db.Pictures.ToList();
+            ViewBag.Pictures = pictures;
+
 
             var prod = db.Products.Where(x => x.ProductGUID == ProID).FirstOrDefault();
             return View(prod);
