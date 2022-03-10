@@ -192,6 +192,8 @@
     <Compile Include="Areas\Admin\Controllers\SizeController.cs" />
     <Compile Include="Areas\Admin\Controllers\WebImagesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderTrackingController.cs" />
@@ -289,7 +291,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\1366X768.jpg" />
     <Content Include="Images\Products\1020x350.jpg" />
+    <Content Include="Images\Products\1366X768.jpg" />
     <Content Include="Images\Products\1920x630.jpg" />
     <Content Include="Images\Products\800x400.jpg" />
     <Content Include="Images\Products\banner15a.jpg" />
@@ -2823,6 +2827,12 @@
     <Content Include="Views\ProductDetail\Index.cshtml" />
     <Content Include="Views\Shared\HeaderTopBar.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shared\_UserSidebarArea.cshtml" />
+    <Content Include="Views\UserProfile\UserOrderHistory.cshtml" />
+    <Content Include="Views\UserProfile\Wishlist.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
+    <Content Include="Views\UserProfile\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

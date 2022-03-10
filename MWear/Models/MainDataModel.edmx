@@ -121,6 +121,7 @@
           <Property Name="Password" Type="varchar" MaxLength="255" />
           <Property Name="ShippingRegion" Type="varchar" MaxLength="255" />
           <Property Name="DateJoined" Type="datetime" />
+          <Property Name="Picture" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -446,6 +447,7 @@
           <Property Name="ShippingRegion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DateJoined" Type="DateTime" Precision="3" />
           <Property Name="AspNetUserID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
@@ -729,6 +731,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="mwearModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="AspNetUserID" ColumnName="AspNetUserID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />

@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*-----------------------------------------------------------------------------------
 
     Item Name: Ekka - Ecommerce HTML Template.
@@ -31753,7 +31753,7 @@ input[type=email]:focus::-webkit-input-placeholder {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-image: url(../images/banner/7.jpg);
+  background-image: url(../../../Images/1366X768.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -31882,7 +31882,7 @@ input[type=email]:focus::-webkit-input-placeholder {
   height: 150px;
   margin-bottom: 65px;
   position: relative;
-  background-image: url("../images/banner/7.jpg");
+  background-image: url("../../../Images/1366X768.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-blend-mode: overlay;
@@ -32095,7 +32095,7 @@ input[type=email]:focus::-webkit-input-placeholder {
 .ec-vendor-dashboard .ec-vendor-sidebar .ec-sidebar-block .ec-vendor-block .ec-vendor-block-bg, .ec-vendor-uploads .ec-vendor-sidebar .ec-sidebar-block .ec-vendor-block .ec-vendor-block-bg {
   width: 100%;
   height: 200px;
-  background-image: url(../images/banner/7.jpg);
+  background-image: url(../../../Images/1366X768.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32625,7 +32625,7 @@ input[type=email]:focus::-webkit-input-placeholder {
 .ec-vendor-profile-card .ec-vendor-block-profile .ec-vendor-block-img .ec-vendor-block-bg {
   width: 100%;
   height: 200px;
-  background-image: url(../images/banner/7.jpg);
+  background-image: url(../../../Images/1366X768.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32685,7 +32685,7 @@ input[type=email]:focus::-webkit-input-placeholder {
 .ec-vendor-setting-card .ec-vendor-block-bg {
   width: 100%;
   height: 200px;
-  background-image: url(../images/banner/7.jpg);
+  background-image: url(../../../Images/1366X768.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32929,7 +32929,7 @@ input[type=email]:focus::-webkit-input-placeholder {
 .ec-user-account .ec-vendor-block-bg {
   width: 100%;
   height: 200px;
-  background-image: url(../images/banner/8.jpg) !important;
+  background-image: url(../../../Images/1366X768.jpg) !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

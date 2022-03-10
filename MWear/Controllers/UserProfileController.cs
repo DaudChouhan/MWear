@@ -13,5 +13,22 @@ namespace MWear.Controllers
         {
             return View();
         }
+
+        public ActionResult EditProfile()
+        {
+            return View();
+        }
+
+        public ActionResult UserOrderHistory()
+        {
+            return View();
+        }
+
+        public ActionResult Wishlist()
+        {
+            return View();
+        }
+        
+
     }
 }
