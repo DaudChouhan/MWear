@@ -195,9 +195,10 @@ namespace MWear.Areas.Admin.Controllers
             pro.UnitWeight = product.UnitWeight;
             pro.UnitsInStock = product.UnitsInStock;
             pro.Note = product.Note;
-
             
-                if (AvailableChechbox == "on")
+
+
+            if (AvailableChechbox == "on")
             {
                 product.Available = true;
             }

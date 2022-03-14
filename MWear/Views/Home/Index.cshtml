@@ -18,14 +18,14 @@
     <div class="ec-slider swiper-container main-slider-nav main-slider-dot">
         <!-- Main slider -->
         <div class="swiper-wrapper">
-            @foreach (var item in sliders)
+            @foreach (var item in sliders.Where(x => x.Position=="Main"))
             {
                 <div class="ec-slide-item swiper-slide d-flex ec-slide-1" style="background-image:url(../../Images/Products/@item.ImagePath); width:1536px; height:550px;">
                     <div class="container align-self-center">
                         <div class="row">
                             <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
                                 <div class="ec-slide-content slider-animation">
-                                    <a href="#" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
+                                    <a href="@Url.Action("Index", "Shop")" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
                                 </div>
                             </div>
                         </div>
@@ -65,25 +65,25 @@
             <div class="col-md-12 text-center">
                 <ul class="ec-pro-tab-nav nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="~/Theme/#tab-pro-for-all">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#tab-pro-for-all">
                             For
                             All
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="~/Theme/#tab-pro-for-men">
+                        <a class="nav-link" data-bs-toggle="tab" href="#tab-pro-for-men">
                             For
                             Men
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="~/Theme/#tab-pro-for-women">
+                        <a class="nav-link" data-bs-toggle="tab" href="#tab-pro-for-women">
                             For
                             Women
                         </a>
                     </li>
                     @*<li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="~/Theme/#tab-pro-for-child">
+                        <a class="nav-link" data-bs-toggle="tab" href="#tab-pro-for-child">
                             For
                             Children
                         </a>
@@ -398,7 +398,7 @@
                             }
                             <!-- Custom tile Ends -->
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index", "Shop")">Shop All Collection</a></div>
                         </div>
                     </div>
                     <!-- ec 2nd Product tab end -->
@@ -561,7 +561,7 @@
 
 
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index", "Shop")">Shop All Collection</a></div>
 
 
                         </div>
@@ -601,28 +601,28 @@
                 <div class="row">
                     <div class="banner-block col-lg-6 col-md-12 margin-b-30" data-animation="slideInRight">
                         <div class="bnr-overlay">
-                            <img src="~/Images/Products/800x400.jpg" alt="" />
-                            <div class="banner-text">
+                            <img src="~/Images/Products/New-Features-Coming-Soon.jpg" alt="" />
+                            @*<div class="banner-text">
                                 <span class="ec-banner-stitle">New Arrivals</span>
                                 <span class="ec-banner-title">mens<br> Sport shoes</span>
                                 <span class="ec-banner-discount">30% Discount</span>
                             </div>
                             <div class="banner-content">
                                 <span class="ec-banner-btn"><a href="~/Theme/#">Order Now</a></span>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                     <div class="banner-block col-lg-6 col-md-12" data-animation="slideInLeft">
                         <div class="bnr-overlay">
-                            <img src="~/Images/Products/800x400.jpg" alt="" />
-                            <div class="banner-text">
+                            <img src="~/Images/Products/Mobile-App-Coming-Soon.jpg" alt="" />
+                            @*<div class="banner-text">
                                 <span class="ec-banner-stitle">New Trending</span>
                                 <span class="ec-banner-title">Smart<br> watches</span>
                                 <span class="ec-banner-discount">Buy any 3 Items & get <br>20% Discount</span>
                             </div>
                             <div class="banner-content">
                                 <span class="ec-banner-btn"><a href="~/Theme/#">Order Now</a></span>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>
@@ -633,115 +633,8 @@
     </div>
 </section>
 <!-- ec Banner Section End -->
-<!--  Category Section Start -->
-<section class="section ec-category-section section-space-p " >
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="section-title">
-                    <h2 class="ec-bg-title">Our Top Collection</h2>
-                    <h2 class="ec-title">Choose Categories</h2>
-                    <p class="sub-title">Browse The Collection of Top Categories</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="row ">
-            <!--Category Nav Start -->
-            <div class="col-lg-3">
-                <ul class="ec-cat-tab-nav nav">
-                    <li class="cat-item">
-                        <a class="cat-link active" data-bs-toggle="tab" href="#tab-cat-1">
-                            <div class="cat-icons">
-                                <img class="cat-icon" src="~/Theme/assets/images/icons/cat_1.png"
-                                     alt="cat-icon"><img class="cat-icon-hover" src="~/Theme/assets/images/icons/cat_1_1.png"
-                                                         alt="cat-icon">
-                            </div>
-                            <div class="cat-desc"><span>Clothes</span><span>440 Products</span></div>
-                        </a>
-                    </li>
-                    <li class="cat-item">
-                        <a class="cat-link" data-bs-toggle="tab" href="#tab-cat-2">
-                            <div class="cat-icons">
-                                <img class="cat-icon" src="~/Theme/assets/images/icons/cat_2.png"
-                                     alt="cat-icon"><img class="cat-icon-hover" src="~/Theme/assets/images/icons/cat_2_1.png"
-                                                         alt="cat-icon">
-                            </div>
-                            <div class="cat-desc"><span>Watches</span><span>510 Products</span></div>
-                        </a>
-                    </li>
-                    <li class="cat-item">
-                        <a class="cat-link" data-bs-toggle="tab" href="#tab-cat-3">
-                            <div class="cat-icons">
-                                <img class="cat-icon" src="~/Theme/assets/images/icons/cat_3.png"
-                                     alt="cat-icon"><img class="cat-icon-hover" src="~/Theme/assets/images/icons/cat_3_1.png"
-                                                         alt="cat-icon">
-                            </div>
-                            <div class="cat-desc"><span>Bags</span><span>620 Products</span></div>
-                        </a>
-                    </li>
-                    <li class="cat-item">
-                        <a class="cat-link" data-bs-toggle="tab" href="#tab-cat-4">
-                            <div class="cat-icons">
-                                <img class="cat-icon" src="~/Theme/assets/images/icons/cat_4.png"
-                                     alt="cat-icon"><img class="cat-icon-hover" src="~/Theme/assets/images/icons/cat_4_1.png"
-                                                         alt="cat-icon">
-                            </div>
-                            <div class="cat-desc"><span>Shoes</span><span>320 Products</span></div>
-                        </a>
-                    </li>
-                </ul>
 
-            </div>
-            <!-- Category Nav End -->
-            <!--Category Tab Start -->
-            <div class="col-lg-9">
-                <div class="tab-content">
-                    <!-- 1st Category tab end -->
-                    <div class="tab-pane fade show active" id="tab-cat-1">
-                        <div class="row">
-                            <img src="~/Theme/assets/images/cat-banner/4.jpg" alt="" />
-                        </div>
-                        <span class="panel-overlay">
-                            <a href="#" class="btn btn-primary">View All</a>
-                        </span>
-                    </div>
-                    <!-- 1st Category tab end -->
-                    <div class="tab-pane fade" id="tab-cat-2">
-                        <div class="row">
-                            <img src="~/Theme/assets/images/cat-banner/2.jpg" alt="" />
-                        </div>
-                        <span class="panel-overlay">
-                            <a href="#" class="btn btn-primary">View All</a>
-                        </span>
-                    </div>
-                    <!-- 2nd Category tab end -->
-                    <!-- 3rd Category tab start -->
-                    <div class="tab-pane fade" id="tab-cat-3">
-                        <div class="row">
-                            <img src="~/Theme/assets/images/cat-banner/3.jpg" alt="" />
-                        </div>
-                        <span class="panel-overlay">
-                            <a href="#" class="btn btn-primary">View All</a>
-                        </span>
-                    </div>
-                    <!-- 3rd Category tab end -->
-                    <!-- 4th Category tab start -->
-                    <div class="tab-pane fade" id="tab-cat-4">
-                        <div class="row">
-                            <img src="~/Theme/assets/images/cat-banner/4.jpg" alt="" />
-                        </div>
-                        <span class="panel-overlay">
-                            <a href="#" class="btn btn-primary">View All</a>
-                        </span>
-                    </div>
-                    <!-- 4th Category tab end -->
-                </div>
-                <!-- Category Tab End -->
-            </div>
-        </div>
-    </div>
-</section>
 <!-- Category Section End -->
 <!--  Feature & Special Section Start -->
 <!-- Feature & Special Section End -->
@@ -906,7 +799,7 @@
 
 
 
-            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
+            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index", "Shop")">Shop All Collection</a></div>
 
         </div>
     </div>
@@ -918,12 +811,12 @@
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center ec-offer-content">
-                <h2 class="ec-offer-title">Sunglasses</h2>
-                <h3 class="ec-offer-stitle" data-animation="slideInDown">Super Offer</h3>
+                <h2 class="ec-offer-title">JEWELLERY</h2>
+                <h3 class="ec-offer-stitle" data-animation="slideInDown">Good Quality</h3>
                 <span class="ec-offer-img" data-animation="zoomIn">@*<img src="#" alt="offer image" />*@</span>
-                <span class="ec-offer-desc">Acetate Frame Sunglasses</span>
-                <span class="ec-offer-price">$40.00 Only</span>
-                <a class="btn btn-primary" href="~/Theme/shop-left-sidebar-col-3.html" data-animation="zoomIn">Shop Now</a>
+                <span class="ec-offer-desc">Wide Range</span>
+                <span class="ec-offer-price"></span>
+                <a class="btn btn-primary" href="@Url.Action("Index", "Shop")" data-animation="zoomIn">Shop Now</a>
             </div>
         </div>
     </div>
@@ -941,7 +834,7 @@
                     </div>
                     <div class="ec-service-desc">
                         <h2>Free Shipping</h2>
-                        <p>Free shipping on all US order or order above $200</p>
+                        <p>Free shipping all Over Karachi</p>
                     </div>
                 </div>
             </div>
@@ -963,7 +856,7 @@
                     </div>
                     <div class="ec-service-desc">
                         <h2>30 Days Return</h2>
-                        <p>Simply return it within 30 days for an exchange</p>
+                        <p>Simply return it within 7 days for an exchange</p>
                     </div>
                 </div>
             </div>
@@ -974,7 +867,7 @@
                     </div>
                     <div class="ec-service-desc">
                         <h2>Payment Secure</h2>
-                        <p>Contact us 24 hours a day, 7 days a week</p>
+                        <p>Pay Securely With Direct Bank Transfer</p>
                     </div>
                 </div>
             </div>

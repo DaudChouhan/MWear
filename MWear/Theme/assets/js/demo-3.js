@@ -1,9 +1,9 @@
 /**
     Item Name: Ecart - Multi Vendor Ecommerce HTML Template.
-    Author: ashishmaraviya
+    Author: Dawood Chouhan
     Version: 3.0
     Copyright 2021
-	Author URI: https://themeforest.net/user/ashishmaraviya
+	Author URI: https://themeforest.net/user/Dawood Chouhan
 **/
 // Function To Create New Cookie 
 function ecCreateCookie(cookieName,cookieValue,daysToExpire)

@@ -26,7 +26,7 @@
         <AssociationConnector Association="mwearModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="mwearModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="mwearModel.Picture" Width="1.5" PointX="5.375" PointY="12.75" />
-        <EntityTypeShape EntityType="mwearModel.Product" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="mwearModel.Product" PointX="11.375" PointY="3.75" Width="1.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

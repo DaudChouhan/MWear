@@ -4,30 +4,30 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="mwearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="mwearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="AdminID" />
           </Key>
-          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AdminName" Type="varchar" MaxLength="50" />
-          <Property Name="AdminPic" Type="varchar" MaxLength="50" />
-          <Property Name="AdminRole" Type="varchar" MaxLength="50" />
+          <Property Name="AdminID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="AdminName" MaxLength="50" Type="varchar" />
+          <Property Name="AdminPic" MaxLength="50" Type="varchar" />
+          <Property Name="AdminRole" MaxLength="50" Type="varchar" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="Name" Nullable="false" MaxLength="256" Type="nvarchar" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
           <Property Name="ClaimType" Type="nvarchar(max)" />
           <Property Name="ClaimValue" Type="nvarchar(max)" />
         </EntityType>
@@ -37,58 +37,58 @@
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="ProviderKey" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
         </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
             <PropertyRef Name="UserId" />
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="RoleId" Nullable="false" MaxLength="128" Type="nvarchar" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="Email" MaxLength="256" Type="nvarchar" />
+          <Property Name="EmailConfirmed" Nullable="false" Type="bit" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
           <Property Name="SecurityStamp" Type="nvarchar(max)" />
           <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
-          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="PhoneNumberConfirmed" Nullable="false" Type="bit" />
+          <Property Name="TwoFactorEnabled" Nullable="false" Type="bit" />
           <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
-          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="LockoutEnabled" Nullable="false" Type="bit" />
+          <Property Name="AccessFailedCount" Nullable="false" Type="int" />
+          <Property Name="UserName" Nullable="false" MaxLength="256" Type="nvarchar" />
         </EntityType>
         <EntityType Name="AvailabeColors">
           <Key>
             <PropertyRef Name="AvialableColorID" />
           </Key>
-          <Property Name="AvialableColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AvialableColorID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="AvialableColor" Type="int" />
-          <Property Name="Product" Type="nvarchar" MaxLength="128" />
+          <Property Name="Product" MaxLength="128" Type="nvarchar" />
         </EntityType>
         <EntityType Name="AvailableSize">
           <Key>
             <PropertyRef Name="AvialableSizeID" />
           </Key>
-          <Property Name="AvialableSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AvialableSizeID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="AvialableSize" Type="int" />
-          <Property Name="Product" Type="nvarchar" MaxLength="128" />
+          <Property Name="Product" MaxLength="128" Type="nvarchar" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="ParentCategory" Type="int" />
-          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+          <Property Name="CategoryName" MaxLength="50" Type="varchar" />
           <Property Name="CategoryDescription" Type="nvarchar(max)" />
           <Property Name="Active" Type="bit" />
         </EntityType>
@@ -96,9 +96,9 @@
           <Key>
             <PropertyRef Name="ColorID" />
           </Key>
-          <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ColorName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ColorHash" Type="varchar" MaxLength="50" />
+          <Property Name="ColorID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ColorName" Nullable="false" MaxLength="50" Type="varchar" />
+          <Property Name="ColorHash" MaxLength="50" Type="varchar" />
           <Property Name="ColorDescription" Type="nvarchar(max)" />
           <Property Name="Active" Type="bit" />
         </EntityType>
@@ -106,22 +106,22 @@
           <Key>
             <PropertyRef Name="CustomerID" />
           </Key>
-          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AspNetUserID" Type="varchar" MaxLength="255" />
-          <Property Name="FirstName" Type="varchar" MaxLength="255" />
-          <Property Name="LastName" Type="varchar" MaxLength="255" />
-          <Property Name="Class" Type="varchar" MaxLength="255" />
-          <Property Name="Address1" Type="varchar" MaxLength="255" />
-          <Property Name="Address2" Type="varchar" MaxLength="255" />
-          <Property Name="City" Type="varchar" MaxLength="255" />
-          <Property Name="Province" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="AspNetUserID" MaxLength="255" Type="varchar" />
+          <Property Name="FirstName" MaxLength="255" Type="varchar" />
+          <Property Name="LastName" MaxLength="255" Type="varchar" />
+          <Property Name="Class" MaxLength="255" Type="varchar" />
+          <Property Name="Address1" MaxLength="255" Type="varchar" />
+          <Property Name="Address2" MaxLength="255" Type="varchar" />
+          <Property Name="City" MaxLength="255" Type="varchar" />
+          <Property Name="Province" MaxLength="255" Type="varchar" />
           <Property Name="PostalCode" Type="int" />
-          <Property Name="Phone" Type="varchar" MaxLength="255" />
-          <Property Name="Email" Type="varchar" MaxLength="255" />
-          <Property Name="Password" Type="varchar" MaxLength="255" />
-          <Property Name="ShippingRegion" Type="varchar" MaxLength="255" />
+          <Property Name="Phone" MaxLength="255" Type="varchar" />
+          <Property Name="Email" MaxLength="255" Type="varchar" />
+          <Property Name="Password" MaxLength="255" Type="varchar" />
+          <Property Name="ShippingRegion" MaxLength="255" Type="varchar" />
           <Property Name="DateJoined" Type="datetime" />
-          <Property Name="Picture" Type="varchar" MaxLength="255" />
+          <Property Name="Picture" MaxLength="255" Type="varchar" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
@@ -129,76 +129,76 @@
           </Key>
           <Property Name="OrderID" Type="int" />
           <Property Name="ProductID" Type="int" />
-          <Property Name="Price" Type="decimal" Precision="20" Scale="2" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Price" Precision="20" Scale="2" Type="decimal" />
+          <Property Name="Quantity" Nullable="false" Type="int" />
           <Property Name="Discount" Type="int" />
-          <Property Name="TotalPrice" Type="decimal" Precision="20" Scale="2" />
-          <Property Name="Size" Type="varchar" MaxLength="50" />
-          <Property Name="Color" Type="varchar" MaxLength="50" />
-          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TotalPrice" Precision="20" Scale="2" Type="decimal" />
+          <Property Name="Size" MaxLength="50" Type="varchar" />
+          <Property Name="Color" MaxLength="50" Type="varchar" />
+          <Property Name="OrderDetailID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="OrderDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="CustomerID" Type="int" />
           <Property Name="PaymentID" Type="int" />
-          <Property Name="OderDate" Type="datetime" Nullable="false" />
+          <Property Name="OderDate" Nullable="false" Type="datetime" />
           <Property Name="ShippingDate" Type="datetime" />
           <Property Name="RequirdDate" Type="datetime" />
           <Property Name="ShipperID" Type="int" />
-          <Property Name="OrderTimeStamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
-          <Property Name="TransactionStatus" Type="varchar" MaxLength="50" />
-          <Property Name="Error" Type="varchar" MaxLength="50" />
-          <Property Name="FullFilled" Type="varchar" MaxLength="50" />
+          <Property Name="OrderTimeStamp" Nullable="false" StoreGeneratedPattern="Computed" Type="timestamp" />
+          <Property Name="TransactionStatus" MaxLength="50" Type="varchar" />
+          <Property Name="Error" MaxLength="50" Type="varchar" />
+          <Property Name="FullFilled" MaxLength="50" Type="varchar" />
           <Property Name="Deleted" Type="bit" />
-          <Property Name="Paid" Type="varchar" MaxLength="50" />
+          <Property Name="Paid" MaxLength="50" Type="varchar" />
           <Property Name="PaymentDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
-          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PaymentType" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="PaymentType" MaxLength="50" Type="varchar" />
           <Property Name="Allowed" Type="bit" />
         </EntityType>
         <EntityType Name="Pictures">
           <Key>
             <PropertyRef Name="PictureID" />
           </Key>
-          <Property Name="PictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PictureID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
           <Property Name="PictureName" Type="nvarchar(max)" />
           <Property Name="PicturePath" Type="nvarchar(max)" />
           <Property Name="PictureAltText" Type="nvarchar(max)" />
-          <Property Name="Product" Type="nvarchar" MaxLength="128" />
+          <Property Name="Product" MaxLength="128" Type="nvarchar" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
             <PropertyRef Name="ProductCategoryID" />
           </Key>
-          <Property Name="ProductCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Product" Type="nvarchar" MaxLength="128" />
-          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="ProductCategoryID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Product" MaxLength="128" Type="nvarchar" />
+          <Property Name="Category" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
-          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductGUID" Type="nvarchar" MaxLength="128" />
-          <Property Name="SKU" Type="varchar" MaxLength="50" />
-          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ProductGUID" MaxLength="128" Type="nvarchar" />
+          <Property Name="SKU" MaxLength="50" Type="varchar" />
+          <Property Name="ProductName" MaxLength="50" Type="varchar" />
           <Property Name="ProductShortDesc" Type="nvarchar(max)" />
           <Property Name="ProductLongDesc" Type="nvarchar(max)" />
           <Property Name="QuantityPerUnit" Type="int" />
-          <Property Name="Price" Type="decimal" Precision="20" Scale="2" />
-          <Property Name="Size" Type="varchar" MaxLength="100" />
-          <Property Name="Color" Type="varchar" MaxLength="150" />
-          <Property Name="Discount" Type="decimal" Precision="20" Scale="2" />
-          <Property Name="UnitWeight" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Precision="20" Scale="2" Type="decimal" />
+          <Property Name="Size" MaxLength="100" Type="varchar" />
+          <Property Name="Color" MaxLength="150" Type="varchar" />
+          <Property Name="Discount" Precision="20" Scale="2" Type="decimal" />
+          <Property Name="UnitWeight" MaxLength="50" Type="varchar" />
           <Property Name="UnitsInStock" Type="int" />
           <Property Name="Available" Type="bit" />
           <Property Name="Picture" Type="nvarchar(max)" />
@@ -210,17 +210,17 @@
           <Key>
             <PropertyRef Name="ShipperID" />
           </Key>
-          <Property Name="ShipperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyName" Type="varchar" MaxLength="1" />
+          <Property Name="ShipperID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="CompanyName" MaxLength="1" Type="varchar" />
           <Property Name="Allowed" Type="int" />
         </EntityType>
         <EntityType Name="Size">
           <Key>
             <PropertyRef Name="SizeID" />
           </Key>
-          <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SizeName" Type="varchar" MaxLength="50" />
-          <Property Name="DisplayName" Type="varchar" MaxLength="50" />
+          <Property Name="SizeID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="SizeName" MaxLength="50" Type="varchar" />
+          <Property Name="DisplayName" MaxLength="50" Type="varchar" />
           <Property Name="SizeDescription" Type="nvarchar(max)" />
           <Property Name="Active" Type="bit" />
         </EntityType>
@@ -228,18 +228,18 @@
           <Key>
             <PropertyRef Name="ImageID" />
           </Key>
-          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ImageName" Type="varchar" MaxLength="50" />
-          <Property Name="ImagePath" Type="varchar" MaxLength="100" />
-          <Property Name="ImageAltText" Type="varchar" MaxLength="50" />
-          <Property Name="Position" Type="varchar" MaxLength="50" />
+          <Property Name="ImageID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ImageName" MaxLength="50" Type="varchar" />
+          <Property Name="ImagePath" MaxLength="100" Type="varchar" />
+          <Property Name="ImageAltText" MaxLength="50" Type="varchar" />
+          <Property Name="Position" MaxLength="50" Type="varchar" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <End Type="Self.AspNetUserClaims" Multiplicity="*" Role="AspNetUserClaims" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -250,10 +250,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <End Type="Self.AspNetUserLogins" Multiplicity="*" Role="AspNetUserLogins" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -264,10 +264,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+          <End Type="Self.AspNetRoles" Multiplicity="1" Role="AspNetRoles">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
           <ReferentialConstraint>
             <Principal Role="AspNetRoles">
               <PropertyRef Name="Id" />
@@ -278,10 +278,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -313,20 +313,20 @@
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebImages" EntityType="Self.WebImages" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+            <End EntitySet="AspNetUserClaims" Role="AspNetUserClaims" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+            <End EntitySet="AspNetUserLogins" Role="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+            <End EntitySet="AspNetRoles" Role="AspNetRoles" />
+            <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
+            <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -607,22 +607,22 @@
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductGUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductLongDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="ProductGUID" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="SKU" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ProductName" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="ProductShortDesc" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="ProductLongDesc" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="QuantityPerUnit" Type="Int32" />
-          <Property Name="Price" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Color" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Discount" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Precision="20" Scale="2" Type="Decimal" />
+          <Property Name="Size" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Color" MaxLength="150" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Discount" Precision="20" Scale="2" Type="Decimal" />
+          <Property Name="UnitWeight" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
           <Property Name="UnitsInStock" Type="Int32" />
           <Property Name="Available" Type="Boolean" />
-          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Picture" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="Note" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
           <Property Name="Featured" Type="Boolean" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>

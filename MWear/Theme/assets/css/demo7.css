@@ -1,11 +1,11 @@
 @charset "UTF-8";
 /*-----------------------------------------------------------------------------------
 
-    Item Name: Ekka - Ecommerce HTML Template.
-    Author: ashishmaraviya
+    Item Name: MWear - Ecommerce HTML Template.
+    Author: Dawood Chouhan
     Version: 3.0
     Copyright 2021-2022
-	Author URI: https://themeforest.net/user/ashishmaraviya
+	Author URI: https://themeforest.net/user/Dawood Chouhan
 
 -----------------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------------
@@ -17144,12 +17144,12 @@ body.ec-open:before {
   padding-bottom: 20px;
   border-bottom: 1px solid #eeeeee;
 }
-.eccart-pro-items li .sidekka_pro_img {
+.eccart-pro-items li .sidMWear_pro_img {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 20%;
           flex: 1 0 20%;
 }
-.eccart-pro-items li .sidekka_pro_img img {
+.eccart-pro-items li .sidMWear_pro_img img {
   max-width: 100%;
 }
 .eccart-pro-items li .ec-pro-content {
@@ -20286,12 +20286,12 @@ section.ec-instagram-section {
   color: #777777;
   line-height: 14px;
 }
-.ec-product-tab .cat-sidebar .ec-sidebar-slider .ec-sb-pro-sl .ec-sb-pro-sl-item .sidekka_pro_img {
+.ec-product-tab .cat-sidebar .ec-sidebar-slider .ec-sb-pro-sl .ec-sb-pro-sl-item .sidMWear_pro_img {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 36%;
           flex: 0 0 36%;
 }
-.ec-product-tab .cat-sidebar .ec-sidebar-slider .ec-sb-pro-sl .ec-sb-pro-sl-item .sidekka_pro_img img {
+.ec-product-tab .cat-sidebar .ec-sidebar-slider .ec-sb-pro-sl .ec-sb-pro-sl-item .sidMWear_pro_img img {
   max-width: 100%;
 }
 .ec-product-tab .cat-sidebar .ec-sb-slider-title {
