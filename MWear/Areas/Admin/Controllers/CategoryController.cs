@@ -29,13 +29,22 @@ namespace MWear.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddCategory(Category category)
+        public ActionResult AddCategory(Category category, string AvailableChechbox)
         {
             Category cat = new Category();
             cat.CategoryName = category.CategoryName;
             cat.ParentCategory = category.ParentCategory;
             cat.CategoryDescription = category.CategoryDescription;
             cat.Active = true;
+            if (AvailableChechbox == "on")
+            {
+                category.IsNotInMenu = true;
+            }
+            else
+            {
+                category.IsNotInMenu = false;
+            }
+            cat.IsNotInMenu = category.IsNotInMenu;
             db.Categories.Add(cat);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -43,20 +52,29 @@ namespace MWear.Areas.Admin.Controllers
 
         public ActionResult EditCategory(int categoryId)
         {
-            var pcat = db.Categories.Where(x => x.ParentCategory == null).ToList();
+            var pcat = db.Categories.Where(x => x.Active == true).ToList();
             ViewBag.PCat = pcat;
             var cat = db.Categories.Where(x => x.CategoryID == categoryId).FirstOrDefault();
             return View(cat);
         }
 
         [HttpPost]
-        public ActionResult EditCategory(Category category)
+        public ActionResult EditCategory(Category category, string AvailableChechbox)
         {
             Category cat = db.Categories.Where(x => x.CategoryID == category.CategoryID).FirstOrDefault();
             cat.CategoryName = category.CategoryName;
             cat.ParentCategory = category.ParentCategory;
             cat.CategoryDescription = category.CategoryDescription;
             cat.Active = true;
+            if (AvailableChechbox == "on")
+            {
+                category.IsNotInMenu = true;
+            }
+            else
+            {
+                category.IsNotInMenu = false;
+            }
+            cat.IsNotInMenu = category.IsNotInMenu;
             db.Entry(cat).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

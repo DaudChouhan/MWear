@@ -44,7 +44,7 @@ namespace MWear.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
-        public virtual DbSet<State> States { get; set; }
         public virtual DbSet<WebImage> WebImages { get; set; }
+        public virtual DbSet<State> States { get; set; }
     }
 }

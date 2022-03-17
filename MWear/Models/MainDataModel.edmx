@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mwearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="mwearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="AdminID" />
@@ -91,6 +91,7 @@
           <Property Name="CategoryName" Type="varchar" MaxLength="50" />
           <Property Name="CategoryDescription" Type="nvarchar(max)" />
           <Property Name="Active" Type="bit" />
+          <Property Name="IsNotInMenu" Type="bit" />
         </EntityType>
         <EntityType Name="Cities">
           <Key>
@@ -369,8 +370,7 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mwearModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -458,6 +458,7 @@
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CategoryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" />
+          <Property Name="IsNotInMenu" Type="Boolean" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -619,16 +620,6 @@
           <Property Name="SizeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
-        <EntityType Name="State">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Charges" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="MaxOrderAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Active" Type="Boolean" />
-        </EntityType>
         <EntityType Name="WebImage">
           <Key>
             <PropertyRef Name="ImageID" />
@@ -692,7 +683,6 @@
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Shippers" EntityType="Self.Shipper" />
           <EntitySet Name="Sizes" EntityType="Self.Size" />
-          <EntitySet Name="States" EntityType="Self.State" />
           <EntitySet Name="WebImages" EntityType="Self.WebImage" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -706,7 +696,18 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="States" EntityType="mwearModel.State" />
         </EntityContainer>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Charges" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MaxOrderAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -790,6 +791,7 @@
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="mwearModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IsNotInMenu" ColumnName="IsNotInMenu" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="ParentCategory" ColumnName="ParentCategory" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
@@ -969,17 +971,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="mwearModel.State">
-              <MappingFragment StoreEntitySet="States">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
-                <ScalarProperty Name="Charges" ColumnName="Charges" />
-                <ScalarProperty Name="MaxOrderAmount" ColumnName="MaxOrderAmount" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WebImages">
             <EntityTypeMapping TypeName="mwearModel.WebImage">
               <MappingFragment StoreEntitySet="WebImages">
@@ -1000,6 +991,17 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="mwearModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MaxOrderAmount" ColumnName="MaxOrderAmount" />
+                <ScalarProperty Name="Charges" ColumnName="Charges" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -306,9 +306,10 @@
     <Content Include="Images\Products\1366X768.jpg" />
     <Content Include="Images\Products\1920x630.jpg" />
     <Content Include="Images\Products\banner15a.jpg" />
+    <Content Include="Images\Products\banner16a.jpg" />
     <Content Include="Images\Products\Mobile-App-Coming-Soon.jpg" />
     <Content Include="Images\Products\New-Features-Coming-Soon.jpg" />
-    <Content Include="Images\Products\SPG-00173-1.jpg" />
+    <Content Include="Images\Products\overnightbannerbig.jpg" />
     <Content Include="Models\MainDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MainDataModel.edmx</DependentUpon>

@@ -19,5 +19,6 @@ namespace MWear.Models
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
         public Nullable<bool> Active { get; set; }
+        public Nullable<bool> IsNotInMenu { get; set; }
     }
 }

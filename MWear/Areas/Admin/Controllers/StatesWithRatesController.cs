@@ -29,7 +29,7 @@ namespace MWear.Areas.Admin.Controllers
             state.StateName = states.StateName;
             state.Charges = states.Charges;
             state.MaxOrderAmount = states.MaxOrderAmount;
-            states.Active = true;
+            state.Active = true;
             db.States.Add(state);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -48,7 +48,7 @@ namespace MWear.Areas.Admin.Controllers
             stat.StateName = states.StateName;
             stat.Charges = states.Charges;
             stat.MaxOrderAmount = states.MaxOrderAmount;
-            states.Active = true;
+            stat.Active = true;
             db.Entry(stat).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

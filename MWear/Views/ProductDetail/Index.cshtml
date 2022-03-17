@@ -369,7 +369,7 @@
                                         <h2>Delivery &amp; Shipping Pricing</h2>
                                         <p>Mwear Provides <span style="color: #f29900;"><strong>Free Shipping</strong></span> on Shopping above <strong>1500Rs</strong> in <strong>Karachi</strong>, above <strong>3500Rs</strong> in the Rest of <strong>Sindh</strong>, and Above <strong>5500Rs</strong> in <strong>Punjab</strong>, <strong>KPK</strong>, <strong>Balochistan</strong>, And <strong>Azad Kashmir</strong>. and Your order is expected to be delivered within 7 business days as an average expected delivery time. However, delivery time may exceed due to the high volume of order logs during the sale season.</p>
                                         <p>Although if want your product to be delivered overnight we have a solution for that below.</p>
-                                        <p><img src="~/Images/Products/overnightbannerbig.jpg" alt=""></p>
+                                        <p><img src="~/Images/Products/overnightbannerbig.jpg" alt="OverNightBanner"></p>
 
                                     </div>
                                 </div>
@@ -474,213 +474,50 @@
                     <div class="ec-sidebar-wrap">
                         <!-- Sidebar Category Block -->
                         <div class="ec-sidebar-block">
-                            <div class="ec-sb-title">
-                                <h3 class="ec-sidebar-title">Category</h3>
-                            </div>
+                            
+                            
                             <div class="ec-sb-block-content">
                                 <ul>
                                     <li>
-                                        <div class="ec-sidebar-block-item">clothes</div>
-                                        <ul style="display: block;">
+                                            <div class="ec-sidebar-block-item">Mens</div>
+
+                                    <ul>
+                                        @foreach (var item in categories.Where(x =>x.ParentCategory == 100).ToList())
+                                        {
                                             <li>
                                                 <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Men <span>-25</span></a>
+                                                    <a href="@Url.Action("Index","Shop",new { CatId=item.CategoryID})">@item.CategoryName</a>
                                                 </div>
                                             </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
+
+                                        }
+
+
+                                    </ul>
                                     </li>
                                 </ul>
                             </div>
                             <div class="ec-sb-block-content">
                                 <ul>
                                     <li>
-                                        <div class="ec-sidebar-block-item">shoes</div>
+                                        <div class="ec-sidebar-block-item">Womens</div>
+
                                         <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
+                                            @foreach (var item in categories.Where(x => x.ParentCategory == 101).ToList())
+                                            {
+                                                <li>
+                                                    <div class="ec-sidebar-sub-item">
+                                                        <a href="@Url.Action("Index","Shop",new { CatId=item.CategoryID})">@item.CategoryName</a>
+                                                    </div>
+                                                </li>
+
+                                            }
+
+
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">bag</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">cosmetics</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">electronics</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">phone</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ec-sb-block-content">
-                                <ul>
-                                    <li>
-                                        <div class="ec-sidebar-block-item">accessories</div>
-                                        <ul>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Men <span>-25</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Women <span>-52</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Boy <span>-40</span></a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="ec-sidebar-sub-item">
-                                                    <a href="#">Girl <span>-35</span></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                         <!-- Sidebar Category Block -->
                     </div>
                     <div class="ec-sidebar-slider">
@@ -709,148 +546,91 @@
             <div class="row margin-minus-b-30">
                 <!-- Related Product Content -->
                 <!-- Custom Tile Starts -->
-                @foreach (var item in categories.Where(x => x.CategoryName == "Parent 2"))
+                @foreach (var items in products.Where(x => x.Available == true && x.Featured == true).OrderByDescending(x => x.ProductID).Take(8))
                 {
-                    var cat = item.CategoryID;
-                    foreach (var itemss in pcategory.Where(x => x.Category == cat))
+
+                    var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
+                    var catname = "";
+                    var count = 1;
+                    foreach (var itemss in catids)
                     {
-                        var pro = itemss.Product;
-                        foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true).OrderByDescending(x => x.ProductID).Take(8))
+                        var catename = categories.Where(x => x.CategoryID == itemss.Category).FirstOrDefault().CategoryName;
+                        if (count == 1)
                         {
+                            catname = catename;
+                        }
+                        else
+                        {
+                            catname = catname + ", " + catename;
+                        }
+                        count = count + 1;
+                    }
 
 
-                            var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
-                            var catname = "";
-                            var count = 1;
-                            foreach (var itemscat in catids)
-                            {
-                                var catename = categories.Where(x => x.CategoryID == itemscat.Category).FirstOrDefault().CategoryName;
-                                if (count == 1)
-                                {
-                                    catname = catename;
-                                }
-                                else
-                                {
-                                    catname = catname + ", " + catename;
-                                }
-                                count = count + 1;
-                            }
+                    var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
+                    var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
 
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <!-- START single card -->
+                        <div class="ec-product-lsc" style="margin-top: 10px;">
+                            <div class="ec-product-image">
+                                <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">
+                                    <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
+                                </a>
+                                <span class="ec-product-ribbon">New</span>
+                            </div>
+                            <div class="ec-product-body">
 
-                            var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
-                            var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
+                                <p class="ec-description">
+                                    @catname
+                                    @if (items.UnitsInStock <= 2)
+                                    {
 
-                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                <!-- START single card -->
-                                <div class="ec-product-lsc" style="margin-top: 10px;">
-                                    <div class="ec-product-image">
-                                        <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
-                                            <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
-                                        </a>
-                                        <span class="ec-product-ribbon">New</span>
-                                    </div>
-                                    <div class="ec-product-body">
+                                        <span>Low stock</span>
+                                    }
+                                    else
+                                    {
+                                        <span>In stock</span>
+                                    }
+                                </p>
 
-                                        <p class="ec-description">
-                                            @catname
-                                            @if (items.UnitsInStock <= 2)
-                                            {
+                                <h3 class="ec-title"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></h3>
+                                <div class="ec-el-price">
+                                    @if (items.Discount != null)
+                                    {
+                                        var ogprice = items.Price;
+                                        var dcprice = items.Discount;
+                                        var newprice = ogprice - dcprice;
+                                        <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
+                                        <br />
+                                        <p class="ec-o-price"> Rs. @newprice </p>
+                                    }
+                                    else
+                                    {
+                                        <p class="ec-o-price"> Rs. @items.Price </p>
+                                    }
 
-                                                <span>Low stock</span>
-                                            }
-                                            else
-                                            {
-                                                <span>In stock</span>
-                                            }
-                                        </p>
+                                </div>
+               
 
-                                        <h3 class="ec-title"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">@items.ProductName</a></h3>
-                                        <div class="ec-el-price">
-                                            @if (items.Discount != null)
-                                            {
-                                                var ogprice = items.Price;
-                                                var dcprice = items.Discount;
-                                                var newprice = ogprice - dcprice;
-                                                <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
-                                                <br />
-                                                <p class="ec-o-price"> Rs. @newprice </p>
-                                            }
-                                            else
-                                            {
-                                                <p class="ec-o-price"> Rs. @items.Price </p>
-                                            }
+                                <div class="ec-link-btn" style="margin-top:10px;">
 
-                                        </div>
-                                        @*@if (lenght12.Count > 1 || lenght13.Count > 1)
-                                        {
+                                    @if (lenght12.Count > 1 || lenght13.Count > 1)
+                                    {
 
-                                            <div class="ec-color">
-                                                <div class="ec-pro-color">
-                                                    <span class="ec-pro-opt-label">Color</span>
-                                                    <ul class="ec-opt-swatch ec-change-img">
-                                                        @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                                                        {
-                                                            foreach (var itemcol in colors.Where(x => x.ColorID == itemsss.AvialableColor))
-                                                            {
+                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">Select Product Options</a>
+                                    }
+                                    else
+                                    {
 
+                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">View Product</a>
+                                    }
 
-                                                                <li class="active">
-                                                                    <a class="ec-opt-clr-img"
-                                                                       data-src="~/Images/Products/@items.Picture"
-                                                                       data-src-hover="~/Images/Products/@items.Picture"
-                                                                       data-tooltip="Gray">
-                                                                        <span style="background-color:@itemcol.ColorHash;"></span>
-                                                                    </a>
-                                                                </li>
-
-                                                            }
-                                                        }
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <br>
-
-                                            <br>
-                                            <div class="ec-size" style="margin-top: -15px;">
-                                                @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                                                {
-                                                    foreach (var itemsiz in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                                                    {
-                                                        <a style="width:auto; padding-left:5px; padding-right:5px;">@itemsiz.DisplayName</a>
-                                                    }
-                                                }
-                                            </div>
-                                        }*@
-
-
-                                        <div class="ec-link-btn" style="margin-top:10px;">
-
-                                            @if (lenght12.Count > 1 || lenght13.Count > 1)
-                                            {
-
-                                                <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">Select Product Options</a>
-                                            }
-                                            else
-                                            {
-
-                                                <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
-                                            }
-
-                                            <div class="ec-link-icon">
-
-                                                <a href="#" data-tip="Add to Wishlist">
-                                                    <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                </a>
-
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                        }
-                    }
                 }
                 <!-- Custom tile Ends -->
             </div>

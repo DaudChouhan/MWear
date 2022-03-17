@@ -52,7 +52,7 @@ namespace MWear.Areas.Admin.Controllers
         public ActionResult EditCities(int cityId)
         {
             var states = db.States.Where(x => x.Active == true).ToList();
-            ViewBag.Sattes = states;
+            ViewBag.States = states;
             var city = db.Cities.Where(x => x.Id == cityId).FirstOrDefault();
             return View(city);
         }

@@ -24,11 +24,11 @@
         <EntityTypeShape EntityType="mwearModel.Product" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mwearModel.Shipper" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mwearModel.Size" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mwearModel.State" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mwearModel.WebImage" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
         <AssociationConnector Association="mwearModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="mwearModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="mwearModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mwearModel.State" Width="1.5" PointX="7.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

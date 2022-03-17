@@ -45,7 +45,7 @@ namespace MWear.Controllers
 
         public List<Category> category()
         {
-            List<Category> categories = db.Categories.Where(x => x.Active == true).OrderBy(x => x.CategoryID).ToList();
+            List<Category> categories = db.Categories.Where(x => x.Active == true && x.IsNotInMenu == false).OrderBy(x => x.CategoryID).ToList();
             return categories;
 
         }

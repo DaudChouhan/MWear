@@ -253,13 +253,14 @@
                         <div class="row">
                             <!-- Product Content -->
                             <!-- Custom Tile Starts -->
-                            @foreach (var item in categories.Where(x => x.CategoryName == "Mens"))
+                            @foreach (var item in categories.Where(x => x.Active == true))
                             {
                                 var cat = item.CategoryID;
                                 foreach (var itemss in pcategory.Where(x => x.Category == cat))
                                 {
+
                                     var pro = itemss.Product;
-                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true).OrderByDescending(x => x.ProductID).Take(8))
+                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Mens")).OrderByDescending(x => x.ProductID).Take(8))
                                     {
                                  
 
@@ -325,46 +326,7 @@
                                                                             }
 
                                                                         </div>
-                                                                        @*@if (lenght12.Count > 1 || lenght13.Count > 1)
-                                                                        {
-
-                                                                            <div class="ec-color">
-                                                                                <div class="ec-pro-color">
-                                                                                    <span class="ec-pro-opt-label">Color</span>
-                                                                                    <ul class="ec-opt-swatch ec-change-img">
-                                                                                        @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                                                                                        {
-                                                                                            foreach (var itemcol in colors.Where(x => x.ColorID == itemsss.AvialableColor))
-                                                                                            {
-
-
-                                                                    <li class="active">
-                                                                        <a class="ec-opt-clr-img"
-                                                                           data-src="~/Images/Products/@items.Picture"
-                                                                           data-src-hover="~/Images/Products/@items.Picture"
-                                                                           data-tooltip="Gray">
-                                                                            <span style="background-color:@itemcol.ColorHash;"></span>
-                                                                        </a>
-                                                                    </li>
-
-                                                                }
-                                                            }
-                                                        </ul>
-                                                        </div>
-                                                    </div>
-                                                <br>
-
-                                                <br>
-                                                <div class="ec-size" style="margin-top: -15px;">
-                                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                                                    {
-                                                        foreach (var itemsiz in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                                                        {
-                                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@itemsiz.DisplayName</a>
-                                                        }
-                                                    }
-                                                </div>
-                                            }*@
+                                                         
 
 
                                             <div class="ec-link-btn" style="margin-top:10px;">
@@ -380,14 +342,7 @@
                                                     <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
                                                 }
 
-                                                @*<div class="ec-link-icon">
-
-                                                    <a href="#" data-tip="Add to Wishlist">
-                                                        <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                             class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                    </a>
-
-                                                </div>*@
+                                             
                                             </div>
                                         </div>
                                     </div>
@@ -412,13 +367,13 @@
 
 
                             <!-- Custom Tile Starts -->
-                            @foreach (var item in categories.Where(x => x.CategoryName == "Womens"))
+                            @foreach (var item in categories.Where(x => x.Active == true))
                             {
                                 var cat = item.CategoryID;
                                 foreach (var itemss in pcategory.Where(x => x.Category == cat))
                                 {
                                     var pro = itemss.Product;
-                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true).OrderByDescending(x => x.ProductID).Take(8))
+                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Womens")).OrderByDescending(x => x.ProductID).Take(8))
                                     {
 
 
@@ -539,14 +494,7 @@
                                                             <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
                                                         }
 
-                                                        @*<div class="ec-link-icon">
-
-                                                            <a href="#" data-tip="Add to Wishlist">
-                                                                <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                                     class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                            </a>
-
-                                                        </div>*@
+                                                    
                                                     </div>
                                                 </div>
                                             </div>
