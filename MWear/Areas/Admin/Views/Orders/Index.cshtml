@@ -1,0 +1,134 @@
+﻿@model IEnumerable<MWear.Models.Order>
+@{
+    ViewBag.Title = "Pending Orders";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminTable.cshtml";
+    List<MWear.Models.OrderDetail> orderDetails = ViewBag.orderdetails;
+    List<MWear.Models.Product> products = ViewBag.products;
+    List<MWear.Models.City> cities = ViewBag.city;
+    List<MWear.Models.State> states = ViewBag.state;
+}
+
+<!-- CONTENT WRAPPER -->
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>Pending Orders</h1>
+                <p class="breadcrumbs">
+                    <span><a href="index.html">Home</a></span>
+                    <span><i class="mdi mdi-chevron-right"></i></span>Pending Orders
+                </p>
+            </div>
+            @*<div>
+                <a href="@Url.Action("AddCategory","Category")" class="btn btn-primary"> Add Categories</a>
+            </div>*@
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table"
+                                   style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Order No</th>
+                                        <th>Customer Name</th>
+                                        <th>Address</th>
+                                        <th>State</th>
+                                        <th>City</th>
+                                        <th>Order Status</th>
+                                        <th>Order Details</th>
+                                        <th>Payment Method</th>
+                                        <th>Gross Amount</th>
+                                        <th>Delivery Charges</th>
+                                        <th>Net Amount</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model.OrderByDescending(x => x.OrderID))
+                                    {
+                                        var oddetails = "";
+                                        var cc = 0;
+                                        foreach (var items in orderDetails.Where(x=> x.OrderGuid == item.OrderGuid))
+                                        {
+                                            cc = cc + 1;
+                                            var proname = products.Where(x => x.ProductID == items.ProductID).FirstOrDefault().ProductName;
+                                            var prosku = products.Where(x => x.ProductID == items.ProductID).FirstOrDefault().SKU;
+                                            if (cc == 1)
+                                            {
+                                                oddetails = items.Quantity + " X " + proname + "(" + prosku + ")";
+                                            }
+                                            else
+                                            {
+                                                oddetails = oddetails+", "+ items.Quantity + " X " + proname + "(" + prosku + ")";
+                                            }
+
+                                        }
+                                    <tr>
+
+                                        <td>@item.OrderID</td>
+                                        <td>@item.CustomerFirstName @item.CustomerLastName</td>
+                                        <td>@item.CustomerAdress1 @item.CustomerAdress2</td>
+                                        @if (item.CustomerProvince == null)
+                                        {
+
+                                            <td>N/A</td>
+                                        }
+                                        else
+                                        {
+
+                                            <td>@states.Where(x => x.Id == item.CustomerProvince).FirstOrDefault().StateName</td>
+                                        }
+                                        
+                                        @if (item.CustomerCity == null)
+                                        {
+
+                                            <td>N/A</td>
+                                        }
+                                        else
+                                        {
+
+                                            <td>@cities.Where(x => x.Id == item.CustomerCity).FirstOrDefault().CityName</td>
+                                        }
+                                        <td>@item.OderStatus</td>
+                                        <td>@oddetails</td>
+                                        <td>@item.PaymentMethod</td>
+                                        <td>@item.GrossAmout</td>
+                                        <td>@item.DeliverCharges</td>
+                                        <td>@item.NetAmount</td>
+                                        <td>
+                                            <div class="btn-group mb-1">
+                                                <button type="button"
+                                                        class="btn btn-outline-success">
+                                                    Info
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false" data-display="static">
+                                                    <span class="sr-only">Info</span>
+                                                </button>
+
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Processing"})">Process</a>
+                                                    <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Canceled"})">Cancel</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Content -->
+</div> <!-- End Content Wrapper -->

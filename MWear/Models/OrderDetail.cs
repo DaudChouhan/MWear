@@ -14,15 +14,16 @@ namespace MWear.Models
     
     public partial class OrderDetail
     {
-        public Nullable<int> OrderID { get; set; }
+        public int OrderDetailID { get; set; }
+        public string OrderGuid { get; set; }
         public Nullable<int> ProductID { get; set; }
-        public Nullable<decimal> Price { get; set; }
         public int Quantity { get; set; }
-        public Nullable<int> Discount { get; set; }
+        public Nullable<decimal> GrossPrice { get; set; }
+        public Nullable<decimal> Discount { get; set; }
+        public Nullable<decimal> NetPrice { get; set; }
         public Nullable<decimal> TotalPrice { get; set; }
         public string Size { get; set; }
         public string Color { get; set; }
-        public int OrderDetailID { get; set; }
         public Nullable<System.DateTime> OrderDate { get; set; }
     }
 }

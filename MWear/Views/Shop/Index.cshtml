@@ -1,7 +1,7 @@
-﻿
+﻿@model MWear.Models.Category
 @{
     Layout = null;
-        List<MWear.Models.WebImage> sliders = ViewBag.WebImages;
+    List<MWear.Models.WebImage> sliders = ViewBag.WebImages;
     List<MWear.Models.Product> products = ViewBag.Products;
     List<MWear.Models.Category> categories = ViewBag.Categories;
     List<MWear.Models.Color> colors = ViewBag.Colors;
@@ -82,32 +82,32 @@
     <!-- Ec breadcrumb end -->
     <!-- Page detail section -->
     @*<section class="ec-bnr-detail margin-bottom-30 section-space-pt">
-        <div class="ec-page-detail">
-            <div class="container">
-                <div class="ec-main-heading d-none">
-                    <h2>Shop <span>Detail</span></h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="ec-cat-bnr">
-                            <a href="~/Theme/product-left-sidebar.html"><span style="background-image:url(../../Images/Products/1920x630.jpg);"></span></a>
-                        </div>
+            <div class="ec-page-detail">
+                <div class="container">
+                    <div class="ec-main-heading d-none">
+                        <h2>Shop <span>Detail</span></h2>
                     </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="ec-page-description">
-                            <h6>The Best deal on top brands</h6>
-                            <p class="m-0">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry. Lorem Ipsum has been the industry's standard dummy text ever
-                                since the 1500s. It has survived not only five centuries, but also the
-                                leap into electronic typesetting, remaining essentially unchanged.
-                            <p>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="ec-cat-bnr">
+                                <a href="~/Theme/product-left-sidebar.html"><span style="background-image:url(../../Images/Products/1920x630.jpg);"></span></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="ec-page-description">
+                                <h6>The Best deal on top brands</h6>
+                                <p class="m-0">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting
+                                    industry. Lorem Ipsum has been the industry's standard dummy text ever
+                                    since the 1500s. It has survived not only five centuries, but also the
+                                    leap into electronic typesetting, remaining essentially unchanged.
+                                <p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>*@
+        </section>*@
     <!-- End detail section -->
     <!-- Ec Shop page -->
     <section class="ec-page-content-bnr section-space-pb">
@@ -145,10 +145,7 @@
                             <div class="row">
 
 
-
-
-
-
+                                
                                 <!-- Custom Tile Starts -->
                                 @foreach (var items in products.Where(x => x.Available == true).OrderByDescending(x => x.ProductID).Take(16))
                                 {
@@ -316,191 +313,191 @@
                         </div>
                         @*<div class="ec-sidebar-wrap">
 
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Category</h3>
+                                <div class="ec-sidebar-block">
+                                    <div class="ec-sb-title">
+                                        <h3 class="ec-sidebar-title">Category</h3>
+                                    </div>
+                                    <div class="ec-sb-block-content">
+                                        <ul>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" checked /> <a href="~/Theme/#">clothes</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" /> <a href="~/Theme/#">Bags</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" /> <a href="~/Theme/#">Shoes</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" /> <a href="~/Theme/#">cosmetics</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" /> <a href="~/Theme/#">electrics</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" /> <a href="~/Theme/#">phone</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li id="ec-more-toggle-content" style="padding: 0; display: none;">
+                                                <ul>
+                                                    <li>
+                                                        <div class="ec-sidebar-block-item">
+                                                            <input type="checkbox" /> <a href="~/Theme/#">Watch</a><span class="checked"></span>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="ec-sidebar-block-item">
+                                                            <input type="checkbox" /> <a href="~/Theme/#">Cap</a><span class="checked"></span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item ec-more-toggle">
+                                                    <span class="checked"></span><span id="ec-more-toggle">
+                                                        More
+                                                        Categories
+                                                    </span>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="ec-sb-block-content">
-                                    <ul>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" checked /> <a href="~/Theme/#">clothes</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="~/Theme/#">Bags</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="~/Theme/#">Shoes</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="~/Theme/#">cosmetics</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="~/Theme/#">electrics</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" /> <a href="~/Theme/#">phone</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li id="ec-more-toggle-content" style="padding: 0; display: none;">
-                                            <ul>
-                                                <li>
-                                                    <div class="ec-sidebar-block-item">
-                                                        <input type="checkbox" /> <a href="~/Theme/#">Watch</a><span class="checked"></span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="ec-sidebar-block-item">
-                                                        <input type="checkbox" /> <a href="~/Theme/#">Cap</a><span class="checked"></span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item ec-more-toggle">
-                                                <span class="checked"></span><span id="ec-more-toggle">
-                                                    More
-                                                    Categories
-                                                </span>
-                                            </div>
-                                        </li>
 
-                                    </ul>
+
+                                <div class="ec-sidebar-block">
+                                    <div class="ec-sb-title">
+                                        <h3 class="ec-sidebar-title">Size</h3>
+                                    </div>
+                                    <div class="ec-sb-block-content">
+                                        <ul>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" value="" checked /><a href="~/Theme/#">S</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" value="" /><a href="~/Theme/#">M</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" value="" /> <a href="~/Theme/#">L</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" value="" /><a href="~/Theme/#">XL</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <input type="checkbox" value="" /><a href="~/Theme/#">XXL</a><span class="checked"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Size</h3>
+                                <div class="ec-sidebar-block ec-sidebar-block-clr">
+                                    <div class="ec-sb-title">
+                                        <h3 class="ec-sidebar-title">Color</h3>
+                                    </div>
+                                    <div class="ec-sb-block-content">
+                                        <ul>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#c4d6f9;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#ff748b;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#000000;"></span>
+                                                </div>
+                                            </li>
+                                            <li class="active">
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#2bff4a;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#ff7c5e;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#f155ff;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#ffef00;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#c89fff;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#7bfffa;"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ec-sidebar-block-item">
+                                                    <span style="background-color:#56ffc1;"></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="ec-sb-block-content">
-                                    <ul>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" checked /><a href="~/Theme/#">S</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="~/Theme/#">M</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /> <a href="~/Theme/#">L</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="~/Theme/#">XL</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <input type="checkbox" value="" /><a href="~/Theme/#">XXL</a><span class="checked"></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
 
 
-                            <div class="ec-sidebar-block ec-sidebar-block-clr">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Color</h3>
-                                </div>
-                                <div class="ec-sb-block-content">
-                                    <ul>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#c4d6f9;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#ff748b;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#000000;"></span>
-                                            </div>
-                                        </li>
-                                        <li class="active">
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#2bff4a;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#ff7c5e;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#f155ff;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#ffef00;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#c89fff;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#7bfffa;"></span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="ec-sidebar-block-item">
-                                                <span style="background-color:#56ffc1;"></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                                <div class="ec-sidebar-block">
+                                    <div class="ec-sb-title">
+                                        <h3 class="ec-sidebar-title">Price</h3>
+                                    </div>
+                                    <div class="ec-sb-block-content es-price-slider">
+                                        <div class="ec-price-filter">
 
-
-                            <div class="ec-sidebar-block">
-                                <div class="ec-sb-title">
-                                    <h3 class="ec-sidebar-title">Price</h3>
-                                </div>
-                                <div class="ec-sb-block-content es-price-slider">
-                                    <div class="ec-price-filter">
-
-                                        <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
-                                             data-max="250" data-step="10"></div>
-                                        <div class="ec-price-input">
-                                            <label class="filter__label">
-                                                <input type="text"
-                                                       class="filter__input">
-                                            </label>
-                                            <span class="ec-price-divider"></span>
-                                            <label class="filter__label">
-                                                <input type="text"
-                                                       class="filter__input">
-                                            </label>
+                                            <div id="ec-sliderPrice" class="filter__slider-price" data-min="0"
+                                                 data-max="250" data-step="10"></div>
+                                            <div class="ec-price-input">
+                                                <label class="filter__label">
+                                                    <input type="text"
+                                                           class="filter__input">
+                                                </label>
+                                                <span class="ec-price-divider"></span>
+                                                <label class="filter__label">
+                                                    <input type="text"
+                                                           class="filter__input">
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>*@
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -541,6 +538,11 @@
     </script>
     <!-- Main Js -->
     <script src="~/Theme/assets/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            GetCartData();
+        });
+    </script>
 
 </body>
 </html>

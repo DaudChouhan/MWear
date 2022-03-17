@@ -237,11 +237,11 @@
                                                         var pcatId = pcategory.Select(x => x.ProductCategoryID).ToList();
                                                         if (pcatId.Contains(item.CategoryID))
                                                         {
-                                                            <option value="@item.CategoryID" selected>@item.CategoryName</option>
+                                                            <option value="@item.CategoryID" selected>@item.CategoryDescription</option>
                                                         }
                                                         else
                                                         {
-                                                            <option value="@item.CategoryID">@item.CategoryName</option>
+                                                            <option value="@item.CategoryID">@item.CategoryDescription</option>
                                                         }
                                                     }
                                                 </select>

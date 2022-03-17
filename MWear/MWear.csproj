@@ -187,10 +187,14 @@
     <Compile Include="Areas\Admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CitiesWithRatesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatesWithRatesController.cs" />
     <Compile Include="Areas\Admin\Controllers\WebImagesController.cs" />
+    <Compile Include="Classes\Cart.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -227,6 +231,9 @@
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
+      <DependentUpon>MainDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\City.cs">
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Color.cs">
@@ -276,6 +283,9 @@
     <Compile Include="Models\Size.cs">
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\State.cs">
+      <DependentUpon>MainDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WebImage.cs">
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
@@ -311,13 +321,6 @@
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\MainDataModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MainDataModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\MainDataModel.edmx.diagram">
-      <DependentUpon>MainDataModel.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Accounts\Login.cshtml" />
@@ -342,6 +345,23 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdminTable.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Product\EditProduct.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\CanceledOrders.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\ProcessingOrders.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\DeliveredOrders.cshtml" />
+    <Content Include="Areas\Admin\Views\StatesWithRates\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\StatesWithRates\AddStates.cshtml" />
+    <Content Include="Areas\Admin\Views\StatesWithRates\EditStates.cshtml" />
+    <Content Include="Areas\Admin\Views\CitiesWithRates\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CitiesWithRates\AddCities.cshtml" />
+    <Content Include="Areas\Admin\Views\CitiesWithRates\EditCities.cshtml" />
+    <EntityDeploy Include="Models\MainDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MainDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MainDataModel.edmx.diagram">
+      <DependentUpon>MainDataModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1687,7 +1707,6 @@
     <Content Include="Theme\assets\images\icons\menu.svg" />
     <Content Include="Theme\assets\images\icons\newsletter.png" />
     <Content Include="Theme\assets\images\icons\pack-6.svg" />
-    <Content Include="Theme\assets\images\icons\payment.png" />
     <Content Include="Theme\assets\images\icons\payment1.png" />
     <Content Include="Theme\assets\images\icons\payment2.png" />
     <Content Include="Theme\assets\images\icons\payment3.png" />
@@ -2833,10 +2852,12 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Checkout\Index.cshtml" />
     <Content Include="Views\UserProfile\EditProfile.cshtml" />
+    <Content Include="Views\Checkout\CheckoutSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\CitiesAndStates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

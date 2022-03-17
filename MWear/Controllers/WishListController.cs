@@ -8,9 +8,12 @@ namespace MWear.Controllers
 {
     public class WishListController : Controller
     {
+        HomeController home = new HomeController();
         // GET: WishList
         public ActionResult Index()
         {
+            TempData["cat"] = home.category();
+            TempData.Keep();
             return View();
         }
     }

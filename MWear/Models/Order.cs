@@ -15,18 +15,32 @@ namespace MWear.Models
     public partial class Order
     {
         public int OrderID { get; set; }
-        public Nullable<int> CustomerID { get; set; }
-        public Nullable<int> PaymentID { get; set; }
-        public System.DateTime OderDate { get; set; }
-        public Nullable<System.DateTime> ShippingDate { get; set; }
-        public Nullable<System.DateTime> RequirdDate { get; set; }
-        public Nullable<int> ShipperID { get; set; }
-        public byte[] OrderTimeStamp { get; set; }
-        public string TransactionStatus { get; set; }
-        public string Error { get; set; }
-        public string FullFilled { get; set; }
-        public Nullable<bool> Deleted { get; set; }
-        public string Paid { get; set; }
-        public Nullable<System.DateTime> PaymentDate { get; set; }
+        public string OrderGuid { get; set; }
+        public string CustomerFirstName { get; set; }
+        public string CustomerLastName { get; set; }
+        public string CustomerEmail { get; set; }
+        public string CustomerPhone { get; set; }
+        public string CustomerAdress1 { get; set; }
+        public string CustomerAdress2 { get; set; }
+        public string ExistingCustomerID { get; set; }
+        public Nullable<int> CustomerProvince { get; set; }
+        public Nullable<int> CustomerCity { get; set; }
+        public string CouponCode { get; set; }
+        public string PaymentMethod { get; set; }
+        public Nullable<System.DateTime> OrderDate { get; set; }
+        public string OrderType { get; set; }
+        public string OrderFrom { get; set; }
+        public string OderStatus { get; set; }
+        public Nullable<System.DateTime> DeliverDate { get; set; }
+        public Nullable<decimal> GrossAmout { get; set; }
+        public Nullable<decimal> DiscountAmount { get; set; }
+        public Nullable<double> Tax { get; set; }
+        public Nullable<decimal> NetAmount { get; set; }
+        public Nullable<decimal> DeliverCharges { get; set; }
+        public Nullable<bool> IsPaid { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public string Note { get; set; }
+        public string CustomerPostalCode { get; set; }
     }
 }

@@ -1,0 +1,158 @@
+﻿@model MWear.Models.Order
+@{
+    ViewBag.Title = "CheckoutSuccess";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    List<MWear.Models.OrderDetail> orderDetails = ViewBag.orderdetails;
+    List<MWear.Models.Product> products = ViewBag.Products;
+}
+
+<!-- Ec breadcrumb start -->
+<div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row ec_breadcrumb_inner">
+                    <div class="col-md-6 col-sm-12">
+                        <h2 class="ec-breadcrumb-title">Order</h2>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <!-- ec-breadcrumb-list start -->
+                        <ul class="ec-breadcrumb-list">
+                            <li class="ec-breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                            <li class="ec-breadcrumb-item active">Order Successfully Recieved</li>
+                        </ul>
+                        <!-- ec-breadcrumb-list end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Ec breadcrumb end -->
+<!-- Start Privacy & Policy page -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="section-title">
+                    <h2 class="ec-bg-title">Thank you.</h2>
+                    <h2 class="ec-title">Thank you.</h2>
+                    <p class="sub-title mb-3"> Your order has been received.</p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-12 text-center">
+                    <ul>
+
+                        <li>
+                            Order number:<strong>@Model.OrderID</strong>
+                        </li>
+
+                        <li>
+                            Date:<strong>@Model.OrderDate</strong>
+                        </li>
+
+
+                        <li>
+                            Total:<strong><span>₨</span>@Model.NetAmount</strong>
+                        </li>
+                    </ul>
+                </div>
+
+                @if (Model.PaymentMethod != "COD") { 
+                    <p>
+                Kindly transfer/deposit your order total amount in one of our bank account or mobile account and send the payment slip/transaction id with your order ID/No. in reference to sales@mwear.pk or you can WhatsApp the details on our Mobile No.  03020209222<br>
+                برائے مہربانی اپنے آرڈر کی کل رقم ہمارے بینک اکاؤنٹ یا موبائل اکاؤنٹ میں منتقل کریں اور ادائیگی کی پرچی/ٹرانزیکشن آئی ڈی اپنے آرڈر آئی ڈی/نمبر کے ساتھ<br>
+                یا ہمارے موبائل نمبر 03020209222 پر تفصیلات واٹس ایپ کریں sales@mwear.pk
+                    </p>
+                
+                }
+               
+
+
+            <section>
+                @if (Model.PaymentMethod == "Bank Transfer")
+                {
+                    <h4 class="ec-title">Our bank details</h4>
+                    <ul>
+                        <li> <h4>Meezan Bank</h4></li>
+                        <li>Account number: <strong>0104624838</strong></li>
+                        <li>Sort code: <strong>9993</strong></li>
+                    </ul><br />
+                }
+                @if (Model.PaymentMethod == "Jazz Cash")
+                {
+                    <ul>
+                        <li><h4>JazzCash Mobile Account</h4></li>
+                        <li>Account number: <strong>0302-0209222</strong></li>
+                    </ul><br />
+                }
+
+
+            </section>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-7">
+
+                <h2>Order details</h2>
+
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>&nbsp;&nbsp; Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in orderDetails.Where(x => x.OrderGuid == Model.OrderGuid))
+                        {
+
+                            foreach (var items in products.Where(x => x.ProductID == item.ProductID))
+                            {
+                        <tr>
+                            <td>
+                                <a>@items.ProductName</a> <strong>×&nbsp;@item.Quantity</strong>
+                            </td>
+
+                            <td>
+                                <span><bdi><span>&nbsp;&nbsp;₨</span>@item.NetPrice</bdi></span>
+                            </td>
+
+                        </tr>
+                                    }
+
+                                    }
+
+                            </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>Subtotal:</th>
+                            <td><span><span>&nbsp;&nbsp;₨</span>@Model.GrossAmout</span></td>
+                        </tr>
+                        <tr>
+                            <th>Shipping:</th>
+                            <td><span><span>&nbsp;&nbsp;₨</span>@Model.DeliverCharges</span>&nbsp;<small></small></td>
+                        </tr>
+                        <tr>
+                            <th>Total:</th>
+                            <td><span><span>&nbsp;&nbsp;₨</span>@Model.NetAmount</span></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>

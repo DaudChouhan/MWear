@@ -2,6 +2,14 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    List<MWear.Classes.Cart> carts = TempData["cart"] as List<MWear.Classes.Cart>;
+    List<MWear.Models.State> states = ViewBag.states;
+    List<MWear.Models.City> cities = ViewBag.cities;
+    var totalAmount = 0.0;
+    if (TempData["total"] != null)
+    {
+        totalAmount = Convert.ToDouble(TempData["total"]);
+    }
 }
 
 <!-- Ec breadcrumb start -->
@@ -35,147 +43,151 @@
                 <!-- checkout content Start -->
                 <div class="ec-checkout-content">
                     <div class="ec-checkout-inner">
-                        <div class="ec-checkout-wrap margin-bottom-30">
-                            <div class="ec-checkout-block ec-check-new">
-                                <h3 class="ec-checkout-title">New Customer</h3>
-                                <div class="ec-check-block-content">
-                                    <div class="ec-check-subtitle">Checkout Options</div>
-                                    <form action="#">
-                                        <span class="ec-new-option">
-                                            <span>
-                                                <input type="radio" id="account1" name="radio-group" style="width:12px; height:12px;" checked>
-                                                <label for="account1">Register Account</label>
-                                            </span>
-                                            <span>
-                                                <input type="radio" id="account2" name="radio-group" style="width:12px; height:12px;">
-                                                <label for="account2">Guest Account</label>
-                                            </span>
-                                        </span>
-                                    </form>
-                                    <div class="ec-new-desc">
-                                        By creating an account you will be able to shop faster,
-                                        be up to date on an order's status, and keep track of the orders you have
-                                        previously made.
-                                    </div>
-                                    <div class="ec-new-btn"><a href="#" class="btn btn-primary">Continue</a></div>
+                        @*<div class="ec-checkout-wrap margin-bottom-30">
+            <div class="ec-checkout-block ec-check-new">
+                <h3 class="ec-checkout-title">New Customer</h3>
+                <div class="ec-check-block-content">
+                    <div class="ec-check-subtitle">Checkout Options</div>
+                    <form action="#">
+                        <span class="ec-new-option">
+                            <span>
+                                <input type="radio" id="account1" name="radio-group" style="width:12px; height:12px;" checked>
+                                <label for="account1">Register Account</label>
+                            </span>
+                            <span>
+                                <input type="radio" id="account2" name="radio-group" style="width:12px; height:12px;">
+                                <label for="account2">Guest Account</label>
+                            </span>
+                        </span>
+                    </form>
+                    <div class="ec-new-desc">
+                        By creating an account you will be able to shop faster,
+                        be up to date on an order's status, and keep track of the orders you have
+                        previously made.
+                    </div>
+                    <div class="ec-new-btn"><a href="#" class="btn btn-primary">Continue</a></div>
 
-                                </div>
-                            </div>
-                            <div class="ec-checkout-block ec-check-login">
-                                <h3 class="ec-checkout-title">Returning Customer</h3>
-                                <div class="ec-check-login-form">
-                                    <form action="#" method="post">
-                                        <span class="ec-check-login-wrap">
-                                            <label>Email Address</label>
-                                            <input type="text" name="name" placeholder="Enter your email address"
-                                                   required />
-                                        </span>
-                                        <span class="ec-check-login-wrap">
-                                            <label>Password</label>
-                                            <input type="password" name="password" placeholder="Enter your password"
-                                                   required />
-                                        </span>
+                </div>
+            </div>
+            <div class="ec-checkout-block ec-check-login">
+                <h3 class="ec-checkout-title">Returning Customer</h3>
+                <div class="ec-check-login-form">
+                    <form action="#" method="post">
+                        <span class="ec-check-login-wrap">
+                            <label>Email Address</label>
+                            <input type="text" name="name" placeholder="Enter your email address"
+                                   required />
+                        </span>
+                        <span class="ec-check-login-wrap">
+                            <label>Password</label>
+                            <input type="password" name="password" placeholder="Enter your password"
+                                   required />
+                        </span>
 
-                                        <span class="ec-check-login-wrap ec-check-login-btn">
-                                            <button class="btn btn-primary" type="submit">Login</button>
-                                            <a class="ec-check-login-fp" href="#">Forgot Password?</a>
-                                        </span>
-                                    </form>
-                                </div>
-                            </div>
+                        <span class="ec-check-login-wrap ec-check-login-btn">
+                            <button class="btn btn-primary" type="submit">Login</button>
+                            <a class="ec-check-login-fp" href="#">Forgot Password?</a>
+                        </span>
+                    </form>
+                </div>
+            </div>
 
-                        </div>
-                        <div class="ec-checkout-wrap margin-bottom-30 padding-bottom-3">
-                            <div class="ec-checkout-block ec-check-bill">
-                                <h3 class="ec-checkout-title">Billing Details</h3>
-                                <div class="ec-bl-block-content">
-                                    <div class="ec-check-subtitle">Checkout Options</div>
-                                    @*<span class="ec-bill-option">
-                                        <span>
-                                            <input type="radio" id="bill1" name="radio-group" style="width:12px; height:12px;">
-                                            <label for="bill1">I want to use an existing address</label>
-                                        </span>
-                                        <span>
-                                            <input type="radio" id="bill2" name="radio-group" style="width:12px; height:12px;" checked>
-                                            <label for="bill2">I want to use new address</label>
-                                        </span>
-                                    </span>*@
-                                    <div class="ec-check-bill-form">
-                                        <form action="#" method="post">
+        </div>*@
+                        @using (Html.BeginForm("CheckoutDetails", "Checkout", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="ec-checkout-wrap margin-bottom-30 padding-bottom-3">
+                                <div class="ec-checkout-block ec-check-bill">
+                                    <h3 class="ec-checkout-title">Billing Details</h3>
+                                    <div class="ec-bl-block-content">
+                                        <div class="ec-check-subtitle">Checkout Options</div>
+                                        @*<span class="ec-bill-option">
+                            <span>
+                                <input type="radio" id="bill1" name="radio-group" style="width:12px; height:12px;">
+                                <label for="bill1">I want to use an existing address</label>
+                            </span>
+                            <span>
+                                <input type="radio" id="bill2" name="radio-group" style="width:12px; height:12px;" checked>
+                                <label for="bill2">I want to use new address</label>
+                            </span>
+                        </span>*@
+                                        <div class="ec-check-bill-form">
+                                            @*<form action="#" method="post">*@
                                             <span class="ec-bill-wrap ec-bill-half">
                                                 <label>First Name*</label>
-                                                <input type="text" name="firstname"
+                                                <input type="text" name="CustomerFirstName"
                                                        placeholder="Enter your first name" required />
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
                                                 <label>Last Name*</label>
-                                                <input type="text" name="lastname"
+                                                <input type="text" name="CustomerLastName"
                                                        placeholder="Enter your last name" required />
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
                                                 <label>Email Address*</label>
-                                                <input type="text" name="email"
-                                                       placeholder="Email (Optional)" required />
+                                                <input type="text" name="CustomerEmail"
+                                                       placeholder="Email (Optional)" />
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
                                                 <label>Phone*</label>
-                                                <input type="text" name="Phone"
-                                                       placeholder="Phone (Optinal)" required />
+                                                <input type="text" name="CustomerPhone"
+                                                       placeholder="Phone" required />
                                             </span>
                                             <span class="ec-bill-wrap">
-                                                <label>Delivery Address</label>
-                                                <input type="text" name="address1" placeholder="Address 1" />
+                                                <label>Address 1</label>
+                                                <input type="text" name="CustomerAdress1" placeholder="Address 1" />
                                             </span>
                                             <span class="ec-bill-wrap">
-                                                <label>Billing Address</label>
-                                                <input type="text" name="address2" placeholder="Address 2" />
+                                                <label>Address 2</label>
+                                                <input type="text" name="CustomerAdress2" placeholder="Address 2" />
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
                                                 <label>Province *</label>
                                                 <span class="ec-bl-select-inner">
-                                                    <select name="ec_select_country" id="ec-select-country"
-                                                            class="ec-bill-select">
+                                                    <select name="CustomerProvince" id="ec-select-country" class="ec-bill-select" onchange="FillCities()">
                                                         <option selected disabled>Province</option>
-                                                        <option value="1">Sindh</option>
-                                                        <option value="2">Punjab</option>
-                                                        <option value="3">Balichistan</option>
-                                                        <option value="4">KPK</option>
-                                                        <option value="5">Kashmir</option>
+                                                        @foreach (var item in states)
+                                                        {
+                                                            <option value="@item.Id">@item.StateName</option>
+                                                        }
                                                     </select>
                                                 </span>
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
                                                 <label>City *</label>
                                                 <span class="ec-bl-select-inner">
-                                                    <select name="ec_select_city" id="ec-select-city"
-                                                            class="ec-bill-select">
+                                                    <select name="CustomerCity" id="ec-select-city"
+                                                            class="ec-bill-select" disabled onchange="CheckCity()">
                                                         <option selected disabled>City</option>
-                                                        <option value="1">Karachi</option>
-                                                        <option value="2">Lahore</option>
-                                                        <option value="3">Islamabad</option>
-                                                        <option value="4">Quetta</option>
-                                                        <option value="5">Peshawar</option>
-                                                        <option value="5">Other</option>
+
                                                     </select>
                                                 </span>
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
                                                 <label>Post Code</label>
-                                                <input type="text" name="postalcode" placeholder="Post Code" />
+                                                <input type="text" name="CustomerPostalCode" placeholder="Post Code" />
+                                                <input type="hidden" value="0" name="DeliverCharges" id="hidDeliverCharges" />
+                                                <input type="hidden" value="COD" name="PaymentMethod" id="PaymentMethod" />
                                             </span>
-                                            
+                                            <span class="ec-bill-wrap">
+                                                <label>Note</label>
+                                                <textarea name="Note" placeholder="Comments"></textarea>
+                                            </span>
 
 
-                                        </form>
+
+                                            @*</form>*@
+                                        </div>
+
                                     </div>
-
                                 </div>
-                            </div>
 
-                        </div>
-                        <span class="ec-check-order-btn">
-                            <a class="btn btn-primary" href="#">Place Order</a>
-                        </span>
+                            </div>
+                            <span class="ec-check-order-btn">
+                                <button type="submit" class="btn btn-primary">Place Order</button>
+                            </span>
+                        }
+
                     </div>
                 </div>
                 <!--cart content End -->
@@ -192,11 +204,12 @@
                             <div class="ec-checkout-summary">
                                 <div>
                                     <span class="text-left">Sub-Total</span>
-                                    <span class="text-right">$80.00</span>
+                                    <input type="hidden" id="subtotal" value="@totalAmount" />
+                                    <span class="text-right" >Rs. @totalAmount.ToString("0.00")</span>
                                 </div>
                                 <div>
                                     <span class="text-left">Delivery Charges</span>
-                                    <span class="text-right">$80.00</span>
+                                    <span class="text-right" id="deliverycharges">Rs. 0</span>
                                 </div>
                                 @*<div>
                                     <span class="text-left">Coupan Discount</span>
@@ -215,114 +228,58 @@
                                 </div>*@
                                 <div class="ec-checkout-summary-total">
                                     <span class="text-left">Total Amount</span>
-                                    <span class="text-right">$80.00</span>
+                                    <span class="text-right" id="nettotal">Rs. @totalAmount.ToString("0.00")</span>
                                 </div>
                             </div>
                             <div class="ec-checkout-pro">
-                                <div class="col-sm-12 mb-6">
-                                    <div class="ec-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image"
-                                                         src="~/Images/Products/SPG-00173-1.jpg"
-                                                         alt="Product" />
+                                @if (carts != null)
+                                {
+                                    foreach (var item in TempData["cart"] as List<MWear.Classes.Cart>)
+                                    {
+                                        var total = (item.NetPrice * item.Quantity).ToString();
+                                        <div class="col-sm-12 mb-6">
+                                            <div class="ec-product-inner">
+                                                <div class="ec-pro-image-outer">
+                                                    <div class="ec-pro-image">
+                                                        <a href="#" class="image">
+                                                            <img class="main-image"
+                                                                 src="../../Images/Products/@item.ProductImage"
+                                                                 alt="Product" />
 
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Baby toy teddy bear</a></h5>
-
-                                            <span class="ec-price">
-                                                <span class="old-price">200</span>
-                                                <span class="new-price">150</span>  <span class="new-price">&nbsp; X 2</span>
-                                            </span>
-                                            <div class="ec-pro-option">
-                                                <div class="ec-pro-color">
-                                                    <span class="ec-pro-opt-label">Color</span>
-                                                    <ul class="ec-opt-swatc">
-                                                        <li class="active">
-                                                            
-                                                                <span style="background-color:#6d4c36;"></span>
-                                                        </li>
-
-                                                    </ul>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                                <div class="ec-pro-size">
-                                                    <span class="ec-pro-opt-label">Size</span>
-                                                    <ul class="ec-opt-size">
-                                                        <li class="active">
-                                                            <a href="#" class="ec-opt-sz"
-                                                               data-old="$95.00" data-new="$79.00"
-                                                               data-tooltip="Small">S</a>
-                                                        </li>
+                                                <div class="ec-pro-content">
+                                                    <h5 class="ec-pro-title"><a href="#">@item.ProductName</a></h5>
 
-                                                    </ul><br />
                                                     <span class="ec-price">
-                                                        <span>Total 95.00</span>
+                                                        @if (item.UnitPrice > item.NetPrice)
+                                                        {
+                                                            <span class="old-price">@item.UnitPrice</span>
+                                                        }
+                                                        <span class="new-price">@item.NetPrice</span>  <span class="new-price">&nbsp; X @item.Quantity</span>
                                                     </span>
+                                                    <div class="ec-pro-option">
+                                                        <div class="ec-pro-size">
+                                                            <span class="ec-price">
+                                                                <span>Total RS. @total</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 mb-6">
-                                    <div class="ec-product-inner">
-                                        <div class="ec-pro-image-outer">
-                                            <div class="ec-pro-image">
-                                                <a href="product-left-sidebar.html" class="image">
-                                                    <img class="main-image"
-                                                         src="~/Images/Products/SPG-00173-1.jpg"
-                                                         alt="Product" />
+                                    }
+                                }
 
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="ec-pro-content">
-                                            <h5 class="ec-pro-title"><a href="product-left-sidebar.html">Baby toy teddy bear</a></h5>
-
-                                            <span class="ec-price">
-                                                <span class="old-price">200</span>
-                                                <span class="new-price">150</span>  <span class="new-price">&nbsp; X 2</span>
-                                            </span>
-                                            <div class="ec-pro-option">
-                                                <div class="ec-pro-color">
-                                                    <span class="ec-pro-opt-label">Color</span>
-                                                    <ul class="ec-opt-swatc">
-                                                        <li class="active">
-
-                                                            <span style="background-color:#6d4c36;"></span>
-                                                        </li>
-
-                                                    </ul>
-                                                </div>
-                                                <div class="ec-pro-size">
-                                                    <span class="ec-pro-opt-label">Size</span>
-                                                    <ul class="ec-opt-size">
-                                                        <li class="active">
-                                                            <a href="#" class="ec-opt-sz"
-                                                               data-old="$95.00" data-new="$79.00"
-                                                               data-tooltip="Small">S</a>
-                                                        </li>
-
-                                                    </ul><br />
-                                                    <span class="ec-price">
-                                                        <span>Total 95.00</span>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Sidebar Summary Block -->
                 </div>
-                <div class="ec-sidebar-wrap ec-checkout-del-wrap">
+                <!--<div class="ec-sidebar-wrap ec-checkout-del-wrap">-->
                     <!-- Sidebar Summary Block -->
-                    <div class="ec-sidebar-block">
+                    <!--<div class="ec-sidebar-block">
                         <div class="ec-sb-title">
                             <h3 class="ec-sidebar-title">Delivery Method</h3>
                         </div>
@@ -347,14 +304,14 @@
                                     </span>
                                     <span class="ec-del-commemt">
                                         <span class="ec-del-opt-head">Add Comments About Your Order</span>
-                                        <textarea name="your-commemt" placeholder="Comments"></textarea>
+                                        <textarea name="Note" placeholder="Comments"></textarea>
                                     </span>
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <!-- Sidebar Summary Block -->
-                </div>
+                <!--</div>-->
                 <div class="ec-sidebar-wrap ec-checkout-pay-wrap">
                     <!-- Sidebar Payment Block -->
                     <div class="ec-sidebar-block">
@@ -370,28 +327,28 @@
                                 <form action="#">
                                     <span class="ec-pay-option">
                                         <span>
-                                            <input type="radio" id="pay1" name="radio-group" style="width:12px; height:12px;" checked>
+                                            <input type="radio" id="pay1" name="radio-group" value="COD" style="width:12px; height:12px;" checked>
                                             <label for="pay1">Cash On Delivery</label>
                                         </span>
                                     </span><br />
                                     <span class="ec-pay-option">
                                         <span>
-                                            <input type="radio" id="pay2" name="radio-group" style="width:12px; height:12px;">
+                                            <input type="radio" id="pay2" name="radio-group" value="Bank Transfer" style="width:12px; height:12px;">
                                             <label for="pay1">Online Bank Transfer</label>
                                         </span>
                                     </span><br />
                                     <span class="ec-pay-option">
                                         <span>
-                                            <input type="radio" id="pay3" name="radio-group" style="width:12px; height:12px;">
+                                            <input type="radio" id="pay3" name="radio-group" value="Jazz Cash" style="width:12px; height:12px;">
                                             <label for="pay1">JazzCash</label>
                                         </span>
                                     </span><br />
-                                    <span class="ec-pay-option">
+                                    @*<span class="ec-pay-option">
                                         <span>
-                                            <input type="radio" id="pay4" name="radio-group" style="width:12px; height:12px;">
+                                            <input type="radio" id="pay4" name="radio-group" value="Easy Paisa" style="width:12px; height:12px;">
                                             <label for="pay1">EasyPaisa</label>
                                         </span>
-                                    </span>
+                                    </span>*@
                                     @*<span class="ec-pay-commemt">
                                             <span class="ec-pay-opt-head">Add Comments About Your Order</span>
                                             <textarea name="your-commemt" placeholder="Comments"></textarea>
@@ -446,3 +403,64 @@
         </div>
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("[name='radio-group']").click(function () {
+            debugger;
+            var selectedval = $(this).val();
+            $("#PaymentMethod").val(selectedval)
+        });
+    });
+    var statelist =   @Html.Raw(Json.Encode(ViewBag.states));
+    var citylist =   @Html.Raw(Json.Encode(ViewBag.cities));
+    var stateid = 0;
+    function FillCities() {
+        debugger;
+        stateid = $("#ec-select-country").val();
+        $("#ec-select-city").html('<option selected disabled>City</option>');
+        $(citylist.filter(x => x.StateId == stateid)).each(function (i, e) {
+            debugger;
+            var html = '<option value="' + e.Id + '">' + e.CityName + '</option>';
+            $("#ec-select-city").append(html);
+            $("#ec-select-city").prop('disabled', false);
+        });
+        var subtotal = $("#subtotal").val();
+        var delivery = statelist.filter(x => x.Id == stateid)[0].Charges;
+        var maxorderamount = statelist.filter(x => x.Id == stateid)[0].MaxOrderAmount;
+        if (subtotal < maxorderamount) {
+            $("#deliverycharges").text("Rs. " + delivery);
+            $("#hidDeliverCharges").val(delivery);
+            var nettotal = parseFloat(subtotal) + parseFloat(delivery);
+            $("#nettotal").text("Rs. " + nettotal);
+        }
+        else {
+            $("#deliverycharges").text("Rs. 0");
+            $("#hidDeliverCharges").val("0");
+            $("#nettotal").text("Rs. " + subtotal);
+        }
+    }
+    function CheckCity() {
+        debugger;
+        var cityid = $("#ec-select-city").val();
+        var subtotal = $("#subtotal").val();
+        var maxorderamount = statelist.filter(x => x.Id == stateid)[0].MaxOrderAmount;
+        var delivery = statelist.filter(x => x.Id == stateid)[0].Charges;
+        if (citylist.filter(x => x.Id == cityid)[0].IsFixedCharges == true) {
+            delivery = citylist.filter(x => x.Id == cityid)[0].Charges;
+            maxorderamount = citylist.filter(x => x.Id == cityid)[0].MaxOrderAmount;
+        }
+        
+        if (subtotal < maxorderamount) {
+            $("#deliverycharges").text("Rs. " + delivery);
+            $("#hidDeliverCharges").val(delivery);
+            var nettotal = parseFloat(subtotal) + parseFloat(delivery);
+            $("#nettotal").text("Rs. " + nettotal);
+        }
+        else {
+            $("#deliverycharges").text("Rs. 0");
+            $("#hidDeliverCharges").val("0");
+            $("#nettotal").text("Rs. " + subtotal);
+        }
+    }
+</script>

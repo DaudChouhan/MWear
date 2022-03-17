@@ -15,6 +15,7 @@ namespace MWear.Models
     public partial class Customer
     {
         public int CustomerID { get; set; }
+        public string AspNetUserID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Class { get; set; }
@@ -28,7 +29,6 @@ namespace MWear.Models
         public string Password { get; set; }
         public string ShippingRegion { get; set; }
         public Nullable<System.DateTime> DateJoined { get; set; }
-        public string AspNetUserID { get; set; }
         public string Picture { get; set; }
     }
 }

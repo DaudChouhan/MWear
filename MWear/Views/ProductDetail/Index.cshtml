@@ -138,6 +138,7 @@
                                 <div class="single-pro-desc">
                                     <div class="single-pro-content">
                                         <h5 class="ec-single-title">@Model.ProductName</h5>
+                                        <input type="hidden" id="productId" value="@Model.ProductID" />
                                         <div class="ec-single-rating-wrap">
                                             <!-- <div class="ec-single-rating">
                                                 <i class="ecicon eci-star fill"></i>
@@ -261,11 +262,12 @@
                                             </div>
                                         </div>
                                         <div class="ec-single-qty">
+                                            <input type="hidden" id="maxProductStock" value="@Model.UnitsInStock" />
                                             <div class="qty-plus-minus">
-                                                <input class="qty-input" type="text" name="ec_qtybtn" value="5" />
+                                                <input id="proQty" class="qty-input" type="text" name="ec_qtybtn" value="1" />
                                             </div>
                                             <div class="ec-single-cart ">
-                                                <button class="btn btn-primary">Add To Cart</button>
+                                                <button class="btn btn-primary" id="addtocart">Add To Cart</button>
                                             </div>
                                             <div class="ec-single-wishlist">
                                                 <a class="ec-btn-group wishlist" title="Wishlist">
@@ -779,7 +781,7 @@
                                             }
 
                                         </div>
-                                        @if (lenght12.Count > 1 || lenght13.Count > 1)
+                                        @*@if (lenght12.Count > 1 || lenght13.Count > 1)
                                         {
 
                                             <div class="ec-color">
@@ -818,7 +820,7 @@
                                                     }
                                                 }
                                             </div>
-                                        }
+                                        }*@
 
 
                                         <div class="ec-link-btn" style="margin-top:10px;">
@@ -887,6 +889,53 @@
     <!-- Main Js -->
     <script src="~/Theme/assets/js/vendor/index.js"></script>
     <script src="~/Theme/assets/js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            GetCartData();
+            $("#addtocart").click(function () {
+                CartData();
+            });
+    });
+        function CartData() {
+        debugger;
+        //var stock = document.getElementById('prostock').value;
+        //if (stock != 0) {
+        var qty = document.getElementById('proQty').value;
+        //if (qty > stock) {
+        //    alert("Please make sure your ordered quantity is less than or equal to available stock");
+        //}
+        //else {
+        var id = document.getElementById('productId').value;
+
+        var serviceURL = '/ProductDetail/CartDetail?ProID=' + id + '&&QTY=' + qty;
+
+        $.ajax({
+            type: "GET",
+            url: serviceURL,
+            data: param = "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: succesFunc1,
+            error: errorrFunc1
+        });
+    }
+
+    function succesFunc1(data) {
+        debugger;
+        if (data == "Success") {
+            GetCartData();
+            //alert('Item has been Added in Cart');
+        }
+        else {
+            alert('Please try again');
+        }
+    }
+
+    function errorrFunc1(data) {
+        console.log(data);
+    }
+    </script>
 
 </body>
 </html>

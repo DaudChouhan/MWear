@@ -4,30 +4,30 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="mwearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+      <Schema Namespace="mwearModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admins">
           <Key>
             <PropertyRef Name="AdminID" />
           </Key>
-          <Property Name="AdminID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="AdminName" MaxLength="50" Type="varchar" />
-          <Property Name="AdminPic" MaxLength="50" Type="varchar" />
-          <Property Name="AdminRole" MaxLength="50" Type="varchar" />
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminName" Type="varchar" MaxLength="50" />
+          <Property Name="AdminPic" Type="varchar" MaxLength="50" />
+          <Property Name="AdminRole" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-          <Property Name="Name" Nullable="false" MaxLength="256" Type="nvarchar" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUserClaims">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ClaimType" Type="nvarchar(max)" />
           <Property Name="ClaimValue" Type="nvarchar(max)" />
         </EntityType>
@@ -37,68 +37,80 @@
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Nullable="false" MaxLength="128" Type="nvarchar" />
-          <Property Name="ProviderKey" Nullable="false" MaxLength="128" Type="nvarchar" />
-          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
             <PropertyRef Name="UserId" />
             <PropertyRef Name="RoleId" />
           </Key>
-          <Property Name="UserId" Nullable="false" MaxLength="128" Type="nvarchar" />
-          <Property Name="RoleId" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Nullable="false" MaxLength="128" Type="nvarchar" />
-          <Property Name="Email" MaxLength="256" Type="nvarchar" />
-          <Property Name="EmailConfirmed" Nullable="false" Type="bit" />
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
           <Property Name="SecurityStamp" Type="nvarchar(max)" />
           <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="PhoneNumberConfirmed" Nullable="false" Type="bit" />
-          <Property Name="TwoFactorEnabled" Nullable="false" Type="bit" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
           <Property Name="LockoutEndDateUtc" Type="datetime" />
-          <Property Name="LockoutEnabled" Nullable="false" Type="bit" />
-          <Property Name="AccessFailedCount" Nullable="false" Type="int" />
-          <Property Name="UserName" Nullable="false" MaxLength="256" Type="nvarchar" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
         <EntityType Name="AvailabeColors">
           <Key>
             <PropertyRef Name="AvialableColorID" />
           </Key>
-          <Property Name="AvialableColorID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="AvialableColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AvialableColor" Type="int" />
-          <Property Name="Product" MaxLength="128" Type="nvarchar" />
+          <Property Name="Product" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="AvailableSize">
           <Key>
             <PropertyRef Name="AvialableSizeID" />
           </Key>
-          <Property Name="AvialableSizeID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="AvialableSizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AvialableSize" Type="int" />
-          <Property Name="Product" MaxLength="128" Type="nvarchar" />
+          <Property Name="Product" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ParentCategory" Type="int" />
-          <Property Name="CategoryName" MaxLength="50" Type="varchar" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
           <Property Name="CategoryDescription" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="int" />
+          <Property Name="CityName" Type="varchar" MaxLength="100" />
+          <Property Name="IsFixedCharges" Type="bit" />
+          <Property Name="Charges" Type="money" />
+          <Property Name="MaxOrderAmount" Type="money" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="Colors">
           <Key>
             <PropertyRef Name="ColorID" />
           </Key>
-          <Property Name="ColorID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="ColorName" Nullable="false" MaxLength="50" Type="varchar" />
-          <Property Name="ColorHash" MaxLength="50" Type="varchar" />
+          <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColorHash" Type="varchar" MaxLength="50" />
           <Property Name="ColorDescription" Type="nvarchar(max)" />
           <Property Name="Active" Type="bit" />
         </EntityType>
@@ -106,140 +118,166 @@
           <Key>
             <PropertyRef Name="CustomerID" />
           </Key>
-          <Property Name="CustomerID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="AspNetUserID" MaxLength="255" Type="varchar" />
-          <Property Name="FirstName" MaxLength="255" Type="varchar" />
-          <Property Name="LastName" MaxLength="255" Type="varchar" />
-          <Property Name="Class" MaxLength="255" Type="varchar" />
-          <Property Name="Address1" MaxLength="255" Type="varchar" />
-          <Property Name="Address2" MaxLength="255" Type="varchar" />
-          <Property Name="City" MaxLength="255" Type="varchar" />
-          <Property Name="Province" MaxLength="255" Type="varchar" />
+          <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AspNetUserID" Type="varchar" MaxLength="255" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" />
+          <Property Name="Class" Type="varchar" MaxLength="255" />
+          <Property Name="Address1" Type="varchar" MaxLength="255" />
+          <Property Name="Address2" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="255" />
+          <Property Name="Province" Type="varchar" MaxLength="255" />
           <Property Name="PostalCode" Type="int" />
-          <Property Name="Phone" MaxLength="255" Type="varchar" />
-          <Property Name="Email" MaxLength="255" Type="varchar" />
-          <Property Name="Password" MaxLength="255" Type="varchar" />
-          <Property Name="ShippingRegion" MaxLength="255" Type="varchar" />
+          <Property Name="Phone" Type="varchar" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Password" Type="varchar" MaxLength="255" />
+          <Property Name="ShippingRegion" Type="varchar" MaxLength="255" />
           <Property Name="DateJoined" Type="datetime" />
-          <Property Name="Picture" MaxLength="255" Type="varchar" />
+          <Property Name="Picture" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="OrderDetails">
           <Key>
             <PropertyRef Name="OrderDetailID" />
           </Key>
-          <Property Name="OrderID" Type="int" />
+          <Property Name="OrderDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderGuid" Type="nvarchar" MaxLength="128" />
           <Property Name="ProductID" Type="int" />
-          <Property Name="Price" Precision="20" Scale="2" Type="decimal" />
-          <Property Name="Quantity" Nullable="false" Type="int" />
-          <Property Name="Discount" Type="int" />
-          <Property Name="TotalPrice" Precision="20" Scale="2" Type="decimal" />
-          <Property Name="Size" MaxLength="50" Type="varchar" />
-          <Property Name="Color" MaxLength="50" Type="varchar" />
-          <Property Name="OrderDetailID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="GrossPrice" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="Discount" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="NetPrice" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="TotalPrice" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="Size" Type="varchar" MaxLength="50" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
           <Property Name="OrderDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
-          <Property Name="OrderID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="CustomerID" Type="int" />
-          <Property Name="PaymentID" Type="int" />
-          <Property Name="OderDate" Nullable="false" Type="datetime" />
-          <Property Name="ShippingDate" Type="datetime" />
-          <Property Name="RequirdDate" Type="datetime" />
-          <Property Name="ShipperID" Type="int" />
-          <Property Name="OrderTimeStamp" Nullable="false" StoreGeneratedPattern="Computed" Type="timestamp" />
-          <Property Name="TransactionStatus" MaxLength="50" Type="varchar" />
-          <Property Name="Error" MaxLength="50" Type="varchar" />
-          <Property Name="FullFilled" MaxLength="50" Type="varchar" />
-          <Property Name="Deleted" Type="bit" />
-          <Property Name="Paid" MaxLength="50" Type="varchar" />
-          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderGuid" Type="nvarchar" MaxLength="128" />
+          <Property Name="CustomerFirstName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerLastName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerPhone" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerAdress1" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerAdress2" Type="varchar" MaxLength="50" />
+          <Property Name="ExistingCustomerID" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerProvince" Type="int" />
+          <Property Name="CustomerCity" Type="int" />
+          <Property Name="CouponCode" Type="varchar" MaxLength="50" />
+          <Property Name="PaymentMethod" Type="varchar" MaxLength="50" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="OrderType" Type="varchar" MaxLength="50" />
+          <Property Name="OrderFrom" Type="varchar" MaxLength="50" />
+          <Property Name="OderStatus" Type="varchar" MaxLength="50" />
+          <Property Name="DeliverDate" Type="date" />
+          <Property Name="GrossAmout" Type="money" />
+          <Property Name="DiscountAmount" Type="money" />
+          <Property Name="Tax" Type="float" />
+          <Property Name="NetAmount" Type="money" />
+          <Property Name="DeliverCharges" Type="money" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Note" Type="varchar" MaxLength="255" />
+          <Property Name="CustomerPostalCode" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Payments">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
-          <Property Name="PaymentID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="PaymentType" MaxLength="50" Type="varchar" />
+          <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentType" Type="varchar" MaxLength="50" />
           <Property Name="Allowed" Type="bit" />
         </EntityType>
         <EntityType Name="Pictures">
           <Key>
             <PropertyRef Name="PictureID" />
           </Key>
-          <Property Name="PictureID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="PictureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PictureName" Type="nvarchar(max)" />
           <Property Name="PicturePath" Type="nvarchar(max)" />
           <Property Name="PictureAltText" Type="nvarchar(max)" />
-          <Property Name="Product" MaxLength="128" Type="nvarchar" />
+          <Property Name="Product" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
             <PropertyRef Name="ProductCategoryID" />
           </Key>
-          <Property Name="ProductCategoryID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="Product" MaxLength="128" Type="nvarchar" />
-          <Property Name="Category" Nullable="false" Type="int" />
+          <Property Name="ProductCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product" Type="nvarchar" MaxLength="128" />
+          <Property Name="Category" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
-          <Property Name="ProductID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="ProductGUID" MaxLength="128" Type="nvarchar" />
-          <Property Name="SKU" MaxLength="50" Type="varchar" />
-          <Property Name="ProductName" MaxLength="50" Type="varchar" />
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductGUID" Type="nvarchar" MaxLength="128" />
+          <Property Name="SKU" Type="varchar" MaxLength="50" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
           <Property Name="ProductShortDesc" Type="nvarchar(max)" />
           <Property Name="ProductLongDesc" Type="nvarchar(max)" />
           <Property Name="QuantityPerUnit" Type="int" />
-          <Property Name="Price" Precision="20" Scale="2" Type="decimal" />
-          <Property Name="Size" MaxLength="100" Type="varchar" />
-          <Property Name="Color" MaxLength="150" Type="varchar" />
-          <Property Name="Discount" Precision="20" Scale="2" Type="decimal" />
-          <Property Name="UnitWeight" MaxLength="50" Type="varchar" />
+          <Property Name="Price" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="Size" Type="varchar" MaxLength="100" />
+          <Property Name="Color" Type="varchar" MaxLength="150" />
+          <Property Name="Discount" Type="decimal" Precision="20" Scale="2" />
+          <Property Name="UnitWeight" Type="varchar" MaxLength="50" />
           <Property Name="UnitsInStock" Type="int" />
           <Property Name="Available" Type="bit" />
           <Property Name="Picture" Type="nvarchar(max)" />
           <Property Name="Note" Type="nvarchar(max)" />
           <Property Name="Featured" Type="bit" />
           <Property Name="Active" Type="bit" />
+          <Property Name="DateAdded" Type="datetime" />
         </EntityType>
         <EntityType Name="Shippers">
           <Key>
             <PropertyRef Name="ShipperID" />
           </Key>
-          <Property Name="ShipperID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="CompanyName" MaxLength="1" Type="varchar" />
+          <Property Name="ShipperID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="1" />
           <Property Name="Allowed" Type="int" />
         </EntityType>
         <EntityType Name="Size">
           <Key>
             <PropertyRef Name="SizeID" />
           </Key>
-          <Property Name="SizeID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="SizeName" MaxLength="50" Type="varchar" />
-          <Property Name="DisplayName" MaxLength="50" Type="varchar" />
+          <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SizeName" Type="varchar" MaxLength="50" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="50" />
           <Property Name="SizeDescription" Type="nvarchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="States">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="100" />
+          <Property Name="Charges" Type="money" />
+          <Property Name="MaxOrderAmount" Type="money" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="WebImages">
           <Key>
             <PropertyRef Name="ImageID" />
           </Key>
-          <Property Name="ImageID" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
-          <Property Name="ImageName" MaxLength="50" Type="varchar" />
-          <Property Name="ImagePath" MaxLength="100" Type="varchar" />
-          <Property Name="ImageAltText" MaxLength="50" Type="varchar" />
-          <Property Name="Position" MaxLength="50" Type="varchar" />
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageName" Type="varchar" MaxLength="50" />
+          <Property Name="ImagePath" Type="varchar" MaxLength="100" />
+          <Property Name="ImageAltText" Type="varchar" MaxLength="50" />
+          <Property Name="Position" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Self.AspNetUserClaims" Multiplicity="*" Role="AspNetUserClaims" />
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -250,10 +288,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Self.AspNetUserLogins" Multiplicity="*" Role="AspNetUserLogins" />
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -264,10 +302,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Type="Self.AspNetRoles" Multiplicity="1" Role="AspNetRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetRoles">
               <PropertyRef Name="Id" />
@@ -278,10 +316,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Type="Self.AspNetUsers" Multiplicity="1" Role="AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="Self.AspNetUserRoles" Multiplicity="*" Role="AspNetUserRoles" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
@@ -301,6 +339,7 @@
           <EntitySet Name="AvailabeColors" EntityType="Self.AvailabeColors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AvailableSize" EntityType="Self.AvailableSize" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
@@ -311,25 +350,27 @@
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shippers" EntityType="Self.Shippers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WebImages" EntityType="Self.WebImages" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-            <End EntitySet="AspNetUserClaims" Role="AspNetUserClaims" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-            <End EntitySet="AspNetUserLogins" Role="AspNetUserLogins" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End EntitySet="AspNetRoles" Role="AspNetRoles" />
-            <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End EntitySet="AspNetUsers" Role="AspNetUsers" />
-            <End EntitySet="AspNetUserRoles" Role="AspNetUserRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mwearModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -418,6 +459,18 @@
           <Property Name="CategoryDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateId" Type="Int32" />
+          <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsFixedCharges" Type="Boolean" />
+          <Property Name="Charges" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MaxOrderAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="ColorID" />
@@ -433,6 +486,7 @@
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AspNetUserID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Class" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -446,22 +500,22 @@
           <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="ShippingRegion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="DateJoined" Type="DateTime" Precision="3" />
-          <Property Name="AspNetUserID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Picture" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="OrderDetailID" />
           </Key>
-          <Property Name="OrderID" Type="Int32" />
+          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderGuid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ProductID" Type="Int32" />
-          <Property Name="Price" Type="Decimal" Precision="20" Scale="2" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="Discount" Type="Int32" />
+          <Property Name="GrossPrice" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="NetPrice" Type="Decimal" Precision="20" Scale="2" />
           <Property Name="TotalPrice" Type="Decimal" Precision="20" Scale="2" />
           <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OrderDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrderDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Order">
@@ -469,19 +523,33 @@
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerID" Type="Int32" />
-          <Property Name="PaymentID" Type="Int32" />
-          <Property Name="OderDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ShippingDate" Type="DateTime" Precision="3" />
-          <Property Name="RequirdDate" Type="DateTime" Precision="3" />
-          <Property Name="ShipperID" Type="Int32" />
-          <Property Name="OrderTimeStamp" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="TransactionStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Error" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FullFilled" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Deleted" Type="Boolean" />
-          <Property Name="Paid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="OrderGuid" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAdress1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAdress2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExistingCustomerID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerProvince" Type="Int32" />
+          <Property Name="CustomerCity" Type="Int32" />
+          <Property Name="CouponCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="OrderType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderFrom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DeliverDate" Type="DateTime" Precision="0" />
+          <Property Name="GrossAmout" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DiscountAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Tax" Type="Double" />
+          <Property Name="NetAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DeliverCharges" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Note" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerPostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -491,6 +559,16 @@
           <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Allowed" Type="Boolean" />
         </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="PictureID" />
+          </Key>
+          <Property Name="PictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PictureName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PictureAltText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
             <PropertyRef Name="ProductCategoryID" />
@@ -498,6 +576,30 @@
           <Property Name="ProductCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Product" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Category" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductGUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductLongDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QuantityPerUnit" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Discount" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitsInStock" Type="Int32" />
+          <Property Name="Available" Type="Boolean" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Featured" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
@@ -515,6 +617,16 @@
           <Property Name="SizeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SizeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Charges" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MaxOrderAmount" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
         <EntityType Name="WebImage">
@@ -569,14 +681,18 @@
           <EntitySet Name="AvailabeColors" EntityType="Self.AvailabeColor" />
           <EntitySet Name="AvailableSizes" EntityType="Self.AvailableSize" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Colors" EntityType="Self.Color" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Payments" EntityType="Self.Payment" />
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
           <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Shippers" EntityType="Self.Shipper" />
           <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="States" EntityType="Self.State" />
           <EntitySet Name="WebImages" EntityType="Self.WebImage" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -590,42 +706,7 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="Pictures" EntityType="mwearModel.Picture" />
-          <EntitySet Name="Products" EntityType="mwearModel.Product" />
         </EntityContainer>
-        <EntityType Name="Picture">
-          <Key>
-            <PropertyRef Name="PictureID" />
-          </Key>
-          <Property Name="PictureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PictureName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PicturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PictureAltText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Product" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="ProductGUID" MaxLength="128" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="SKU" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="ProductName" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="ProductShortDesc" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="ProductLongDesc" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="QuantityPerUnit" Type="Int32" />
-          <Property Name="Price" Precision="20" Scale="2" Type="Decimal" />
-          <Property Name="Size" MaxLength="100" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="Color" MaxLength="150" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="Discount" Precision="20" Scale="2" Type="Decimal" />
-          <Property Name="UnitWeight" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-          <Property Name="UnitsInStock" Type="Int32" />
-          <Property Name="Available" Type="Boolean" />
-          <Property Name="Picture" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Note" MaxLength="Max" FixedLength="false" Unicode="true" Type="String" />
-          <Property Name="Featured" Type="Boolean" />
-          <Property Name="Active" Type="Boolean" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -717,6 +798,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="mwearModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="IsFixedCharges" ColumnName="IsFixedCharges" />
+                <ScalarProperty Name="Charges" ColumnName="Charges" />
+                <ScalarProperty Name="MaxOrderAmount" ColumnName="MaxOrderAmount" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Colors">
             <EntityTypeMapping TypeName="mwearModel.Color">
               <MappingFragment StoreEntitySet="Colors">
@@ -731,9 +825,8 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="mwearModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="AspNetUserID" ColumnName="AspNetUserID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="AspNetUserID" ColumnName="AspNetUserID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Class" ColumnName="Class" />
@@ -747,21 +840,23 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ShippingRegion" ColumnName="ShippingRegion" />
                 <ScalarProperty Name="DateJoined" ColumnName="DateJoined" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="mwearModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
+                <ScalarProperty Name="OrderGuid" ColumnName="OrderGuid" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="GrossPrice" ColumnName="GrossPrice" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="OrderDetailID" ColumnName="OrderDetailID" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -770,19 +865,33 @@
             <EntityTypeMapping TypeName="mwearModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="OderDate" ColumnName="OderDate" />
-                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
-                <ScalarProperty Name="RequirdDate" ColumnName="RequirdDate" />
-                <ScalarProperty Name="ShipperID" ColumnName="ShipperID" />
-                <ScalarProperty Name="OrderTimeStamp" ColumnName="OrderTimeStamp" />
-                <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
-                <ScalarProperty Name="Error" ColumnName="Error" />
-                <ScalarProperty Name="FullFilled" ColumnName="FullFilled" />
-                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
-                <ScalarProperty Name="Paid" ColumnName="Paid" />
-                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="OrderGuid" ColumnName="OrderGuid" />
+                <ScalarProperty Name="CustomerFirstName" ColumnName="CustomerFirstName" />
+                <ScalarProperty Name="CustomerLastName" ColumnName="CustomerLastName" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerPhone" ColumnName="CustomerPhone" />
+                <ScalarProperty Name="CustomerAdress1" ColumnName="CustomerAdress1" />
+                <ScalarProperty Name="CustomerAdress2" ColumnName="CustomerAdress2" />
+                <ScalarProperty Name="ExistingCustomerID" ColumnName="ExistingCustomerID" />
+                <ScalarProperty Name="CustomerProvince" ColumnName="CustomerProvince" />
+                <ScalarProperty Name="CustomerCity" ColumnName="CustomerCity" />
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="OrderFrom" ColumnName="OrderFrom" />
+                <ScalarProperty Name="OderStatus" ColumnName="OderStatus" />
+                <ScalarProperty Name="DeliverDate" ColumnName="DeliverDate" />
+                <ScalarProperty Name="GrossAmout" ColumnName="GrossAmout" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="Tax" ColumnName="Tax" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="DeliverCharges" ColumnName="DeliverCharges" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CustomerPostalCode" ColumnName="CustomerPostalCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -795,12 +904,48 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="mwearModel.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
+                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+                <ScalarProperty Name="PictureAltText" ColumnName="PictureAltText" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ProductCategories">
             <EntityTypeMapping TypeName="mwearModel.ProductCategory">
               <MappingFragment StoreEntitySet="ProductCategory">
                 <ScalarProperty Name="ProductCategoryID" ColumnName="ProductCategoryID" />
                 <ScalarProperty Name="Product" ColumnName="Product" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="mwearModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductGUID" ColumnName="ProductGUID" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductShortDesc" ColumnName="ProductShortDesc" />
+                <ScalarProperty Name="ProductLongDesc" ColumnName="ProductLongDesc" />
+                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
+                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Featured" ColumnName="Featured" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -820,6 +965,17 @@
                 <ScalarProperty Name="SizeName" ColumnName="SizeName" />
                 <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
                 <ScalarProperty Name="SizeDescription" ColumnName="SizeDescription" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="mwearModel.State">
+              <MappingFragment StoreEntitySet="States">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="Charges" ColumnName="Charges" />
+                <ScalarProperty Name="MaxOrderAmount" ColumnName="MaxOrderAmount" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -844,41 +1000,6 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Pictures">
-            <EntityTypeMapping TypeName="mwearModel.Picture">
-              <MappingFragment StoreEntitySet="Pictures">
-                <ScalarProperty Name="Product" ColumnName="Product" />
-                <ScalarProperty Name="PictureAltText" ColumnName="PictureAltText" />
-                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
-                <ScalarProperty Name="PictureName" ColumnName="PictureName" />
-                <ScalarProperty Name="PictureID" ColumnName="PictureID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="mwearModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="Featured" ColumnName="Featured" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="Available" ColumnName="Available" />
-                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
-                <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
-                <ScalarProperty Name="ProductLongDesc" ColumnName="ProductLongDesc" />
-                <ScalarProperty Name="ProductShortDesc" ColumnName="ProductShortDesc" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="SKU" ColumnName="SKU" />
-                <ScalarProperty Name="ProductGUID" ColumnName="ProductGUID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,11 +12,12 @@ namespace MWear.Controllers
 
 
         mwearEntities db = new mwearEntities();
+        HomeController home = new HomeController();
         // GET: Shop
-        public ActionResult Index()
+        public ActionResult Index(int? CatId)
         {
             ViewBag.WebImages = db.WebImages.Where(x => x.Active == true).ToList();
-            ViewBag.Products = db.Products.Where(x => x.Active == true).ToList();
+            var products = db.Products.Where(x => x.Active == true).ToList();
 
 
             var categories = db.Categories.Where(x => x.Active == true).ToList();
@@ -38,6 +39,15 @@ namespace MWear.Controllers
             var pictures = db.Pictures.ToList();
             ViewBag.Pictures = pictures;
 
+            if (CatId != null  && CatId != 0)
+            {
+                var catsearch = db.Categories.Where(x => (x.ParentCategory == CatId || x.CategoryID == CatId) && x.Active == true).Select(x => x.CategoryID).ToList();
+                var procat = db.ProductCategories.Where(x => catsearch.Contains(x.Category)).Select(x => x.Product).ToList();
+                products = products.Where(x => procat.Contains(x.ProductGUID)).ToList();
+            }
+            ViewBag.Products = products;
+            TempData["cat"] = home.category();
+            TempData.Keep();
             return View();
         }
     }

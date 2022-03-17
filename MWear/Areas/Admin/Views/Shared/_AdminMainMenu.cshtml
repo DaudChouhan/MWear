@@ -22,7 +22,7 @@
                 </li>
 
                 <!-- Admins -->
-                <li class="has-sub">
+                @*<li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="mdi mdi-account-group-outline"></i>
                         <span class="nav-text">Admins</span> <b class="caret"></b>
@@ -43,10 +43,10 @@
 
                         </ul>
                     </div>
-                </li>
+                </li>*@
 
                 <!-- Users -->
-                <li class="has-sub">
+                @*<li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)">
                         <i class="mdi mdi-account-group"></i>
                         <span class="nav-text">Users</span> <b class="caret"></b>
@@ -68,7 +68,7 @@
                         </ul>
                     </div>
                     <hr>
-                </li>
+                </li>*@
 
                 <!-- Category -->
                 <li class="has-sub">
@@ -191,39 +191,84 @@
                     <div class="collapse">
                         <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
                             <li class="">
-                                <a class="sidenav-item-link" href="#">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","Orders",new { area ="Admin"})">
                                     <span class="nav-text">New Order</span>
                                 </a>
                             </li>
                             <li class="">
-                                <a class="sidenav-item-link" href="#">
+                                <a class="sidenav-item-link" href="@Url.Action("ProcessingOrders","Orders",new { area ="Admin"})">
+                                    <span class="nav-text">Processing Orders</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("CanceledOrders","Orders",new { area ="Admin"})">
+                                    <span class="nav-text">Canceled Orders</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("DeliveredOrders","Orders",new { area ="Admin"})">
                                     <span class="nav-text">Completed Orders</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="#">
-                                    <span class="nav-text">Pending Orders</span>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a class="sidenav-item-link" href="#">
-                                    <span class="nav-text">All Orders</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
+                <!-- States -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-gas-station"></i>
+                        <span class="nav-text">Provinces</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","StatesWithRates")">
+                                    <span class="nav-text">All Provinces</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("AddStates","StatesWithRates")">
+                                    <span class="nav-text">Add Provinces</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- States -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-city"></i>
+                        <span class="nav-text">Cities</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","CitiesWithRates")">
+                                    <span class="nav-text">All Cities</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("AddStates","CitiesWithRates")">
+                                    <span class="nav-text">Add Cities</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
 
 
 
                 <!-- Reviews -->
-                <li>
+                @*<li>
                     <a class="sidenav-item-link" href="#">
                         <i class="mdi mdi-star-half"></i>
                         <span class="nav-text">Reviews</span>
                     </a>
-                </li>
+                </li>*@
 
 
             </ul>

@@ -32,5 +32,6 @@ namespace MWear.Models
         public string Note { get; set; }
         public Nullable<bool> Featured { get; set; }
         public Nullable<bool> Active { get; set; }
+        public Nullable<System.DateTime> DateAdded { get; set; }
     }
 }

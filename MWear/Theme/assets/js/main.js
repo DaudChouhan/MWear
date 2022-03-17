@@ -530,8 +530,14 @@ function ecCheckCookie()
         // $(".ec_qtybtn").on("click", function() {
         var $qtybutton = $(this);
         var QtyoldValue = $qtybutton.parent().find("input").val();
+        var productStock = parseFloat($("#maxProductStock").val());
         if ($qtybutton.text() === "+") {
-            var QtynewVal = parseFloat(QtyoldValue) + 1;
+            if (parseFloat(QtyoldValue) < productStock) {
+                var QtynewVal = parseFloat(QtyoldValue) + 1;
+            }
+            else {
+                var QtynewVal = parseFloat(QtyoldValue);
+            }
         } else {
 
             if (QtyoldValue > 1) {

@@ -33,16 +33,18 @@ namespace MWear.Models
         public virtual DbSet<AvailabeColor> AvailabeColors { get; set; }
         public virtual DbSet<AvailableSize> AvailableSizes { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Shipper> Shippers { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<State> States { get; set; }
         public virtual DbSet<WebImage> WebImages { get; set; }
-        public virtual DbSet<Picture> Pictures { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
     }
 }

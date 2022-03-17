@@ -1,0 +1,126 @@
+﻿@model IEnumerable<MWear.Models.City>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminTable.cshtml";
+    List<MWear.Models.State> states = ViewBag.States;
+}
+
+
+<!-- CONTENT WRAPPER -->
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>Product</h1>
+                <p class="breadcrumbs">
+                    <span><a href="@Url.Action("Index","Admin")">Home</a></span>
+                    <span><i class="mdi mdi-chevron-right"></i></span>Cities
+                </p>
+            </div>
+            <div>
+                <a href="@Url.Action("AddCities","CitiesWithRates")" class="btn btn-primary"> Add Cities</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table"
+                                   style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>City Id</th>
+                                        <th>City Name</th>
+                                        <th>State </th>
+                                        <th>Fixed Charges</th>
+                                        <th>Delivery Charges</th>
+                                        <th>Amount On Charges Becomes Free</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var item in Model.OrderByDescending(x => x.Id))
+                                    {
+                                        var statname = "";
+                                        var count = 1;
+
+                                        foreach (var items in states)
+                                        {
+                                            var satename = states.Where(x => x.Id == item.StateId).FirstOrDefault().StateName;
+
+                                            if (count == 0)
+                                            {
+                                                statname = "N/A";
+                                            }
+                                            else
+                                            {
+                                                statname = satename;
+                                            }
+
+                                        }
+
+                                    <tr>
+
+                                        <td>@item.Id</td>
+                                        <td>@item.CityName</td>
+                                        <td>@statname</td>
+                                        <td>@item.IsFixedCharges</td>
+                                        <td>@item.Charges</td>
+                                        <td>@item.MaxOrderAmount</td>
+                                        <td>
+                                            <div class="btn-group mb-1">
+                                                <button type="button"
+                                                        class="btn btn-outline-success">
+                                                    Info
+                                                </button>
+                                                <button type="button"
+                                                        class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                        data-bs-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false" data-display="static">
+                                                    <span class="sr-only">Info</span>
+                                                </button>
+
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="@Url.Action("EditCities", "CitiesWithRates", new { cityId = item.Id})">Edit</a>
+                                                    <a class="dropdown-item" onclick="deletecity(@item.Id)">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Content -->
+</div> <!-- End Content Wrapper -->
+<script src="~/Theme/assets/Admin/plugins/jquery/jquery-3.5.1.min.js"></script>
+<script>
+    function deletecity(cityId) {
+        $.ajax({
+            type: "GET",
+            url: "/CitiesWithRates/DeleteCities?cityId=" + cityId,
+            success: function (result) {
+                /*alert(result);*/
+                if (result == "Failed") {
+                    alert("Something went wrong!");
+                }
+                else {
+                    window.location.reload();
+                }
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+</script>
+

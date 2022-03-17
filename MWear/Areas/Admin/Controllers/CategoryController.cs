@@ -23,7 +23,7 @@ namespace MWear.Areas.Admin.Controllers
 
         public ActionResult AddCategory()
         {
-            var pcat = db.Categories.Where(x => x.ParentCategory == null).ToList();
+            var pcat = db.Categories.Where(x => x.Active == true).ToList();
             ViewBag.PCat = pcat;
             return View();
         }
