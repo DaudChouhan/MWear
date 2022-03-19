@@ -17,7 +17,7 @@ namespace MWear.Controllers
             ViewBag.WebImages = db.WebImages.Where(x => x.Active == true).ToList();
             ViewBag.Products = db.Products.Where(x => x.Active == true).ToList();
 
-            
+
             var categories = db.Categories.Where(x => x.Active == true).ToList();
             ViewBag.Categories = categories;
             var productCategory = db.ProductCategories.ToList();
@@ -49,12 +49,32 @@ namespace MWear.Controllers
             return categories;
 
         }
-        public ActionResult Contact()
+        public ActionResult Contact(bool Issuccess = false)
         {
-
+            ViewBag.Issuccess = Issuccess;
             TempData["cat"] = category();
             TempData.Keep();
             return View();
+
+        }
+        [HttpPost]
+        public ActionResult Contact(ContactForm Contact)
+        {
+
+            ContactForm con = new ContactForm();
+            con.FirstName = Contact.FirstName;
+            con.LastName = Contact.LastName;
+            con.ContactPhone = Contact.ContactPhone;
+            con.ContactEmail = Contact.ContactEmail;
+            con.ContactMessage = Contact.ContactMessage;
+            con.Active = true;
+            con.Seen = false;
+            db.ContactForms.Add(con);
+            db.SaveChanges();
+            TempData["cat"] = category();
+            TempData.Keep();
+            return RedirectToAction("Contact" , new { Issuccess = true });
+
 
         }
 

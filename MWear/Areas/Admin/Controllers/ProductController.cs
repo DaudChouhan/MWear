@@ -47,6 +47,8 @@ namespace MWear.Areas.Admin.Controllers
             ViewBag.Colors = colors;
             var sizes = db.Sizes.Where(x => x.Active == true).ToList();
             ViewBag.Sizes = sizes;
+            var products = db.Products.Where(x => x.Active == true).ToList();
+            ViewBag.Products = products;
             return View();
         }
 
@@ -132,6 +134,29 @@ namespace MWear.Areas.Admin.Controllers
             }
 
             // Add selected Size in Available Size list End
+
+            // Add Related Products in start
+            var related = collection["relatedproducts"];
+            if (related != null)
+            {
+                var relate = related.Split(',');
+
+                List<RelatedProduct> relatedpro = new List<RelatedProduct>();
+
+                for (int i = 0; i < relate.Length; i++)
+                {
+                    relatedpro.Add(new RelatedProduct()
+                    {
+                        Product = productGuid,
+                        RelatedProduct1 = relate[i],
+                        Active = true
+                    }) ;
+                }
+                db.RelatedProducts.AddRange(relatedpro);
+            }
+
+            // Add Related Products in End
+
 
 
 
@@ -265,7 +290,20 @@ namespace MWear.Areas.Admin.Controllers
             ViewBag.productSize = productSize;
             //End
 
+
+            //Abdul Rehman Selecting Related Products
+            var related = db.RelatedProducts.Where(x => x.Active == true && x.Product == pid).ToList();
+            ViewBag.Related = related;
+
+            var products = db.Products.Where(x => x.Active == true).ToList();
+            ViewBag.Products = products;
+            //End
+
+
+
             var product = db.Products.Where(x => x.ProductGUID == pid).FirstOrDefault();
+
+
             return View(product);
         }
 
@@ -376,6 +414,28 @@ namespace MWear.Areas.Admin.Controllers
 
             // Add selected Size in Available Size list End
 
+            // Add Related Products start
+            var related = collection["relatedproducts"];
+            List<RelatedProduct> relate = new List<RelatedProduct>();
+            if (related != null)
+            {
+                var existingrelated = db.RelatedProducts.Where(x => x.Product == productguid).ToList();
+                db.RelatedProducts.RemoveRange(existingrelated);
+
+                var relatee = related.Split(',');
+                for (int i = 0; i < relatee.Length; i++)
+                {
+                    relate.Add(new RelatedProduct()
+                    {
+                        Product = productguid,
+                        RelatedProduct1 = relatee[i],
+                        Active = true
+                    });
+                }
+                db.RelatedProducts.AddRange(relate);
+            }
+
+            // Add Related Products End
 
             // Saving Changes and Redirecting
             db.SaveChanges();

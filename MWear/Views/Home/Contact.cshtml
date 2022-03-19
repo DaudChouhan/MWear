@@ -1,4 +1,4 @@
-﻿
+﻿@model MWear.Models.ContactForm
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
@@ -35,46 +35,57 @@
             <div class="ec-common-wrapper">
                 <div class="ec-contact-leftside">
                     <div class="ec-contact-container">
+                        @if (ViewBag.Issuccess)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                <h4 class="alert-heading">Thank You!</h4>
+                                <p>You successfully Submitted your Form!</p>
+                                <hr>
+                                <p class="mb-0">Keep in mind. Your Openions matters to us very much :)</p>
+                            </div>
+                        }
+
                         <div class="ec-contact-form">
-                            <form action="#" method="post">
+
+
+                            @*<form action="#" method="post">*@
+                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
+                            {
+
                                 <span class="ec-contact-wrap">
                                     <label>First Name*</label>
-                                    <input type="text" name="firstname" placeholder="Enter your first name"
+                                    <input type="text" name="FirstName" placeholder="Enter your first name"
                                            required />
                                 </span>
                                 <span class="ec-contact-wrap">
                                     <label>Last Name*</label>
-                                    <input type="text" name="lastname" placeholder="Enter your last name"
+                                    <input type="text" name="LastName" placeholder="Enter your last name"
                                            required />
                                 </span>
                                 <span class="ec-contact-wrap">
                                     <label>Email*</label>
-                                    <input type="email" name="email" placeholder="Enter your email address"
+                                    <input type="email" name="ContactEmail" placeholder="Enter your email address"
                                            required />
                                 </span>
                                 <span class="ec-contact-wrap">
                                     <label>Phone Number*</label>
-                                    <input type="text" name="phonenumber" placeholder="Enter your phone number"
+                                    <input type="text" name="ContactPhone" placeholder="Enter your phone number"
                                            required />
                                 </span>
                                 <span class="ec-contact-wrap">
                                     <label>Comments/Questions*</label>
-                                    <textarea name="address"
+                                    <textarea name="ContactMessage"
                                               placeholder="Please leave your comments here.."></textarea>
                                 </span>
-                                <span class="ec-contact-wrap ec-recaptcha">
-                                    <span class="g-recaptcha"
-                                          data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"
-                                          data-callback="verifyRecaptchaCallback"
-                                          data-expired-callback="expiredRecaptchaCallback"></span>
-                                    <input class="form-control d-none" data-recaptcha="true" required
-                                           data-error="Please complete the Captcha">
-                                    <span class="help-block with-errors"></span>
-                                </span>
+
                                 <span class="ec-contact-wrap ec-contact-btn">
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </span>
-                            </form>
+
+                            }
+                            @*</form>*@
+
+
                         </div>
                     </div>
                 </div>

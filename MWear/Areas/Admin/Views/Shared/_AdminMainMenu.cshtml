@@ -23,52 +23,52 @@
 
                 <!-- Admins -->
                 @*<li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)">
-                        <i class="mdi mdi-account-group-outline"></i>
-                        <span class="nav-text">Admins</span> <b class="caret"></b>
-                    </a>
-                    <div class="collapse">
-                        <ul class="sub-menu" id="vendors" data-parent="#sidebar-menu">
-                            <li class="">
-                                <a class="sidenav-item-link" href="@Url.Action("Admin","Admin")">
-                                    <span class="nav-text">All Admins</span>
-                                </a>
-                            </li>
+            <a class="sidenav-item-link" href="javascript:void(0)">
+                <i class="mdi mdi-account-group-outline"></i>
+                <span class="nav-text">Admins</span> <b class="caret"></b>
+            </a>
+            <div class="collapse">
+                <ul class="sub-menu" id="vendors" data-parent="#sidebar-menu">
+                    <li class="">
+                        <a class="sidenav-item-link" href="@Url.Action("Admin","Admin")">
+                            <span class="nav-text">All Admins</span>
+                        </a>
+                    </li>
 
-                            <li class="">
-                                <a class="sidenav-item-link" href="@Url.Action("AddAdmin","Admin")">
-                                    <span class="nav-text">Add Admins</span>
-                                </a>
-                            </li>
+                    <li class="">
+                        <a class="sidenav-item-link" href="@Url.Action("AddAdmin","Admin")">
+                            <span class="nav-text">Add Admins</span>
+                        </a>
+                    </li>
 
-                        </ul>
-                    </div>
-                </li>*@
+                </ul>
+            </div>
+        </li>*@
 
                 <!-- Users -->
                 @*<li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)">
-                        <i class="mdi mdi-account-group"></i>
-                        <span class="nav-text">Users</span> <b class="caret"></b>
-                    </a>
-                    <div class="collapse">
-                        <ul class="sub-menu" id="users" data-parent="#sidebar-menu">
-                            <li>
-                                <a class="sidenav-item-link" href="#">
-                                    <span class="nav-text">Users List</span>
-                                </a>
-                            </li>
+            <a class="sidenav-item-link" href="javascript:void(0)">
+                <i class="mdi mdi-account-group"></i>
+                <span class="nav-text">Users</span> <b class="caret"></b>
+            </a>
+            <div class="collapse">
+                <ul class="sub-menu" id="users" data-parent="#sidebar-menu">
+                    <li>
+                        <a class="sidenav-item-link" href="#">
+                            <span class="nav-text">Users List</span>
+                        </a>
+                    </li>
 
-                            <li class="">
-                                <a class="sidenav-item-link" href="user-list.html">
-                                    <span class="nav-text">Add User</span>
-                                </a>
-                            </li>
+                    <li class="">
+                        <a class="sidenav-item-link" href="user-list.html">
+                            <span class="nav-text">Add User</span>
+                        </a>
+                    </li>
 
-                        </ul>
-                    </div>
-                    <hr>
-                </li>*@
+                </ul>
+            </div>
+            <hr>
+        </li>*@
 
                 <!-- Category -->
                 <li class="has-sub">
@@ -261,14 +261,43 @@
                 </li>
 
 
+                <!-- Forms -->
+                <li class="has-sub">
+                    <a class="sidenav-item-link" href="javascript:void(0)">
+                        <i class="mdi mdi-paperclip"></i>
+                        <span class="nav-text">Forms</span> <b class="caret"></b>
+                    </a>
+                    <div class="collapse">
+                        <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("Index","ContactForms")">
+                                    <span class="nav-text">New Form</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("SeenForms","ContactForms")">
+                                    <span class="nav-text">Seen Forms</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a class="sidenav-item-link" href="@Url.Action("DeletedForms","ContactForms")">
+                                    <span class="nav-text">Deleted Forms</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
 
                 <!-- Reviews -->
                 @*<li>
-                    <a class="sidenav-item-link" href="#">
-                        <i class="mdi mdi-star-half"></i>
-                        <span class="nav-text">Reviews</span>
-                    </a>
-                </li>*@
+            <a class="sidenav-item-link" href="#">
+                <i class="mdi mdi-star-half"></i>
+                <span class="nav-text">Reviews</span>
+            </a>
+        </li>*@
 
 
             </ul>

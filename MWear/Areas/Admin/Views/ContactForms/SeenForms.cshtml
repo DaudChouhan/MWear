@@ -1,0 +1,127 @@
+﻿@model IEnumerable<MWear.Models.ContactForm>
+@{
+    ViewBag.Title = "SeenForms";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminTable.cshtml";
+}
+
+
+
+<!-- CONTENT WRAPPER -->
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>Colors</h1>
+                <p class="breadcrumbs">
+                    <span><a href="@Url.Action("Index","Admin")">Home</a></span>
+                    <span><i class="mdi mdi-chevron-right"></i></span>Colors
+                </p>
+            </div>
+            <div>
+                <a href="@Url.Action("SeenForms","ContactForms")" class="btn btn-primary"> View Seen Forms</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table"
+                                   style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Form Id</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Message</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+
+                                    @foreach (var item in Model.OrderByDescending(x => x.CFormID))
+                                    {
+
+                                        <tr>
+
+                                            <td>@item.CFormID</td>
+                                            <td>@item.FirstName @item.LastName</td>
+                                            <td>@item.ContactEmail</td>
+                                            <td>@item.ContactPhone</td>
+                                            <td>@item.ContactMessage</td>
+                                            <td>
+                                                <div class="btn-group mb-1">
+                                                    <button type="button"
+                                                            class="btn btn-outline-success">
+                                                        View
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false" data-display="static">
+                                                        <span class="sr-only">View</span>
+                                                    </button>
+
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="#" onclick="unseenform(@item.CFormID)">Mark as UnSeen</a>
+                                                        <a class="dropdown-item" href="#" onclick="deleteform(@item.CFormID)">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Content -->
+</div> <!-- End Content Wrapper -->
+<script src="~/Theme/assets/Admin/plugins/jquery/jquery-3.5.1.min.js"></script>
+<script>
+    function deleteform(formid) {
+        $.ajax({
+            type: "GET",
+            url: "/ContactForms/DeleteForm?formid=" + formid,
+            success: function (result) {
+                /*alert(result);*/
+                if (result == "Failed") {
+                    alert("Something went wrong!");
+                }
+                else {
+                    window.location.reload();
+                }
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+    function unseenform(formid) {
+        $.ajax({
+            type: "GET",
+            url: "/ContactForms/UnSeenForm?formid=" + formid,
+            success: function (result) {
+                /*alert(result);*/
+                if (result == "Failed") {
+                    alert("Something went wrong!");
+                }
+                else {
+                    window.location.reload();
+                }
+            },
+            error: function (error) {
+                alert(error);
+            }
+        });
+    }
+</script>
+

@@ -30,7 +30,6 @@ namespace MWear.Controllers
             var productColor = db.AvailabeColors.ToList();
             ViewBag.productColor = productColor;
 
-
             var sizes = db.Sizes.Where(x => x.Active == true).ToList();
             ViewBag.Sizes = sizes;
             var productSize = db.AvailableSizes.ToList();
@@ -39,6 +38,8 @@ namespace MWear.Controllers
             var pictures = db.Pictures.ToList();
             ViewBag.Pictures = pictures;
 
+            var related = db.RelatedProducts.Where(x => x.Active == true && x.Product == ProID).ToList();
+            ViewBag.Related = related;
 
             var prod = db.Products.Where(x => x.ProductGUID == ProID).FirstOrDefault();
             TempData["cat"] = home.category();

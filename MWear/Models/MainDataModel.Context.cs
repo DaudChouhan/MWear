@@ -46,5 +46,7 @@ namespace MWear.Models
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<WebImage> WebImages { get; set; }
         public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<ContactForm> ContactForms { get; set; }
+        public virtual DbSet<RelatedProduct> RelatedProducts { get; set; }
     }
 }

@@ -20,8 +20,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
     <title>MWear - Ecommerce HTML Template.</title>
-    <meta name="keywords" content="mwear" />
-    <meta name="description" content="Online Store In Pakisatn.">
+    <meta name="keywords" content="Mwear, Online Store, Pakistan, Female, Male, Jewellery, Jewelery, Sunglasses, Sunglasses in Pakistan, in Pakistan" />
+    <meta name="description" content="Best Onlne Ecommerce Store In Pakistan">
     <meta name="author" content="Dawood Chouhan">
 
     <!-- site Favicon -->
@@ -194,8 +194,9 @@
                                                         <span>In stock</span>
                                                     }
                                                 </p>
-
-                                                <h3 class="ec-title"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></h3>
+                                                <div class="col-sm-12">
+                                                    <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></p>
+                                                </div>
                                                 <div class="ec-el-price">
                                                     @if (items.Discount != null)
                                                     {
@@ -212,7 +213,7 @@
                                                     }
 
                                                 </div>
-                                              
+
 
 
                                                 <div class="ec-link-btn" style="margin-top:10px;">
@@ -228,7 +229,7 @@
                                                         <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">View Product</a>
                                                     }
 
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>

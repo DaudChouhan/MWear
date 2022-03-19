@@ -5,6 +5,8 @@
     List<MWear.Models.Category> categories = ViewBag.Categories;
     List<MWear.Models.Color> colors = ViewBag.Colors;
     List<MWear.Models.Size> sizes = ViewBag.Sizes;
+    List<MWear.Models.RelatedProduct> related = ViewBag.Related;
+    List<MWear.Models.Product> products = ViewBag.Products;
     List<MWear.Models.ProductCategory> pcategory = ViewBag.productCategory;
     List<MWear.Models.AvailabeColor> pcolor = ViewBag.productColor;
     List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
@@ -353,6 +355,32 @@
                                                         <label>Yes</label>
                                                     </div>
                                                 </div>
+                                            </div>
+
+
+                                            @*Related Prodcuts*@
+
+
+
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Related Products</label>
+
+                                                <br />
+                                                <select class="form-select" name="relatedproducts" multiple>
+                                                    @foreach (var item in products)
+                                                    {
+                                                        var relateId = related.Select(x => x.RelatedProduct1).ToList();
+                                                        if (relateId.Contains(item.ProductGUID))
+                                                        {
+                                                    <option value="@item.ProductGUID" Selected>@item.SKU (@item.ProductName)</option>
+                                                        }
+                                                        else
+                                                        {
+                                                <option value="@item.ProductGUID">@item.SKU (@item.ProductName)</option>
+                                                        }
+                                                    }
+                                                </select>
+
                                             </div>
 
                                             <div class="col-md-12">

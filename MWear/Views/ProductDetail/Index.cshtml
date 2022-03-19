@@ -12,6 +12,11 @@
     List<MWear.Models.ProductCategory> pcategory = ViewBag.productCategory;
     List<MWear.Models.AvailabeColor> pcolor = ViewBag.productColor;
     List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
+    List<MWear.Models.RelatedProduct> related = ViewBag.Related;
+
+
+
+
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +25,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="keywords" content="Mwear, Online Store, Pakistan, Female, Male, Jewellery, Jewelery, Sunglasses, Sunglasses in Pakistan, in Pakistan" />
+    <meta name="description" content="Best Onlne Ecommerce Store In Pakistan">
 
     <title>MWear | @Model.ProductName</title>
-    
+
 
     <!-- site Favicon -->
     <link rel="icon" href="~/Theme/assets/images/favicon/favicon.ico" sizes="32x32" />
@@ -367,103 +374,12 @@
                                 <div id="ec-delivery" class="tab-pane fade">
                                     <div>
                                         <h2>Delivery &amp; Shipping Pricing</h2>
-                                        <p>Mwear Provides <span style="color: #f29900;"><strong>Free Shipping</strong></span> on Shopping above <strong>1500Rs</strong> in <strong>Karachi</strong>, above <strong>3500Rs</strong> in the Rest of <strong>Sindh</strong>, and Above <strong>5500Rs</strong> in <strong>Punjab</strong>, <strong>KPK</strong>, <strong>Balochistan</strong>, And <strong>Azad Kashmir</strong>. and Your order is expected to be delivered within 7 business days as an average expected delivery time. However, delivery time may exceed due to the high volume of order logs during the sale season.</p>
-                                        <p>Although if want your product to be delivered overnight we have a solution for that below.</p>
-                                        <p><img src="~/Images/Products/overnightbannerbig.jpg" alt="OverNightBanner"></p>
+                                        <p>Mwear Provides <span style="color: #f29900;"><strong>Free Shipping</strong></span> on Shopping above <strong>1500Rs</strong> in <strong>Karachi (Normal Shipping 100Rs)</strong>, above <strong>3500Rs</strong> in the Rest of <strong>Sindh(Normal Shipping 350Rs)</strong>, and Above <strong>5500Rs</strong> in <strong>Punjab(Normal Shipping 350Rs)</strong>, <strong>KPK(Normal Shipping 350Rs)</strong>, <strong>Balochistan(Normal Shipping 350Rs)</strong>, And <strong>Azad Kashmir(Normal Shipping 350Rs)</strong>. and Your order is expected to be delivered within 7 business days as an average expected delivery time. However, delivery time may exceed due to the high volume of order logs during the sale season.</p>
+                                        
 
                                     </div>
                                 </div>
-                                @*<div id="ec-spt-nav-review" class="tab-pane fade">
-                                        <div class="row">
-                                            <div class="ec-t-review-wrapper">
-                                                <div class="ec-t-review-item">
-                                                    <div class="ec-t-review-avtar">
-                                                        <img src="~/Theme/assets/images/review-image/1.jpg" alt="" />
-                                                    </div>
-                                                    <div class="ec-t-review-content">
-                                                        <div class="ec-t-review-top">
-                                                            <div class="ec-t-review-name">Jeny Doe</div>
-                                                            <div class="ec-t-review-rating">
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star-o"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ec-t-review-bottom">
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the industry's
-                                                                standard dummy text ever since the 1500s, when an unknown
-                                                                printer took a galley of type and scrambled it to make a
-                                                                type specimen.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="ec-t-review-item">
-                                                    <div class="ec-t-review-avtar">
-                                                        <img src="~/Theme/assets/images/review-image/2.jpg" alt="" />
-                                                    </div>
-                                                    <div class="ec-t-review-content">
-                                                        <div class="ec-t-review-top">
-                                                            <div class="ec-t-review-name">Linda Morgus</div>
-                                                            <div class="ec-t-review-rating">
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star-o"></i>
-                                                                <i class="ecicon eci-star-o"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ec-t-review-bottom">
-                                                            <p>
-                                                                Lorem Ipsum is simply dummy text of the printing and
-                                                                typesetting industry. Lorem Ipsum has been the industry's
-                                                                standard dummy text ever since the 1500s, when an unknown
-                                                                printer took a galley of type and scrambled it to make a
-                                                                type specimen.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="ec-ratting-content">
-                                                <h3>Add a Review</h3>
-                                                <div class="ec-ratting-form">
-                                                    <form action="#">
-                                                        <div class="ec-ratting-star">
-                                                            <span>Your rating:</span>
-                                                            <div class="ec-t-review-rating">
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star fill"></i>
-                                                                <i class="ecicon eci-star-o"></i>
-                                                                <i class="ecicon eci-star-o"></i>
-                                                                <i class="ecicon eci-star-o"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ec-ratting-input">
-                                                            <input name="your-name" placeholder="Name" type="text" />
-                                                        </div>
-                                                        <div class="ec-ratting-input">
-                                                            <input name="your-email" placeholder="Email*" type="email"
-                                                                   required />
-                                                        </div>
-                                                        <div class="ec-ratting-input form-submit">
-                                                            <textarea name="your-commemt"
-                                                                      placeholder="Enter Your Comment"></textarea>
-                                                            <button class="btn btn-primary" type="submit"
-                                                                    value="Submit">
-                                                                Submit
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>*@
+                                
                             </div>
                         </div>
                     </div>
@@ -546,35 +462,38 @@
             <div class="row margin-minus-b-30">
                 <!-- Related Product Content -->
                 <!-- Custom Tile Starts -->
-                @foreach (var items in products.Where(x => x.Available == true && x.Featured == true).OrderByDescending(x => x.ProductID).Take(8))
+                @foreach (var item in related.Where(x => x.Product == Model.ProductGUID && x.Active == true))
                 {
 
-                    var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
-                    var catname = "";
-                    var count = 1;
-                    foreach (var itemss in catids)
+                    foreach (var items in products.Where(x => x.Available == true && x.ProductGUID == item.RelatedProduct1).OrderByDescending(x => x.ProductID).Take(8))
                     {
-                        var catename = categories.Where(x => x.CategoryID == itemss.Category).FirstOrDefault().CategoryName;
-                        if (count == 1)
+
+                        var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
+                        var catname = "";
+                        var count = 1;
+                        foreach (var itemss in catids)
                         {
-                            catname = catename;
+                            var catename = categories.Where(x => x.CategoryID == itemss.Category).FirstOrDefault().CategoryName;
+                            if (count == 1)
+                            {
+                                catname = catename;
+                            }
+                            else
+                            {
+                                catname = catname + ", " + catename;
+                            }
+                            count = count + 1;
                         }
-                        else
-                        {
-                            catname = catname + ", " + catename;
-                        }
-                        count = count + 1;
-                    }
 
 
-                    var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
-                    var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
+                        var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
+                        var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
 
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <!-- START single card -->
                         <div class="ec-product-lsc" style="margin-top: 10px;">
                             <div class="ec-product-image">
-                                <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">
+                                <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
                                     <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
                                 </a>
                                 <span class="ec-product-ribbon">New</span>
@@ -593,8 +512,9 @@
                                         <span>In stock</span>
                                     }
                                 </p>
-
-                                <h3 class="ec-title"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></h3>
+                                <div class="col-sm-12">
+                                    <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">@items.ProductName</a></p>
+                                </div>
                                 <div class="ec-el-price">
                                     @if (items.Discount != null)
                                     {
@@ -611,19 +531,19 @@
                                     }
 
                                 </div>
-               
+
 
                                 <div class="ec-link-btn" style="margin-top:10px;">
 
                                     @if (lenght12.Count > 1 || lenght13.Count > 1)
                                     {
 
-                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">Select Product Options</a>
+                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">Select Product Options</a>
                                     }
                                     else
                                     {
 
-                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">View Product</a>
+                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
                                     }
 
                                 </div>
@@ -631,6 +551,7 @@
                         </div>
                     </div>
 
+                    }
                 }
                 <!-- Custom tile Ends -->
             </div>

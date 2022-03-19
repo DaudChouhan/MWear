@@ -5,6 +5,7 @@
     List<MWear.Models.Category> categories = ViewBag.Categories;
     List<MWear.Models.Color> colors = ViewBag.Colors;
     List<MWear.Models.Size> sizes = ViewBag.Sizes;
+    List<MWear.Models.Product> products = ViewBag.Products;
 
 }
 
@@ -308,6 +309,14 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <select class="select" name="relatedproducts" multiple>
+                                                @foreach (var item in products)
+                                                {
+                                                    <option value="@item.ProductGUID">@item.SKU (@item.ProductName)</option>
+                                                }
+                                            </select>
+                                            <label class="form-label select-label">Select Related Products</label>
 
                                             <div class="col-md-12">
                                                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -189,6 +189,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CitiesWithRatesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColorController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactFormsController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\SizeController.cs" />
@@ -239,6 +240,9 @@
     <Compile Include="Models\Color.cs">
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ContactForm.cs">
+      <DependentUpon>MainDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Customer.cs">
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
@@ -275,6 +279,9 @@
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductCategory.cs">
+      <DependentUpon>MainDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RelatedProduct.cs">
       <DependentUpon>MainDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shipper.cs">
@@ -363,6 +370,9 @@
     <Content Include="Models\MainDataModel.edmx.diagram">
       <DependentUpon>MainDataModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\ContactForms\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactForms\SeenForms.cshtml" />
+    <Content Include="Areas\Admin\Views\ContactForms\DeletedForms.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -115,6 +115,19 @@
           <Property Name="ColorDescription" Type="nvarchar(max)" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <EntityType Name="ContactForm">
+          <Key>
+            <PropertyRef Name="CFormID" />
+          </Key>
+          <Property Name="CFormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactEmail" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="255" />
+          <Property Name="ContactMessage" Type="nvarchar(max)" />
+          <Property Name="Seen" Type="bit" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustomerID" />
@@ -235,6 +248,15 @@
           <Property Name="Active" Type="bit" />
           <Property Name="DateAdded" Type="datetime" />
         </EntityType>
+        <EntityType Name="RelatedProducts">
+          <Key>
+            <PropertyRef Name="RelatedProductsID" />
+          </Key>
+          <Property Name="RelatedProductsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product" Type="varchar(max)" />
+          <Property Name="RelatedProduct" Type="varchar(max)" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="Shippers">
           <Key>
             <PropertyRef Name="ShipperID" />
@@ -342,6 +364,7 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactForm" EntityType="Self.ContactForm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -349,6 +372,7 @@
           <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RelatedProducts" EntityType="Self.RelatedProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shippers" EntityType="Self.Shippers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
@@ -697,6 +721,8 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="States" EntityType="mwearModel.State" />
+          <EntitySet Name="ContactForms" EntityType="mwearModel.ContactForm" />
+          <EntitySet Name="RelatedProducts" EntityType="mwearModel.RelatedProduct" />
         </EntityContainer>
         <EntityType Name="State">
           <Key>
@@ -706,6 +732,28 @@
           <Property Name="StateName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Charges" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="MaxOrderAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="ContactForm">
+          <Key>
+            <PropertyRef Name="CFormID" />
+          </Key>
+          <Property Name="CFormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ContactMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Seen" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="RelatedProduct">
+          <Key>
+            <PropertyRef Name="RelatedProductsID" />
+          </Key>
+          <Property Name="RelatedProductsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RelatedProduct1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
       </Schema>
@@ -999,6 +1047,30 @@
                 <ScalarProperty Name="Charges" ColumnName="Charges" />
                 <ScalarProperty Name="StateName" ColumnName="StateName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactForms">
+            <EntityTypeMapping TypeName="mwearModel.ContactForm">
+              <MappingFragment StoreEntitySet="ContactForm">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Seen" ColumnName="Seen" />
+                <ScalarProperty Name="ContactMessage" ColumnName="ContactMessage" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactEmail" ColumnName="ContactEmail" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="CFormID" ColumnName="CFormID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RelatedProducts">
+            <EntityTypeMapping TypeName="mwearModel.RelatedProduct">
+              <MappingFragment StoreEntitySet="RelatedProducts">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="RelatedProduct1" ColumnName="RelatedProduct" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="RelatedProductsID" ColumnName="RelatedProductsID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
