@@ -369,6 +369,18 @@ namespace MWear.Areas.Admin.Controllers
             // Re-Add selected category in product category table End
 
 
+
+
+
+
+
+
+
+
+
+
+
+
             // Re-Add selected color in available color list start
             var color = collection["colors"];
             List<AvailabeColor> procolor = new List<AvailabeColor>();

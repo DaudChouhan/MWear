@@ -18,12 +18,12 @@
             <div>
                 <h1>Add Product</h1>
                 <p class="breadcrumbs">
-                    <span><a href="index.html">Home</a></span>
+                    <span><a href="@Url.Action("Index","Admin")">Home</a></span>
                     <span><i class="mdi mdi-chevron-right"></i></span>Product
                 </p>
             </div>
             <div>
-                <a href="product-list.html" class="btn btn-primary">
+                <a href="@Url.Action("Index","Product")" class="btn btn-primary">
                     View All
                 </a>
             </div>
@@ -232,11 +232,11 @@
                                             <div class="col-md-4">
                                                 <label for="inputEmail4" class="form-label">Category</label>
 
-                                                <br />
-                                                <select class="form-select" name="category" multiple>
+                                                <br /> 
+                                                <select class="js-example-basic-multiple form-control" name="category" multiple="multiple" >
                                                     @foreach (var item in categories)
                                                     {
-                                                        var pcatId = pcategory.Select(x => x.ProductCategoryID).ToList();
+                                                        var pcatId = pcategory.Select(x => x.Category).ToList();
                                                         if (pcatId.Contains(item.CategoryID))
                                                         {
                                                             <option value="@item.CategoryID" selected>@item.CategoryDescription</option>
@@ -255,10 +255,10 @@
                                             <div class="col-md-4">
                                                 <label for="inputEmail4" class="form-label">Color</label>
                                                 <br />
-                                                <select class="form-select" name="colors" multiple>
+                                                <select class="js-example-basic-multiple  form-control" name="colors" multiple="multiple">
                                                     @foreach (var item in colors)
                                                     {
-                                                        var pcolId = pcolor.Select(x => x.AvialableColorID).ToList();
+                                                        var pcolId = pcolor.Select(x => x.AvialableColor).ToList();
                                                         if (pcolId.Contains(item.ColorID))
                                                         {
                                                             <option value="@item.ColorID" selected>@item.ColorName</option>
@@ -275,10 +275,10 @@
                                             <div class="col-md-4">
                                                 <label for="inputEmail4" class="form-label">Size</label>
                                                 <br />
-                                                <select class="form-select" name="sizes" multiple>
+                                                <select class="js-example-basic-multiple  form-control" name="sizes" multiple="multiple">
                                                     @foreach (var item in sizes)
                                                     {
-                                                        var psizId = psize.Select(x => x.AvialableSizeID).ToList();
+                                                        var psizId = psize.Select(x => x.AvialableSize).ToList();
                                                         if (psizId.Contains(item.SizeID))
                                                         {
                                                             <option value="@item.SizeID" selected>@item.SizeName</option>
@@ -366,7 +366,7 @@
                                                 <label for="inputEmail4" class="form-label">Related Products</label>
 
                                                 <br />
-                                                <select class="form-select" name="relatedproducts" multiple>
+                                                <select class="js-example-basic-multiple  form-control" name="relatedproducts" multiple="multiple">
                                                     @foreach (var item in products)
                                                     {
                                                         var relateId = related.Select(x => x.RelatedProduct1).ToList();
@@ -382,6 +382,7 @@
                                                 </select>
 
                                             </div>
+                                         
 
                                             <div class="col-md-12">
                                                 <button type="submit" class="btn btn-primary">Submit</button>

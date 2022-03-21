@@ -9,6 +9,9 @@
     List<MWear.Models.ProductCategory> pcategory = ViewBag.productCategory;
     List<MWear.Models.AvailabeColor> pcolor = ViewBag.productColor;
     List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
+    double TotalProductCount = ViewBag.ProductsCount;
+    var pageCount = Math.Ceiling((TotalProductCount / 20));
+    int currentPageNumber = ViewBag.pagenumber;
 }
 
 
@@ -19,15 +22,16 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 
-    <title>MWear - Ecommerce HTML Template.</title>
+    <title>MWear | Online Shop in Pakistan!.</title>
     <meta name="keywords" content="Mwear, Online Store, Pakistan, Female, Male, Jewellery, Jewelery, Sunglasses, Sunglasses in Pakistan, in Pakistan" />
     <meta name="description" content="Best Onlne Ecommerce Store In Pakistan">
     <meta name="author" content="Dawood Chouhan">
 
     <!-- site Favicon -->
-    <link rel="icon" href="~/Theme/assets/images/favicon/favicon.png" sizes="32x32" />
+    <!-- site Favicon -->
+    <link rel="icon" href="~/Theme/assets/images/favicon/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="~/Theme/assets/images/favicon/favicon.png" />
-    <meta name="msapplication-TileImage" content="assets/images/favicon/favicon.png" />
+    <meta name="msapplication-TileImage" content="~/Theme/assets/images/favicon/favicon.png" />
 
     <!-- css Icon Font -->
     <link rel="stylesheet" href="~/Theme/assets/css/vendor/ecicons.min.css" />
@@ -69,7 +73,7 @@
                         <div class="col-md-6 col-sm-12">
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
-                                <li class="ec-breadcrumb-item"><a href="@Url.Action("Index","Shop")">Home</a></li>
+                                <li class="ec-breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
                                 <li class="ec-breadcrumb-item active">Shop</li>
                             </ul>
                             <!-- ec-breadcrumb-list end -->
@@ -127,7 +131,7 @@
                         <div class="col-md-6 ec-sort-select">
                             <span class="sort-by">Sort by</span>
                             <div class="ec-select-inner">
-                                <select name="ec-select" id="ec-select">
+                                <select name="ec-select" id="ec-select" disabled>
                                     <option selected disabled>Position</option>
                                     <option value="1">Relevance</option>
                                     <option value="2">Name, A to Z</option>
@@ -147,7 +151,7 @@
 
                                 
                                 <!-- Custom Tile Starts -->
-                                @foreach (var items in products.Where(x => x.Available == true).OrderByDescending(x => x.ProductID).Take(16))
+                                @foreach (var items in products.Where(x => x.Available == true).OrderByDescending(x => x.ProductID))
                                 {
 
                                     var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
@@ -178,7 +182,7 @@
                                                 <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">
                                                     <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
                                                 </a>
-                                                <span class="ec-product-ribbon">New</span>
+                                                @*<span class="ec-product-ribbon">New</span>*@
                                             </div>
                                             <div class="ec-product-body">
 
@@ -245,14 +249,26 @@
                         </div>
                         <!-- Ec Pagination Start -->
                         <div class="ec-pro-pagination">
-                            <span>Showing 1-12 of 21 item(s)</span>
+                            <span>Showing 20 out of @products.Count() item(s)</span>
                             <ul class="ec-pro-pagination-inner">
-                                <li><a class="active" href="~/Theme/#">1</a></li>
-                                <li><a href="~/Theme/#">2</a></li>
+
+                                @for (int i = 1; i <= pageCount; i++)
+                                {
+                                    if (currentPageNumber == i)
+                                    {
+                                        <li><a class="active" href="@Url.Action("Index","Shop",new {pagenumber=i })">@i</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("Index","Shop",new {pagenumber=i })">@i</a></li>
+                                    }
+                                }
+                                @*<li><a class="active" href="~/Theme/#">1</a></li>
+
                                 <li><a href="~/Theme/#">3</a></li>
                                 <li><a href="~/Theme/#">4</a></li>
                                 <li><a href="~/Theme/#">5</a></li>
-                                <li><a class="next" href="~/Theme/#">Next <i class="ecicon eci-angle-right"></i></a></li>
+                                <li><a class="next" href="~/Theme/#">Next <i class="ecicon eci-angle-right"></i></a></li>*@
                             </ul>
                         </div>
                         <!-- Ec Pagination End -->

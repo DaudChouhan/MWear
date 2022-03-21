@@ -15,12 +15,12 @@
             <div>
                 <h1>Add Product</h1>
                 <p class="breadcrumbs">
-                    <span><a href="index.html">Home</a></span>
+                    <span><a href="@Url.Action("Index","Admin")">Home</a></span>
                     <span><i class="mdi mdi-chevron-right"></i></span>Product
                 </p>
             </div>
             <div>
-                <a href="product-list.html" class="btn btn-primary">
+                <a href="@Url.Action("Index","Product")" class="btn btn-primary">
                     View All
                 </a>
             </div>
@@ -228,7 +228,7 @@
                                                 <label for="inputEmail4" class="form-label">Category</label>
 
                                                 <br />
-                                                <select class="form-select" name="category" multiple>
+                                                <select class="js-example-basic-multiple form-control" name="category" multiple>
                                                     @foreach (var item in categories)
                                                     {
                                                         <option value="@item.CategoryID">@item.CategoryDescription</option>
@@ -242,7 +242,7 @@
                                             <div class="col-md-4">
                                                 <label for="inputEmail4" class="form-label">Color</label>
                                                 <br />
-                                                <select class="form-select" name="colors" multiple>
+                                                <select class="js-example-basic-multiple form-control" name="colors" multiple>
                                                     @foreach (var item in colors)
                                                     {
                                                         <option value="@item.ColorID">@item.ColorName</option>
@@ -252,9 +252,9 @@
 
                                             @*Multiple Size*@
                                             <div class="col-md-4">
-                                                <label for="inputEmail4" class="form-label">Color</label>
+                                                <label for="inputEmail4" class="form-label">Sizes</label>
                                                 <br />
-                                                <select class="form-select" name="sizes" multiple>
+                                                <select class="js-example-basic-multiple form-control" name="sizes" multiple>
                                                     @foreach (var item in sizes)
                                                     {
                                                         <option value="@item.SizeID">@item.SizeName</option>
@@ -310,7 +310,7 @@
                                                 </div>
                                             </div>
 
-                                            <select class="select" name="relatedproducts" multiple>
+                                            <select class="js-example-basic-multiple form-control" name="relatedproducts" multiple>
                                                 @foreach (var item in products)
                                                 {
                                                     <option value="@item.ProductGUID">@item.SKU (@item.ProductName)</option>

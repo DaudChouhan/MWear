@@ -317,6 +317,16 @@
     <Content Include="Images\Products\Mobile-App-Coming-Soon.jpg" />
     <Content Include="Images\Products\New-Features-Coming-Soon.jpg" />
     <Content Include="Images\Products\overnightbannerbig.jpg" />
+    <Content Include="Images\Products\SPJ-00044.jpg" />
+    <Content Include="Images\Products\SPJ-00046.jpg" />
+    <Content Include="Images\Products\spj-00049-2.jpg" />
+    <Content Include="Images\Products\spj-00049.jpg" />
+    <Content Include="Images\Products\SPJ-00053.jpg" />
+    <Content Include="Images\Products\SPJ-00077.jpg" />
+    <Content Include="Images\Products\SPJ-00078.jpg" />
+    <Content Include="Images\Products\SPJ-00322.jpg" />
+    <Content Include="Images\Products\SPJ-00333.jpg" />
+    <Content Include="Images\Products\SPJ-00388.jpg" />
     <Content Include="Models\MainDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MainDataModel.edmx</DependentUpon>
@@ -1436,39 +1446,8 @@
     <Content Include="Theme\assets\css\style.css" />
     <Content Include="Theme\assets\css\vendor\ecicons.min.css" />
     <Content Include="Theme\assets\fonts\ecicons\ecicons.svg" />
-    <Content Include="Theme\assets\images\banner\1.jpg" />
-    <Content Include="Theme\assets\images\banner\10.jpg" />
-    <Content Include="Theme\assets\images\banner\11.jpg" />
-    <Content Include="Theme\assets\images\banner\12.jpg" />
-    <Content Include="Theme\assets\images\banner\13.jpg" />
-    <Content Include="Theme\assets\images\banner\14.jpg" />
-    <Content Include="Theme\assets\images\banner\15.jpg" />
-    <Content Include="Theme\assets\images\banner\16.jpg" />
-    <Content Include="Theme\assets\images\banner\17.jpg" />
-    <Content Include="Theme\assets\images\banner\18.jpg" />
-    <Content Include="Theme\assets\images\banner\19.jpg" />
-    <Content Include="Theme\assets\images\banner\2.jpg" />
-    <Content Include="Theme\assets\images\banner\20.jpg" />
-    <Content Include="Theme\assets\images\banner\21.jpg" />
-    <Content Include="Theme\assets\images\banner\22.jpg" />
-    <Content Include="Theme\assets\images\banner\22.png" />
-    <Content Include="Theme\assets\images\banner\23.jpg" />
-    <Content Include="Theme\assets\images\banner\23.png" />
-    <Content Include="Theme\assets\images\banner\24.jpg" />
-    <Content Include="Theme\assets\images\banner\24.png" />
-    <Content Include="Theme\assets\images\banner\25.jpg" />
-    <Content Include="Theme\assets\images\banner\26.jpg" />
-    <Content Include="Theme\assets\images\banner\3.jpg" />
-    <Content Include="Theme\assets\images\banner\4.jpg" />
-    <Content Include="Theme\assets\images\banner\5-dark.png" />
-    <Content Include="Theme\assets\images\banner\5.png" />
     <Content Include="Theme\assets\images\banner\7.jpg" />
     <Content Include="Theme\assets\images\banner\8.jpg" />
-    <Content Include="Theme\assets\images\banner\9.jpg" />
-    <Content Include="Theme\assets\images\banner\newsletter-6.png" />
-    <Content Include="Theme\assets\images\banner\newsletter-7.png" />
-    <Content Include="Theme\assets\images\banner\newsletter-8.png" />
-    <Content Include="Theme\assets\images\banner\newsletter.png" />
     <Content Include="Theme\assets\images\bg\background-1.png" />
     <Content Include="Theme\assets\images\bg\background-2.png" />
     <Content Include="Theme\assets\images\bg\background-3.png" />
@@ -1484,28 +1463,6 @@
     <Content Include="Theme\assets\images\bg\menu-bg.png" />
     <Content Include="Theme\assets\images\bg\newsletter-bg-dark.png" />
     <Content Include="Theme\assets\images\bg\newsletter-bg.png" />
-    <Content Include="Theme\assets\images\blog-image\1.jpg" />
-    <Content Include="Theme\assets\images\blog-image\10.jpg" />
-    <Content Include="Theme\assets\images\blog-image\11.jpg" />
-    <Content Include="Theme\assets\images\blog-image\12.jpg" />
-    <Content Include="Theme\assets\images\blog-image\13.jpg" />
-    <Content Include="Theme\assets\images\blog-image\14.jpg" />
-    <Content Include="Theme\assets\images\blog-image\15.jpg" />
-    <Content Include="Theme\assets\images\blog-image\16.jpg" />
-    <Content Include="Theme\assets\images\blog-image\17.jpg" />
-    <Content Include="Theme\assets\images\blog-image\18.jpg" />
-    <Content Include="Theme\assets\images\blog-image\19.jpg" />
-    <Content Include="Theme\assets\images\blog-image\2.jpg" />
-    <Content Include="Theme\assets\images\blog-image\20.jpg" />
-    <Content Include="Theme\assets\images\blog-image\21.jpg" />
-    <Content Include="Theme\assets\images\blog-image\22.jpg" />
-    <Content Include="Theme\assets\images\blog-image\3.jpg" />
-    <Content Include="Theme\assets\images\blog-image\4.jpg" />
-    <Content Include="Theme\assets\images\blog-image\5.jpg" />
-    <Content Include="Theme\assets\images\blog-image\6.jpg" />
-    <Content Include="Theme\assets\images\blog-image\7.jpg" />
-    <Content Include="Theme\assets\images\blog-image\8.jpg" />
-    <Content Include="Theme\assets\images\blog-image\9.jpg" />
     <Content Include="Theme\assets\images\brand-image\1.png" />
     <Content Include="Theme\assets\images\brand-image\10.jpg" />
     <Content Include="Theme\assets\images\brand-image\11.jpg" />
@@ -2200,7 +2157,6 @@
     <Content Include="Theme\assets\scss\bootstrap\bootstrap-reboot.css" />
     <Content Include="Theme\assets\scss\bootstrap\bootstrap-utilities.css" />
     <Content Include="Theme\assets\scss\bootstrap\bootstrap.css" />
-    <Content Include="Theme\assets\video\1.mp4" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2869,6 +2825,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\CitiesAndStates\" />
+    <Folder Include="Theme\assets\images\blog-image\" />
+    <Folder Include="Theme\assets\video\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

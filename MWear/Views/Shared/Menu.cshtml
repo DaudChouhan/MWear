@@ -11,15 +11,15 @@
                         <li><a href="@Url.Action("Index","Home")">Home</a></li>
                         @if (TempData["cat"] != null)
                         {
-                            foreach (var item in categories.Where(x => x.ParentCategory == null).OrderBy(x => x.CategoryID))
+                            foreach (var item in categories.Where(x => x.ParentCategory == null).OrderBy(x => x.CategoryID).OrderBy(x => x.CategoryName))
                             {
                                 <li class="dropdown">
-                                    <a href="@Url.Action("Index","Shop",new { CatId=item.CategoryID})">@item.CategoryName</a>
+                                    <a href="@Url.Action("Index","Shop",new { CatId=item.CategoryID , pagenumber=1 })">@item.CategoryName</a>
                                     <ul class="sub-menu">
                                         @foreach (var items in categories.Where(x => x.ParentCategory == item.CategoryID).OrderBy(x => x.CategoryName))
                                         {
                                             <li class="dropdown position-static">
-                                                <a href="@Url.Action("Index","Shop",new { CatId=items.CategoryID})">
+                                                <a href="@Url.Action("Index","Shop",new { CatId=items.CategoryID , pagenumber=1 })">
                                                     @items.CategoryName
                                                     <i class="ecicon eci-angle-right"></i>
                                                 </a>
@@ -29,14 +29,14 @@
                                                         @foreach (var itemss in categories.Where(x => x.ParentCategory == items.CategoryID).OrderBy(x => x.CategoryName))
                                                         {
                                                             <li>
-                                                                <a href="@Url.Action("Index","Shop",new { CatId=itemss.CategoryID})">@itemss.CategoryName</a>
+                                                                <a href="@Url.Action("Index","Shop",new { CatId=itemss.CategoryID , pagenumber=1 })">@itemss.CategoryName</a>
                                                                 @if (categories.Where(x => x.ParentCategory == itemss.CategoryID).Count() > 0)
                                                                 {
                                                                     <ul class="sub-menu sub-menu-child">
                                                                         @foreach (var itemsss in categories.Where(x => x.ParentCategory == itemss.CategoryID).OrderBy(x => x.CategoryName))
                                                                         {
                                                                             <li>
-                                                                                <a href="@Url.Action("Index","Shop",new { CatId=itemsss.CategoryID})">@itemsss.CategoryName</a>
+                                                                                <a href="@Url.Action("Index","Shop",new { CatId=itemsss.CategoryID , pagenumber=1 })">@itemsss.CategoryName</a>
                                                                             </li>
                                                                         }
 
@@ -56,7 +56,7 @@
                             }
                         }
 
-                        <li><a href="@Url.Action("Index","Shop")">Shop</a></li>
+                        <li><a href="@Url.Action("Index","Shop",new {pagenumber=1 })">Shop</a></li>
 
                     </ul>
                 </div>
@@ -82,12 +82,12 @@
                     foreach (var item in categories.Where(x => x.ParentCategory == null).OrderBy(x => x.CategoryID))
                     {
                         <li>
-                            <a href="@Url.Action("Index","Shop",new { CatId=item.CategoryID})">@item.CategoryName</a>
+                            <a href="@Url.Action("Index","Shop",new { CatId=item.CategoryID , pagenumber=1 })">@item.CategoryName</a>
                             <ul class="sub-menu">
                                 @foreach (var items in categories.Where(x => x.ParentCategory == item.CategoryID).OrderBy(x => x.CategoryName))
                                 {
                                     <li>
-                                        <a href="@Url.Action("Index","Shop",new { CatId=items.CategoryID})">
+                                        <a href="@Url.Action("Index","Shop",new { CatId=items.CategoryID , pagenumber=1 })">
                                             @items.CategoryName
                                         </a>
                                         @if (categories.Where(x => x.ParentCategory == items.CategoryID).Count() > 0)
@@ -96,14 +96,14 @@
                                                 @foreach (var itemss in categories.Where(x => x.ParentCategory == items.CategoryID).OrderBy(x => x.CategoryName))
                                                 {
                                                     <li>
-                                                        <a href="@Url.Action("Index","Shop",new { CatId=itemss.CategoryID})">@itemss.CategoryName</a>
+                                                        <a href="@Url.Action("Index","Shop",new { CatId=itemss.CategoryID , pagenumber=1 })">@itemss.CategoryName</a>
                                                         @if (categories.Where(x => x.ParentCategory == itemss.CategoryID).Count() > 0)
                                                         {
                                                             <ul class="sub-menu">
                                                                 @foreach (var itemsss in categories.Where(x => x.ParentCategory == itemss.CategoryID).OrderBy(x => x.CategoryName))
                                                                 {
                                                                     <li>
-                                                                        <a href="@Url.Action("Index","Shop",new { CatId=itemsss.CategoryID})">@itemsss.CategoryName</a>
+                                                                        <a href="@Url.Action("Index","Shop",new { CatId=itemsss.CategoryID , pagenumber=1 })">@itemsss.CategoryName</a>
                                                                     </li>
                                                                 }
 
@@ -124,36 +124,11 @@
                 }
 
 
+           
                 <li>
-                    <a href="@Url.Action("Index","Shop")">Women's</a>
-                    <ul class="sub-menu">
-                        <li>
-                            <a href="@Url.Action("Index","Shop")">Jewellery</a>
-                            <ul class="sub-menu">
-                                <li><a href="@Url.Action("Index","Shop")">Anckles</a></li>
-                                <li><a href="@Url.Action("Index","Shop")">Bracelets</a></li>
-                                <li><a href="@Url.Action("Index","Shop")">Earrings</a></li>
-                                <li><a href="@Url.Action("Index","Shop")">Rings</a></li>
-                                <li><a href="@Url.Action("Index","Shop")">Necklace</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Shop")">Sun Glasses</a>
-
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","Shop")">Fregrances</a>
-
-                        </li>
-                    </ul>
+                    <a href="@Url.Action("Index","Shop",new {pagenumber=1 })">Shop</a>
                 </li>
-                <li>
-                    <a href="@Url.Action("Index","Shop")">Shop</a>
-                </li>
-                <li>
-                    <a href="@Url.Action("Index","Shop")">Sale!</a>
 
-                </li>
                 <li>
                     <a href="#">Value Items</a>
 

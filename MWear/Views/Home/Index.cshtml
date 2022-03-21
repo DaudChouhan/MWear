@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
                                 <div class="ec-slide-content slider-animation">
-                                    <a href="@Url.Action("Index", "Shop")" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
+                                    <a href="@Url.Action("Index","Shop",new {pagenumber=1 })" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                             <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">
                                                 <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
                                             </a>
-                                            <span class="ec-product-ribbon">New</span>
+                                            @*<span class="ec-product-ribbon">New</span>*@
                                         </div>
                                         <div class="ec-product-body">
 
@@ -242,7 +242,7 @@
 
 
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
 
 
                         </div>
@@ -261,7 +261,7 @@
                                 {
 
                                     var pro = itemss.Product;
-                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Mens")).OrderByDescending(x => x.ProductID).Take(8))
+                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Men")).OrderByDescending(x => x.ProductID).Take(8))
                                     {
                                  
 
@@ -293,7 +293,7 @@
                                                                         <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
                                                                             <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
                                                                         </a>
-                                                                        <span class="ec-product-ribbon">New</span>
+                                                                        @*<span class="ec-product-ribbon">New</span>*@
                                                                     </div>
                                                                     <div class="ec-product-body">
 
@@ -355,7 +355,7 @@
                             }
                             <!-- Custom tile Ends -->
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index", "Shop")">Shop All Collection</a></div>
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
                         </div>
                     </div>
                     <!-- ec 2nd Product tab end -->
@@ -375,7 +375,7 @@
                                 foreach (var itemss in pcategory.Where(x => x.Category == cat))
                                 {
                                     var pro = itemss.Product;
-                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Womens")).OrderByDescending(x => x.ProductID).Take(8))
+                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Women")).OrderByDescending(x => x.ProductID).Take(8))
                                     {
 
 
@@ -407,7 +407,7 @@
                                                     <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
                                                         <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
                                                     </a>
-                                                    <span class="ec-product-ribbon">New</span>
+                                                    @*<span class="ec-product-ribbon">New</span>*@
                                                 </div>
                                                 <div class="ec-product-body">
 
@@ -512,7 +512,7 @@
 
 
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index", "Shop")">Shop All Collection</a></div>
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
 
 
                         </div>
@@ -751,7 +751,7 @@
 
 
 
-            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index", "Shop")">Shop All Collection</a></div>
+            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
 
         </div>
     </div>
@@ -768,7 +768,7 @@
                 <span class="ec-offer-img" data-animation="zoomIn">@*<img src="#" alt="offer image" />*@</span>
                 <span class="ec-offer-desc">Wide Range</span>
                 <span class="ec-offer-price"></span>
-                <a class="btn btn-primary" href="@Url.Action("Index", "Shop")" data-animation="zoomIn">Shop Now</a>
+                <a class="btn btn-primary" href="@Url.Action("Index","Shop",new { pagenumber=1 })" data-animation="zoomIn">Shop Now</a>
             </div>
         </div>
     </div>
