@@ -88,5 +88,17 @@ namespace MWear.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult OrderDetail(string OrderID)
+        {
+            var orders = db.Orders.Where(x => x.OrderGuid == OrderID).ToList();
+            ViewBag.orders = orders;
+            var orderdetails = db.OrderDetails.Where(x => x.OrderGuid == OrderID).ToList();
+            ViewBag.orderdetails = orderdetails;
+            var products = db.Products.ToList();
+            ViewBag.Products = products;
+            return View();
+        }
+
     }
 }

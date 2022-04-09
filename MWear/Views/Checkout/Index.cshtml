@@ -134,15 +134,15 @@
                                                        placeholder="Phone" required />
                                             </span>
                                             <span class="ec-bill-wrap">
-                                                <label>Address 1</label>
+                                                <label>Address (مکان نمبر گلی نمبر قریب ترین جگہ وغیرہ)</label>
                                                 <input type="text" name="CustomerAdress1" placeholder="Address 1" />
                                             </span>
                                             <span class="ec-bill-wrap">
-                                                <label>Address 2</label>
+                                                <label>Address (مکان نمبر گلی نمبر قریب ترین جگہ وغیرہ)</label>
                                                 <input type="text" name="CustomerAdress2" placeholder="Address 2" />
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
-                                                <label>Province *</label>
+                                                <label>Province * صوبہ</label>
                                                 <span class="ec-bl-select-inner">
                                                     <select name="CustomerProvince" id="ec-select-country" class="ec-bill-select" onchange="FillCities()">
                                                         <option selected disabled>Province</option>
@@ -154,7 +154,7 @@
                                                 </span>
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
-                                                <label>City *</label>
+                                                <label>City * شہر</label>
                                                 <span class="ec-bl-select-inner">
                                                     <select name="CustomerCity" id="ec-select-city"
                                                             class="ec-bill-select" disabled onchange="CheckCity()">
@@ -164,7 +164,7 @@
                                                 </span>
                                             </span>
                                             <span class="ec-bill-wrap ec-bill-half">
-                                                <label>Post Code</label>
+                                                <label>Post Code <a href="https://www.pakpost.gov.pk/postcodes.php">اپنا پوسٹل کوڈ جاننے کے لیے یہاں کلک کریں۔</a></label>
                                                 <input type="text" name="CustomerPostalCode" placeholder="Post Code" />
                                                 <input type="hidden" value="0" name="DeliverCharges" id="hidDeliverCharges" />
                                                 <input type="hidden" value="COD" name="PaymentMethod" id="PaymentMethod" />
@@ -331,15 +331,16 @@
                                             <label for="pay1">Cash On Delivery</label>
                                         </span>
                                     </span><br />
+                                    <p style="color:red"> Bank Transfer & JazzCash Is Currently Unavailable</p>
                                     <span class="ec-pay-option">
                                         <span>
-                                            <input type="radio" id="pay2" name="radio-group" value="Bank Transfer" style="width:12px; height:12px;">
+                                            <input type="radio" id="pay2" name="radio-group" value="Bank Transfer" style="width:12px; height:12px;" disabled>
                                             <label for="pay1">Online Bank Transfer</label>
                                         </span>
                                     </span><br />
                                     <span class="ec-pay-option">
                                         <span>
-                                            <input type="radio" id="pay3" name="radio-group" value="Jazz Cash" style="width:12px; height:12px;">
+                                            <input type="radio" id="pay3" name="radio-group" value="Jazz Cash" style="width:12px; height:12px;" disabled>
                                             <label for="pay1">JazzCash</label>
                                         </span>
                                     </span><br />
@@ -353,12 +354,12 @@
                                             <span class="ec-pay-opt-head">Add Comments About Your Order</span>
                                             <textarea name="your-commemt" placeholder="Comments"></textarea>
                                         </span>*@
-                                    <span class="ec-pay-agree">
+                                    @*<span class="ec-pay-agree">
                                         <input type="checkbox" value=""><a href="#">
                                             I have
                                             read and agree to the <span>Terms & Conditions</span>
                                         </a><span class="checked"></span>
-                                    </span>
+                                    </span>*@
                                 </form>
                             </div>
                         </div>
@@ -369,11 +370,11 @@
                     <!-- Sidebar Payment Block -->
                     <div class="ec-sidebar-block">
                         <div class="ec-sb-title">
-                            <h3 class="ec-sidebar-title">Payment Method</h3>
+                            <h3 class="ec-sidebar-title">Supported Methods</h3>
                         </div>
                         <div class="ec-sb-block-content">
                             <div class="ec-check-pay-img-inner">
-                                <div class="ec-check-pay-img">
+                                @*<div class="ec-check-pay-img">
                                     <img src="~/Theme/assets/images/icons/payment1.png" alt="">
                                 </div>
                                 <div class="ec-check-pay-img">
@@ -390,7 +391,7 @@
                                 </div>
                                 <div class="ec-check-pay-img">
                                     <img src="~/Theme/assets/images/icons/payment6.png" alt="">
-                                </div>
+                                </div>*@
                                 <div class="ec-check-pay-img">
                                     <img src="~/Theme/assets/images/icons/payment7.png" alt="">
                                 </div>

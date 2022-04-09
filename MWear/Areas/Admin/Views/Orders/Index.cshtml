@@ -15,7 +15,7 @@
             <div>
                 <h1>Pending Orders</h1>
                 <p class="breadcrumbs">
-                    <span><a href="index.html">Home</a></span>
+                    <span><a href="#">Home</a></span>
                     <span><i class="mdi mdi-chevron-right"></i></span>Pending Orders
                 </p>
             </div>
@@ -113,8 +113,10 @@
                                                 </button>
 
                                                 <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="@Url.Action("OrderDetail", "Orders", new { OrderID = item.OrderGuid})">View Details</a>
                                                     <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Processing"})">Process</a>
                                                     <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Canceled"})">Cancel</a>
+                                                    
                                                 </div>
                                             </div>
                                         </td>

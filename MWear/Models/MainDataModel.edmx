@@ -231,7 +231,7 @@
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductGUID" Type="nvarchar" MaxLength="128" />
           <Property Name="SKU" Type="varchar" MaxLength="50" />
-          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductName" Type="varchar(max)" />
           <Property Name="ProductShortDesc" Type="nvarchar(max)" />
           <Property Name="ProductLongDesc" Type="nvarchar(max)" />
           <Property Name="QuantityPerUnit" Type="int" />
@@ -602,30 +602,6 @@
           <Property Name="Product" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Category" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductID" />
-          </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductGUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ProductShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ProductLongDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="QuantityPerUnit" Type="Int32" />
-          <Property Name="Price" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Color" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Discount" Type="Decimal" Precision="20" Scale="2" />
-          <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UnitsInStock" Type="Int32" />
-          <Property Name="Available" Type="Boolean" />
-          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Featured" Type="Boolean" />
-          <Property Name="Active" Type="Boolean" />
-          <Property Name="DateAdded" Type="DateTime" Precision="3" />
-        </EntityType>
         <EntityType Name="Shipper">
           <Key>
             <PropertyRef Name="ShipperID" />
@@ -704,7 +680,6 @@
           <EntitySet Name="Payments" EntityType="Self.Payment" />
           <EntitySet Name="Pictures" EntityType="Self.Picture" />
           <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Shippers" EntityType="Self.Shipper" />
           <EntitySet Name="Sizes" EntityType="Self.Size" />
           <EntitySet Name="WebImages" EntityType="Self.WebImage" />
@@ -723,6 +698,7 @@
           <EntitySet Name="States" EntityType="mwearModel.State" />
           <EntitySet Name="ContactForms" EntityType="mwearModel.ContactForm" />
           <EntitySet Name="RelatedProducts" EntityType="mwearModel.RelatedProduct" />
+          <EntitySet Name="Products" EntityType="mwearModel.Product" />
         </EntityContainer>
         <EntityType Name="State">
           <Key>
@@ -755,6 +731,30 @@
           <Property Name="Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="RelatedProduct1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductGUID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SKU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ProductShortDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductLongDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="QuantityPerUnit" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Discount" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitsInStock" Type="Int32" />
+          <Property Name="Available" Type="Boolean" />
+          <Property Name="Picture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Featured" Type="Boolean" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -974,31 +974,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="mwearModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ProductGUID" ColumnName="ProductGUID" />
-                <ScalarProperty Name="SKU" ColumnName="SKU" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductShortDesc" ColumnName="ProductShortDesc" />
-                <ScalarProperty Name="ProductLongDesc" ColumnName="ProductLongDesc" />
-                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
-                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
-                <ScalarProperty Name="Available" ColumnName="Available" />
-                <ScalarProperty Name="Picture" ColumnName="Picture" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Featured" ColumnName="Featured" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Shippers">
             <EntityTypeMapping TypeName="mwearModel.Shipper">
               <MappingFragment StoreEntitySet="Shippers">
@@ -1074,6 +1049,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="mwearModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Featured" ColumnName="Featured" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+                <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="QuantityPerUnit" ColumnName="QuantityPerUnit" />
+                <ScalarProperty Name="ProductLongDesc" ColumnName="ProductLongDesc" />
+                <ScalarProperty Name="ProductShortDesc" ColumnName="ProductShortDesc" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="ProductGUID" ColumnName="ProductGUID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1095,6 +1095,35 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
+    <Diagrams>
+      <Diagram DiagramId="df2ebc6edbd54a4cbfefe5bad82fce61" Name="Diagram1">
+        <EntityTypeShape EntityType="mwearModel.Admin" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.AspNetUser" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.AvailabeColor" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.AvailableSize" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Category" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.City" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Color" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Customer" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.OrderDetail" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Order" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Payment" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Picture" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.ProductCategory" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Shipper" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.Size" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.WebImage" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.State" Width="1.5" PointX="4.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.ContactForm" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mwearModel.RelatedProduct" Width="1.5" PointX="6.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="mwearModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="mwearModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="mwearModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="mwearModel.Product" Width="1.5" PointX="11.375" PointY="10.75" />
+      </Diagram>
+    </Diagrams>
   </Designer>
 </edmx:Edmx>

@@ -1,9 +1,10 @@
-﻿@model MWear.Models.ContactForm
+﻿@using CaptchaMvc.HtmlHelpers;
+@using CaptchaMvc;
+@model MWear.Models.ContactForm
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
-
 
 <!-- Ec breadcrumb start -->
 <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
@@ -48,8 +49,7 @@
                         <div class="ec-contact-form">
 
 
-                            @*<form action="#" method="post">*@
-                            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
+                            @using (Html.BeginForm("ContactForm", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
                             {
 
                                 <span class="ec-contact-wrap">
@@ -77,14 +77,17 @@
                                     <textarea name="ContactMessage"
                                               placeholder="Please leave your comments here.."></textarea>
                                 </span>
+                                <div id="divcaptcha"></div>
+                                <span class="ec-contact-wrap" style="margin-bottom:10px;">
+                                    <input type="text" id="txtcaptcha" style="display:none" required />
+
+                                </span>
 
                                 <span class="ec-contact-wrap ec-contact-btn">
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </span>
 
                             }
-                            @*</form>*@
-
 
                         </div>
                     </div>
@@ -120,4 +123,15 @@
         </div>
     </div>
 </section>
+
+<script>
+    var onloadCallback = function () {
+        grecaptcha.render('divcaptcha', {
+            'sitekey': '6Ldp-FkfAAAAADYgNK0qaEtUKOCWQlYxHSYnaGYR',
+            'callback': function (response) {
+                $('#txtcaptcha').val('t');
+            }
+        });
+    };
+</script>
 

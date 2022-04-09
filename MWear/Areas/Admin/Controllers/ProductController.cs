@@ -167,6 +167,7 @@ namespace MWear.Areas.Admin.Controllers
             if (secondaryImage != null)
             {
                 List<Picture> productImage = new List<Picture>();
+
                 foreach (var item in secondaryImage)
                 {
                     if (item != null)
@@ -174,9 +175,6 @@ namespace MWear.Areas.Admin.Controllers
                         if (item.ContentLength <= 4100000 && (item.ContentType == "image/jpeg" || item.ContentType == "image/png"))
                         {
                             var fname = item.FileName.Replace(' ', '-');
-                            //fname = fname + DateTime.Now.ToString("ddMMyyyy HHmmss");
-                            //string filepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "Images" + "\\" + "Products" + "\\", fname);
-                            //string fpath = "/Images/Products/" + fname;
                             string fileimg = Path.Combine(Server.MapPath("~/Images/Products"), fname);
                             string fpath = fname;
                             item.SaveAs(fileimg);
@@ -299,6 +297,9 @@ namespace MWear.Areas.Admin.Controllers
             ViewBag.Products = products;
             //End
 
+            //Pictures
+            var pics = db.Pictures.ToList();
+            ViewBag.Pictures = pics;
 
 
             var product = db.Products.Where(x => x.ProductGUID == pid).FirstOrDefault();
@@ -308,17 +309,33 @@ namespace MWear.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditProduct(Product product, string FeaturedChechbox, string AvailableChechbox, FormCollection collection)
+        public ActionResult EditProduct(Product product, string FeaturedChechbox, string AvailableChechbox, FormCollection collection, List<HttpPostedFileBase> secondaryImage, HttpPostedFileBase primaryImage)
         {
             var productguid = product.ProductGUID;
 
             // Product Table Edit Start
             Product pro = db.Products.Where(x => x.ProductGUID == product.ProductGUID).FirstOrDefault();
+
+            if (primaryImage != null)
+            {
+                var propicold = db.Products.Where(x => x.ProductGUID == product.ProductGUID).FirstOrDefault().Picture;
+                System.IO.File.Delete(Path.Combine(Server.MapPath("~/Images/Products"), propicold));
+                if (primaryImage.ContentLength <= 4100000 && (primaryImage.ContentType == "image/jpeg" || primaryImage.ContentType == "image/png"))
+                {
+                    string filename = Path.GetFileName(primaryImage.FileName);
+                    string fileimg = Path.Combine(Server.MapPath("~/Images/Products"), filename);
+                    primaryImage.SaveAs(fileimg);
+                    pro.Picture = filename;
+
+                }
+            }
+
             pro.SKU = product.SKU;
             pro.ProductName = product.ProductName;
             pro.ProductShortDesc = product.ProductShortDesc;
             pro.ProductLongDesc = product.ProductLongDesc;
             pro.QuantityPerUnit = product.QuantityPerUnit;
+            pro.Price = product.Price;
             pro.Discount = product.Discount;
             pro.UnitWeight = product.UnitWeight;
             pro.UnitsInStock = product.UnitsInStock;
@@ -367,16 +384,6 @@ namespace MWear.Areas.Admin.Controllers
                 db.ProductCategories.AddRange(procat);
             }
             // Re-Add selected category in product category table End
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -449,6 +456,62 @@ namespace MWear.Areas.Admin.Controllers
 
             // Add Related Products End
 
+
+            // Add secondary image with product id in picture table & save secondary image in folder start
+            if (secondaryImage != null)
+            {
+                List<Picture> productImage = new List<Picture>();
+
+                foreach (var item in db.Pictures.Where(x=> x.Product == product.ProductGUID).ToList())
+                {
+                    if (item != null)
+                    {
+                        var propicold = db.Pictures.Where(x => x.Product == product.ProductGUID).FirstOrDefault().PictureName;
+                        System.IO.File.Delete(Path.Combine(Server.MapPath("~/Images/Products"), propicold));
+
+                    }
+
+                }
+                var existingpics = db.Pictures.Where(x => x.Product == product.ProductGUID).ToList();
+                db.Pictures.RemoveRange(existingpics);
+                foreach (var item in secondaryImage)
+                {
+                    if (item != null)
+                    {
+                        if (item.ContentLength <= 4100000 && (item.ContentType == "image/jpeg" || item.ContentType == "image/png"))
+                        {
+                            var fname = item.FileName.Replace(' ', '-');
+                            string fileimg = Path.Combine(Server.MapPath("~/Images/Products"), fname);
+                            string fpath = fname;
+                            item.SaveAs(fileimg);
+                            productImage.Add(new Picture
+                            {
+                                PictureName = fname,
+                                PicturePath = fpath,
+                                PictureAltText = fname,
+                                Product = product.ProductGUID
+                            });
+                        }
+
+                    }
+                }
+                if (productImage.Count != 0)
+                {
+                    db.Pictures.AddRange(productImage);
+                }
+            }
+            // Add secondary image with product id in picture table & save secondary image in folder end
+
+
+
+
+
+
+
+
+
+
+
             // Saving Changes and Redirecting
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -460,6 +523,15 @@ namespace MWear.Areas.Admin.Controllers
             {
                 var pro = db.Products.Where(x => x.ProductID == productid).FirstOrDefault();
                 pro.Active = false;
+                foreach (var item in db.Products.Where(x => x.ProductID == productid).ToList())
+                {
+                    var existingcategory = db.ProductCategories.Where(x => x.Product == item.ProductGUID).ToList();
+                    db.ProductCategories.RemoveRange(existingcategory);
+                }
+                //var gettingid = db.Products.Where(x => x.ProductID == productid).ToList();
+                //var existingcategory = db.ProductCategories.Where(x => x.Product == gettingid).ToList();
+                
+
                 db.Entry(pro).State = EntityState.Modified;
                 db.SaveChanges();
                 return Json("Success", JsonRequestBehavior.AllowGet);

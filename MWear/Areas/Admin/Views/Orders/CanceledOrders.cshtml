@@ -80,7 +80,7 @@
                                             <td>@item.GrossAmout</td>
                                             <td>@item.DeliverCharges</td>
                                             <td>@item.NetAmount</td>
-                                            @*<td>
+                                            <td>
                                                 <div class="btn-group mb-1">
                                                     <button type="button"
                                                             class="btn btn-outline-success">
@@ -94,11 +94,11 @@
                                                     </button>
 
                                                     <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="@Url.Action("OrderDetail", "Orders", new { OrderID = item.OrderGuid})">View Details</a>
                                                         <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Processing"})">Process</a>
-                                                        <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Canceled"})">Cancel</a>
                                                     </div>
                                                 </div>
-                                            </td>*@
+                                            </td>
                                         </tr>
                                     }
 

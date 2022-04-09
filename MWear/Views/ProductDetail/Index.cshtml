@@ -14,7 +14,51 @@
     List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
     List<MWear.Models.RelatedProduct> related = ViewBag.Related;
 
+    MWear.Models.ProductCategory crrentProductCategories = pcategory.Where(x => x.Product == Model.ProductGUID).FirstOrDefault();
+    var currentProductCatId = categories.Where(x => x.CategoryID == crrentProductCategories.Category && x.Active == true).FirstOrDefault().CategoryID;
+    var relatedcount = related.Where(x => x.Product == Model.ProductGUID ).Count();
+    int takecount = 0;
+    if (relatedcount == 0)
+    {
+        takecount = 8;
+    }
+    else if (relatedcount == 1)
+    {
+        takecount = 7;
+    }
+    else if (relatedcount == 2)
+    {
+        takecount = 6;
+    }
+    else if (relatedcount == 3)
+    {
+        takecount = 5;
+    }
+    else if (relatedcount == 4)
+    {
+        takecount = 4;
+    }
+    else if (relatedcount == 5)
+    {
+        takecount = 3;
+    }
+    else if (relatedcount == 6)
+    {
+        takecount = 2;
+    }
+    else if (relatedcount == 7)
+    {
+        takecount = 1;
+    }
+    else if (relatedcount == 8)
+    {
+        takecount = 0;
+    }
+    else {
+        takecount = 8;
+    }
 
+    var relProductList = pcategory.Where(x => x.Category == currentProductCatId).Take(takecount).ToList();
 
 
 }
@@ -93,297 +137,327 @@
             <div class="row">
                 <div class="ec-pro-rightside ec-common-rightside col-lg-9 col-md-12">
 
-                    <!-- Single product content Start -->
-                    <div class="single-pro-block">
-                        <div class="single-pro-inner">
-                            <div class="row">
-                                <div class="single-pro-img">
-                                    <div class="single-product-scroll">
-                                        <div class="single-product-cover">
+                    @if (Model.Active == false || Model.Available == false)
+                    {
+                        <div>
+                            <h1> Sorry! Product is no more Available!!</h1>
+                        </div>
+                    }
 
-                                            @*Firt Image*@
-
-
-                                            <div class="single-slide zoom-image-hover">
-                                                <img class="img-responsive" src="~/Images/Products/@Model.Picture"
-                                                     alt="">
-                                            </div>
-
-                                            @*Multiple Images*@
+                    else
+                    {
 
 
+                        <!-- Single product content Start -->
+                        <div class="single-pro-block">
+                            <div class="single-pro-inner">
+                                <div class="row">
+                                    <div class="single-pro-img">
+                                        <div class="single-product-scroll">
+                                            <div class="single-product-cover">
 
-                                            @foreach (var item in pictures.Where(x => x.Product == Model.ProductGUID))
-                                            {<div class="single-slide zoom-image-hover">
-                                                    <img class="img-responsive" src="~/Images/Products/@item.PicturePath"
-                                                         alt="@item.PictureAltText">
+                                                @*Firt Image*@
+
+
+                                                <div class="single-slide zoom-image-hover">
+                                                    <img class="img-responsive" src="~/Images/Products/@Model.Picture"
+                                                         alt="">
                                                 </div>
-                                            }
 
-                                        </div>
-                                        <div class="single-nav-thumb">
-                                            <div class="single-slide">
-                                                <img class="img-responsive" src="~/Images/Products/@Model.Picture"
-                                                     alt="">
+                                                @*Multiple Images*@
+
+
+
+                                                @foreach (var item in pictures.Where(x => x.Product == Model.ProductGUID))
+                                                {<div class="single-slide zoom-image-hover">
+                                                        <img class="img-responsive" src="~/Images/Products/@item.PicturePath"
+                                                             alt="@item.PictureAltText">
+                                                    </div>
+                                                }
+
                                             </div>
-
-
-
-
-                                            @foreach (var item in pictures.Where(x => x.Product == Model.ProductGUID))
-                                            {<div class="single-slide">
-                                                    <img class="img-responsive" src="~/Images/Products/@item.PicturePath"
-                                                         alt="@item.PictureAltText">
-
+                                            <div class="single-nav-thumb">
+                                                <div class="single-slide">
+                                                    <img class="img-responsive" src="~/Images/Products/@Model.Picture"
+                                                         alt="">
                                                 </div>
-                                            }
 
 
+
+
+                                                @foreach (var item in pictures.Where(x => x.Product == Model.ProductGUID))
+                                                {<div class="single-slide">
+                                                        <img class="img-responsive" src="~/Images/Products/@item.PicturePath"
+                                                             alt="@item.PictureAltText">
+
+                                                    </div>
+                                                }
+
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="single-pro-desc">
-                                    <div class="single-pro-content">
-                                        <h5 class="ec-single-title">@Model.ProductName</h5>
-                                        <input type="hidden" id="productId" value="@Model.ProductID" />
-                                        <div class="ec-single-rating-wrap">
-                                            <!-- <div class="ec-single-rating">
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star fill"></i>
-                                                <i class="ecicon eci-star-o"></i>
-                                            </div> -->
-                                            <span class="ec-read-review">
-                                                @foreach (var items in pcategory.Where(x => x.Product == Model.ProductGUID))
-                                                {
-                                                    var cat = categories.Where(x => x.CategoryID == items.Category).ToList();
-                                                    foreach (var itemss in cat)
+                                    <div class="single-pro-desc">
+                                        <div class="single-pro-content">
+                                            <h5 class="ec-single-title">@Model.ProductName</h5>
+                                            <input type="hidden" id="productId" value="@Model.ProductID" />
+                                            <div class="ec-single-rating-wrap">
+                                             <!-- <div class="ec-single-rating">
+                                             <i class="ecicon eci-star fill"></i>
+                                             <i class="ecicon eci-star fill"></i>
+                                             <i class="ecicon eci-star fill"></i>
+                                             <i class="ecicon eci-star fill"></i>
+                                             <i class="ecicon eci-star-o"></i>
+                                             </div> -->
+                                                <span class="ec-read-review">
+                                                    @foreach (var items in pcategory.Where(x => x.Product == Model.ProductGUID))
                                                     {
-                                                        <a href="#">@itemss.CategoryName</a>
+                                                        var cat = categories.Where(x => x.CategoryID == items.Category).ToList();
+                                                        foreach (var itemss in cat)
+                                                        {
+                                                            <a href="@Url.Action("Index","Shop",new { CatId=itemss.CategoryID })">@itemss.CategoryDescription</a>
 
+                                                        }
                                                     }
-                                                }
 
-                                            </span>
-                                        </div>
-                                        <div class="ec-single-desc">
-                                            @Model.ProductShortDesc
-                                        </div>
+                                                </span>
+                                            </div>
+                                            <div class="ec-single-desc">
+                                                @Model.ProductShortDesc
+                                            </div>
 
-                                        <div class="ec-single-sales">
-                                            <div class="ec-single-sales-inner">
-                                                <div class="ec-single-sales-title">sales accelerators</div>
+                                            <div class="ec-single-sales">
+                                                <div class="ec-single-sales-inner">
+                                                    <div class="ec-single-sales-title">sales accelerators</div>
 
-                                                <div class="ec-single-sales-progress">
-                                                    <span class="ec-single-progress-desc">
-                                                        Hurry up! left @Model.UnitsInStock in
-                                                        stock
-                                                    </span>
-                                                    <span class="ec-single-progressbar"></span>
-                                                </div>
-                                                <div class="ec-single-sales-countdown">
-                                                    <div class="ec-single-count-desc">Time is Running Out!</div>
+                                                    <div class="ec-single-sales-progress">
+                                                        <span class="ec-single-progress-desc">
+                                                            Hurry up! left @Model.UnitsInStock in
+                                                            stock
+                                                        </span>
+                                                        <span class="ec-single-progressbar"></span>
+                                                    </div>
+                                                    <div class="ec-single-sales-countdown">
+                                                        <div class="ec-single-count-desc">Time is Running Out!</div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="ec-single-price-stoke">
-                                            <div class="ec-single-price">
-                                                <span class="ec-single-ps-title">As low as</span>
+                                            <div class="ec-single-price-stoke">
+                                                <div class="ec-single-price">
+                                                    <span class="ec-single-ps-title">As low as</span>
 
-                                                @*Price & Discount Price*@
+                                                    @*Price & Discount Price*@
 
-                                                @if (Model.Discount != null)
-                                                {
-                                                    var ogprice = Model.Price;
-                                                    var dcprice = Model.Discount;
-                                                    var newprice = ogprice - dcprice;
-
-                                                    <span class="ec-price" style="font-weight: 600; font-size: medium;"><del>Rs. @Model.Price</del></span>
-                                                    <span class="new-price">Rs. @newprice </span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="new-price">Rs. @Model.Price </span>
-                                                }
-
-                                            </div>
-                                            <div class="ec-single-stoke">
-                                                @foreach (var item in products.Where(x => x.ProductGUID == Model.ProductGUID))
-                                                {
-
-
-                                                    var lenght13 = pcolor.Where(x => x.Product == item.ProductGUID).ToList();
-                                                    if (lenght13.Count > 2)
+                                                    @if (Model.Discount != null)
                                                     {
-                                                        <span class="ec-single-ps-title">IN STOCK</span>
+                                                        var ogprice = Model.Price;
+                                                        var dcprice = Model.Discount;
+                                                        var newprice = ogprice - dcprice;
+
+                                                        <span class="ec-price" style="font-weight: 600; font-size: medium;"><del>Rs. @Model.Price</del></span>
+                                                        <span class="new-price">Rs. @newprice </span>
                                                     }
                                                     else
                                                     {
-
-                                                        <span class="ec-single-ps-title">Low IN STOCK</span>
-                                                    }
-                                                }
-
-
-                                                <span class="ec-single-sku">SKU#: @Model.SKU</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="ec-pro-variation">
-                                            <div class="ec-pro-variation-inner ec-pro-variation-size">
-                                                <span>SIZE</span>
-                                                <div class="ec-pro-variation-content">
-                                                    @foreach (var itemsss in psize.Where(x => x.Product == Model.ProductGUID))
-                                                    {
-                                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                                                        {
-                                                            <ul>
-                                                                <li><span>@item.DisplayName</span></li>
-                                                            </ul>
-                                                        }
+                                                        <span class="new-price">Rs. @Model.Price </span>
                                                     }
 
                                                 </div>
-                                            </div>
-                                            <div class="ec-pro-variation-inner ec-pro-variation-color">
-                                                <span>Color</span>
-                                                <div class="ec-pro-variation-content">
-
-                                                    @*Colors*@
-
-                                                    @foreach (var items in pcolor.Where(x => x.Product == Model.ProductGUID))
+                                                <div class="ec-single-stoke">
+                                                    @foreach (var item in products.Where(x => x.ProductGUID == Model.ProductGUID))
                                                     {
-                                                        foreach (var item in colors.Where(x => x.ColorID == items.AvialableColor))
+
+
+                                                        var lenght13 = pcolor.Where(x => x.Product == item.ProductGUID).ToList();
+                                                        if (lenght13.Count > 2)
                                                         {
-                                                            <ul>
-                                                                <li>
-
-                                                                    <span style="background-color:@item.ColorHash;"></span>
-                                                                </li>
-                                                            </ul>
-
-                                                        }
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ec-single-qty">
-                                            <input type="hidden" id="maxProductStock" value="@Model.UnitsInStock" />
-                                            <div class="qty-plus-minus">
-                                                <input id="proQty" class="qty-input" type="text" name="ec_qtybtn" value="1" />
-                                            </div>
-                                            <div class="ec-single-cart ">
-                                                <button class="btn btn-primary" id="addtocart">Add To Cart</button>
-                                            </div>
-                                            <div class="ec-single-wishlist">
-                                                <a class="ec-btn-group wishlist" title="Wishlist">
-                                                    <img src="~/Theme/assets/images/icons/wishlist.svg" class="svg_img pro_svg"
-                                                         alt="" />
-                                                </a>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Single product content End -->
-                    <!-- Single product tab start -->
-                    <div class="ec-single-pro-tab">
-                        <div class="ec-single-pro-tab-wrapper">
-                            <div class="ec-single-pro-tab-nav">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab"
-                                           data-bs-target="#ec-spt-nav-details" role="tablist">Detail</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
-                                           role="tablist">More Information</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-return-and-exchnage"
-                                           role="tablist">Return & Exchnage</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-delivery"
-                                           role="tablist">Delivery & Shipping Pricing</a>
-                                    </li>
-                                    @*<li class="nav-item">
-                                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
-                                               role="tablist">Reviews</a>
-                                        </li>*@
-                                </ul>
-                            </div>
-                            <div class="tab-content  ec-single-pro-tab-content">
-                                <div id="ec-spt-nav-details" class="tab-pane fade show active">
-                                    <div class="ec-single-pro-tab-desc">
-                                        <p>
-                                            @Model.ProductLongDesc
-                                        </p>
-
-                                    </div>
-                                </div>
-                                <div id="ec-spt-nav-info" class="tab-pane fade">
-                                    <div class="ec-single-pro-tab-moreinfo">
-                                        <ul>
-                                            <li><span>Weight</span> @Model.UnitWeight</li>
-                                            @*@foreach (var item in products.Where(x => x.ProductGUID == Model.ProductGUID))
-                                                {
-                                                    var colids = pcolor.Where(x => x.Product == item.ProductGUID).ToList();
-                                                    var colname = "";
-                                                    var count = 1;
-                                                    foreach (var itemss in colids)
-                                                    {
-                                                        var colename = colors.Where(x => x.ColorID == itemss.AvialableColorID).FirstOrDefault().ColorName;
-                                                        if (count == 1)
-                                                        {
-                                                            colname = colename;
+                                                            <span class="ec-single-ps-title">IN STOCK</span>
                                                         }
                                                         else
                                                         {
-                                                            colname = colname + ", " + colename;
+
+                                                            <span class="ec-single-ps-title">Low IN STOCK</span>
                                                         }
-                                                        count = count + 1;
                                                     }
 
 
-                                                            <li><span>Color</span> @colname</li>
-                                                }*@
-                                        </ul>
+                                                    <span class="ec-single-sku">SKU#: @Model.SKU</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="ec-pro-variation">
+                                                <div class="ec-pro-variation-inner ec-pro-variation-size">
+                                                    <span>SIZE</span>
+                                                    <div class="ec-pro-variation-content">
+                                                        @foreach (var itemsss in psize.Where(x => x.Product == Model.ProductGUID))
+                                                        {
+                                                            foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                                            {
+                                                                <ul>
+                                                                    <li><span>@item.DisplayName</span></li>
+                                                                </ul>
+                                                            }
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                                <div class="ec-pro-variation-inner ec-pro-variation-color">
+                                                    <span>Color</span>
+                                                    <div class="ec-pro-variation-content">
+
+                                                        @*Colors*@
+
+                                                        @foreach (var items in pcolor.Where(x => x.Product == Model.ProductGUID))
+                                                        {
+                                                            foreach (var item in colors.Where(x => x.ColorID == items.AvialableColor))
+                                                            {
+                                                                <ul>
+                                                                    <li>
+
+                                                                        <span style="background-color:@item.ColorHash;"></span>
+                                                                    </li>
+                                                                </ul>
+
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-single-qty">
+                                                <input type="hidden" id="maxProductStock" value="@Model.UnitsInStock" />
+                                                <div class="qty-plus-minus">
+                                                    <input id="proQty" class="qty-input" type="text" name="ec_qtybtn" value="1" />
+                                                </div>
+                                                <div class="ec-single-cart ">
+                                                    <button class="btn btn-primary" id="addtocart">Add To Cart</button>
+                                                </div>
+                                                @*<div class="ec-single-wishlist">
+                                        <a class="ec-btn-group wishlist" title="Wishlist">
+                                            <img src="~/Theme/assets/images/icons/wishlist.svg" class="svg_img pro_svg"
+                                                 alt="" />
+                                        </a>
+                                    </div>*@
+
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div id="ec-return-and-exchnage" class="tab-pane fade">
-                                    <div class="ec-single-pro-tab-moreinfo">
-                                        <h4>Return &amp; Exchange</h4><ul>
-                                            <li>This product doesn’t have any warranty.</li>
-                                            <li>This product is not returnable.</li>
-                                            <li>This product cannot be exchanged due to its low cost.</li>
-                                            <li>This product is not claimable although if the product was already damaged on arrival then you can claim it.</li>
-                                        </ul>
-                                        <p>Read our Return &amp; Exchange Policy <a href="https://www.mwear.pk/returns-exchange-policy/">here.</a></p>
-
-                                    </div>
-                                </div>
-
-
-                                <div id="ec-delivery" class="tab-pane fade">
-                                    <div>
-                                        <h2>Delivery &amp; Shipping Pricing</h2>
-                                        <p>Mwear Provides <span style="color: #f29900;"><strong>Free Shipping</strong></span> on Shopping above <strong>1500Rs</strong> in <strong>Karachi (Normal Shipping 100Rs)</strong>, above <strong>3500Rs</strong> in the Rest of <strong>Sindh(Normal Shipping 350Rs)</strong>, and Above <strong>5500Rs</strong> in <strong>Punjab(Normal Shipping 350Rs)</strong>, <strong>KPK(Normal Shipping 350Rs)</strong>, <strong>Balochistan(Normal Shipping 350Rs)</strong>, And <strong>Azad Kashmir(Normal Shipping 350Rs)</strong>. and Your order is expected to be delivered within 7 business days as an average expected delivery time. However, delivery time may exceed due to the high volume of order logs during the sale season.</p>
-                                        
-
-                                    </div>
-                                </div>
-                                
                             </div>
                         </div>
-                    </div>
-                    <!-- product details description area end -->
+                        <!--Single product content End -->
+
+
+                        <!-- Single product tab start -->
+                        <div class="ec-single-pro-tab">
+                            <div class="ec-single-pro-tab-wrapper">
+                                <div class="ec-single-pro-tab-nav">
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-bs-toggle="tab"
+                                               data-bs-target="#ec-spt-nav-details" role="tablist">Detail</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
+                                               role="tablist">More Information</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-return-and-exchnage"
+                                               role="tablist">Return & Exchnage</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-delivery"
+                                               role="tablist">Delivery & Shipping Pricing</a>
+                                        </li>
+                                        @*<li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
+                                   role="tablist">Reviews</a>
+                            </li>*@
+                                    </ul>
+                                </div>
+                                <div class="tab-content  ec-single-pro-tab-content">
+                                    <div id="ec-spt-nav-details" class="tab-pane fade show active">
+                                        <div class="ec-single-pro-tab-desc">
+                                            <p>
+                                                @Model.ProductLongDesc
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    <div id="ec-spt-nav-info" class="tab-pane fade">
+                                        <div class="ec-single-pro-tab-moreinfo">
+                                            <ul>
+                                                <li><span>Weight</span> @Model.UnitWeight</li>
+                                                @*@foreach (var item in products.Where(x => x.ProductGUID == Model.ProductGUID))
+                                    {
+                                        var colids = pcolor.Where(x => x.Product == item.ProductGUID).ToList();
+                                        var colname = "";
+                                        var count = 1;
+                                        foreach (var itemss in colids)
+                                        {
+                                            var colename = colors.Where(x => x.ColorID == itemss.AvialableColorID).FirstOrDefault().ColorName;
+                                            if (count == 1)
+                                            {
+                                                colname = colename;
+                                            }
+                                            else
+                                            {
+                                                colname = colname + ", " + colename;
+                                            }
+                                            count = count + 1;
+                                        }
+
+
+                                                <li><span>Color</span> @colname</li>
+                                    }*@
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div id="ec-return-and-exchnage" class="tab-pane fade">
+                                        <div class="ec-single-pro-tab-moreinfo">
+                                            <h4>Return &amp; Exchange</h4><ul>
+                                                <li>This product doesn’t have any warranty.</li>
+                                                <li>This product is not returnable.</li>
+                                                <li>This product cannot be exchanged due to its low cost.</li>
+                                                <li>This product is not claimable although if the product was already damaged on arrival then you can claim it.</li>
+                                            </ul>
+                                            <p>Read our Return &amp; Exchange Policy <a href="https://www.mwear.pk/returns-exchange-policy/">here.</a></p>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div id="ec-delivery" class="tab-pane fade">
+                                        <div>
+                                            <h2>Delivery &amp; Shipping Pricing</h2>
+                                            <p style="font-weight:800">
+                                                •	MWEAR Provides “Free Shipping” on Shopping above 1500 Rs in Karachi (Normal Shipping 100 Rs).<br />
+                                                •	MWEAR Provides “Free Shipping” on Shopping above 3500 Rs in Sindh (Normal Shipping 350 Rs).<br />
+                                                •	MWEAR Provides “Free Shipping” on Shopping above 5500 Rs in Punjab (Normal Shipping 350 Rs)<br />
+                                                •	MWEAR Provides “Free Shipping” on Shopping above 5500 Rs in  Balochistan (Normal Shipping 350 Rs)<br />
+                                                •	MWEAR Provides “Free Shipping” on Shopping above 5500 Rs in KPK (Normal Shipping 350 Rs)<br />
+
+                                                •	MWEAR Provides “Free Shipping” on Shopping above 5500 Rs in Azad Kashmir (Normal Shipping 350 Rs)<br />
+
+                                                and your order is expected to be delivered within 7 business days as an average expected delivery time However, delivery time may exceed due to the high volume of order logs during the sale season.
+                                            </p>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- product details description area end -->
+
+
+                    }
+
+
+
+
                 </div>
                 <!-- Sidebar Area Start -->
                 <div class="ec-pro-leftside ec-common-leftside col-lg-3 col-md-12">
@@ -445,6 +519,7 @@
                 </div>
             </div>
         </div>
+            </div>
     </section>
     <!-- End Single product -->
     <!-- Related Product Start -->
@@ -465,7 +540,7 @@
                 @foreach (var item in related.Where(x => x.Product == Model.ProductGUID && x.Active == true))
                 {
 
-                    foreach (var items in products.Where(x => x.Available == true && x.ProductGUID == item.RelatedProduct1).OrderByDescending(x => x.ProductID).Take(8))
+                    foreach (var items in products.Where(x => x.Available == true && x.ProductGUID == item.RelatedProduct1 && x.UnitsInStock != 0 && x.Available == true).OrderByDescending(x => x.ProductID).Take(8))
                     {
 
                         var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
@@ -489,12 +564,140 @@
                         var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
                         var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
 
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <!-- START single card -->
+                            <div class="ec-product-lsc" style="margin-top: 10px;">
+                                <div class="ec-product-image">
+                                    <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
+                                        <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
+                                    </a>
+                                    <span class="ec-product-ribbon">New</span>
+                                </div>
+                                <div class="ec-product-body">
+
+                                    <p class="ec-description">
+                                        @catname
+                                        @if (items.UnitsInStock <= 2)
+                                        {
+
+                                            <span>Low stock</span>
+                                        }
+                                        else
+                                        {
+                                            <span>In stock</span>
+                                        }
+                                    </p>
+                                    <div class="col-sm-12">
+                                        <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">@items.ProductName</a></p>
+                                    </div>
+                                    <div class="ec-el-price">
+                                        @if (items.Discount != null)
+                                        {
+                                            var ogprice = items.Price;
+                                            var dcprice = items.Discount;
+                                            var newprice = ogprice - dcprice;
+                                            <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
+                                            <br />
+                                            <p class="ec-o-price"> Rs. @newprice </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="ec-o-price"> Rs. @items.Price </p>
+                                        }
+
+                                    </div>
+                                    @if (lenght12.Count >= 1 || lenght13.Count >= 1)
+                                    {
+
+                                        <div class="ec-color">
+                                            <div class="ec-pro-color">
+                                                <span class="ec-pro-opt-label">Color</span>
+                                                <ul class="ec-opt-swatch ec-change-img">
+                                                    @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                                    {
+                                                        foreach (var itemss in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                        {
+
+
+                                                            <li class="active">
+                                                                <a class="ec-opt-clr-img">
+                                                                    <span style="background-color:@itemss.ColorHash;"></span>
+                                                                </a>
+                                                            </li>
+
+                                                        }
+                                                    }
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                        <br>
+
+                                        <br>
+                                        <div class="ec-size" style="margin-top: -15px;">
+                                            <span class="ec-pro-opt-label">Size</span>
+                                            @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
+                                            {
+                                                foreach (var itemss in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                                {
+                                                    <a style="width:auto; padding-left:5px; padding-right:5px;">@itemss.DisplayName</a>
+                                                }
+                                            }
+                                        </div>
+                                    }
+
+                                    <div class="ec-link-btn" style="margin-top:10px;">
+
+                                        @if (lenght12.Count > 1 || lenght13.Count > 1)
+                                        {
+
+                                            <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">Select Product Options</a>
+                                        }
+                                        else
+                                        {
+
+                                            <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                }
+                <!-- Custom tile Ends -->
+
+                @foreach (var itemsss in relProductList)
+                {
+                    var proDetail = products.Where(x => x.ProductGUID == itemsss.Product && x.Active == true && x.UnitsInStock != 0 && x.Available == true).FirstOrDefault();
+                    var catids = pcategory.Where(x => x.Product == itemsss.Product).ToList();
+                    var catname = "";
+                    var count = 1;
+                    foreach (var itemss in catids)
+                    {
+                        var catename = categories.Where(x => x.CategoryID == itemss.Category).FirstOrDefault().CategoryName;
+                        if (count == 1)
+                        {
+                            catname = catename;
+                        }
+                        else
+                        {
+                            catname = catname + ", " + catename;
+                        }
+                        count = count + 1;
+                    }
+
+
+                    //var lenght12 = psize.Where(x => x.Product == itemsss.Product).ToList();
+
+                    //var lenght13 = pcolor.Where(x => x.Product == itemsss.Product).ToList();
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <!-- START single card -->
                         <div class="ec-product-lsc" style="margin-top: 10px;">
                             <div class="ec-product-image">
-                                <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
-                                    <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
+                                <a href="@Url.Action("Index", "ProductDetail", new { ProID = proDetail.ProductGUID })">
+                                    <img src="~/Images/Products/@proDetail.Picture" class="img-center" alt="@proDetail.Picture">
                                 </a>
                                 <span class="ec-product-ribbon">New</span>
                             </div>
@@ -502,7 +705,7 @@
 
                                 <p class="ec-description">
                                     @catname
-                                    @if (items.UnitsInStock <= 2)
+                                    @if (proDetail.UnitsInStock <= 2)
                                     {
 
                                         <span>Low stock</span>
@@ -513,47 +716,43 @@
                                     }
                                 </p>
                                 <div class="col-sm-12">
-                                    <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">@items.ProductName</a></p>
+                                    <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = itemsss.Product })">@proDetail.ProductName</a></p>
                                 </div>
                                 <div class="ec-el-price">
-                                    @if (items.Discount != null)
+                                    @if (proDetail.Discount != null)
                                     {
-                                        var ogprice = items.Price;
-                                        var dcprice = items.Discount;
+                                        var ogprice = proDetail.Price;
+                                        var dcprice = proDetail.Discount;
                                         var newprice = ogprice - dcprice;
-                                        <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
+                                        <p class="ec-d-price" style="margin-left:-60px;"> Rs. @proDetail.Price </p>
                                         <br />
                                         <p class="ec-o-price"> Rs. @newprice </p>
                                     }
                                     else
                                     {
-                                        <p class="ec-o-price"> Rs. @items.Price </p>
+                                        <p class="ec-o-price"> Rs. @proDetail.Price </p>
                                     }
 
                                 </div>
-
+                                
 
                                 <div class="ec-link-btn" style="margin-top:10px;">
 
-                                    @if (lenght12.Count > 1 || lenght13.Count > 1)
-                                    {
+                                   
 
-                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">Select Product Options</a>
-                                    }
-                                    else
-                                    {
-
-                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
-                                    }
+                                        <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = proDetail.ProductGUID })">View Product</a>
+                                    
 
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    }
                 }
-                <!-- Custom tile Ends -->
+
+
+
+
+
             </div>
         </div>
     </section>

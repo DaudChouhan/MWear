@@ -22,6 +22,7 @@ namespace MWear.Controllers
             ViewBag.Products = db.Products.Where(x => x.Active == true).ToList();
             var categories = db.Categories.Where(x => x.Active == true).ToList();
             ViewBag.Categories = categories;
+
             var productCategory = db.ProductCategories.ToList();
             ViewBag.productCategory = productCategory;
 

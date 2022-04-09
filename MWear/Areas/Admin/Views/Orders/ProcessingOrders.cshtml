@@ -94,8 +94,9 @@
                                                     </button>
 
                                                     <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="@Url.Action("OrderDetail", "Orders", new { OrderID = item.OrderGuid})">View Details</a>
                                                         <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Delivered"})">Delivered</a>
-                                                        @*<a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Canceled"})">Cancel</a>*@
+                                                        <a class="dropdown-item" href="@Url.Action("ChangeStatus", "Orders", new { orderNo = item.OrderID,status = "Canceled"})">Cancel</a>
                                                     </div>
                                                 </div>
                                             </td>

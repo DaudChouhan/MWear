@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
                                 <div class="ec-slide-content slider-animation">
-                                    <a href="@Url.Action("Index","Shop",new {pagenumber=1 })" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
+                                    <a href="@Url.Action("Index","Shop")" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                         <div class="row">
                             <!-- Product Content -->
                             <!-- Custom Tile Starts -->
-                            @foreach (var items in products.Where(x => x.Available == true && x.Featured == true).OrderByDescending(x => x.ProductID).Take(8))
+                            @foreach (var items in products.Where(x => x.Available == true && x.Featured == true && x.UnitsInStock != 0).OrderByDescending(x => x.ProductID).Take(8))
                             {
 
                                 var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
@@ -137,100 +137,100 @@
 
                                             <p class="ec-description">
                                                 @catname
-                                            @if (items.UnitsInStock <= 2)
-                                            {
+                                                @if (items.UnitsInStock <= 2)
+                                                {
 
-                                                <span>Low stock</span>
-                                            }
-                                            else
-                                            {
-                                                <span>In stock</span>
-                                            }
-                                        </p>
+                                                    <span>Low stock</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>In stock</span>
+                                                }
+                                            </p>
                                             <div class="col-sm-12">
                                                 <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></p>
                                             </div>
-                                        <div class="ec-el-price">
-                                            @if (items.Discount != null)
-                                            {
-                                                var ogprice = items.Price;
-                                                var dcprice = items.Discount;
-                                                var newprice = ogprice - dcprice;
-                                                <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
-                                                <br />
-                                                <p class="ec-o-price"> Rs. @newprice </p>
-                                            }
-                                            else
-                                            {
-                                                <p class="ec-o-price"> Rs. @items.Price </p>
-                                            }
-
-                                        </div>
-                                        @*@if (lenght12.Count > 1 || lenght13.Count > 1)
-                                        {
-                                        
-                                        <div class="ec-color">
-                                            <div class="ec-pro-color">
-                                                <span class="ec-pro-opt-label">Color</span>
-                                                <ul class="ec-opt-swatch ec-change-img">
-                                                    @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                                                    {
-                                                        foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
-                                                        {
-
-
-                                                            <li class="active">
-                                                                <a class="ec-opt-clr-img"
-                                                                   data-src="~/Images/Products/@items.Picture"
-                                                                   data-src-hover="~/Images/Products/@items.Picture"
-                                                                   data-tooltip="Gray">
-                                                                    <span style="background-color:@item.ColorHash;"></span>
-                                                                </a>
-                                                            </li>
-
-                                                        }
-                                                    }
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <br>
-
-                                        <br>
-                                        <div class="ec-size" style="margin-top: -15px;">
-                                            @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                                            {
-                                                foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                            <div class="ec-el-price">
+                                                @if (items.Discount != null)
                                                 {
-                                                    <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
+                                                    var ogprice = items.Price;
+                                                    var dcprice = items.Discount;
+                                                    var newprice = ogprice - dcprice;
+                                                    <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
+                                                    <br />
+                                                    <p class="ec-o-price"> Rs. @newprice </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="ec-o-price"> Rs. @items.Price </p>
+                                                }
+
+                                            </div>
+                                            @*@if (lenght12.Count > 1 || lenght13.Count > 1)
+                                {
+
+                                <div class="ec-color">
+                                    <div class="ec-pro-color">
+                                        <span class="ec-pro-opt-label">Color</span>
+                                        <ul class="ec-opt-swatch ec-change-img">
+                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                            {
+                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                {
+
+
+                                                    <li class="active">
+                                                        <a class="ec-opt-clr-img"
+                                                           data-src="~/Images/Products/@items.Picture"
+                                                           data-src-hover="~/Images/Products/@items.Picture"
+                                                           data-tooltip="Gray">
+                                                            <span style="background-color:@item.ColorHash;"></span>
+                                                        </a>
+                                                    </li>
+
                                                 }
                                             }
-                                        </div>
-                                        }*@
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <br>
+
+                                <br>
+                                <div class="ec-size" style="margin-top: -15px;">
+                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
+                                    {
+                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                        {
+                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
+                                        }
+                                    }
+                                </div>
+                                }*@
 
 
-                                        <div class="ec-link-btn" style="margin-top:10px;">
+                                            <div class="ec-link-btn" style="margin-top:10px;">
 
-                                            @if (lenght12.Count > 1 || lenght13.Count > 1)
-                                            {
+                                                @if (lenght12.Count > 1 || lenght13.Count > 1)
+                                                {
 
-                                                <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">Select Product Options</a>
-                                            }
-                                            else
-                                            {
+                                                    <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">Select Product Options</a>
+                                                }
+                                                else
+                                                {
 
-                                                <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">View Product</a>
-                                            }
+                                                    <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">View Product</a>
+                                                }
 
-                                            @*<div class="ec-link-icon">
+                                                @*<div class="ec-link-icon">
 
-                                                <a href="#" data-tip="Add to Wishlist">
-                                                    <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                                                </a>
-                                              
-                                            </div>*@
-                                        </div>
+                                        <a href="#" data-tip="Add to Wishlist">
+                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
+                                        </a>
+
+                                    </div>*@
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -242,7 +242,7 @@
 
 
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop")">Shop All Collection</a></div>
 
 
                         </div>
@@ -254,114 +254,148 @@
                         <div class="row">
                             <!-- Product Content -->
                             <!-- Custom Tile Starts -->
-                            @foreach (var item in categories.Where(x => x.Active == true))
+                            @foreach (var items in products.Where(x => x.Available == true && x.Featured == true && x.UnitsInStock != 0 && x.ProductName.Contains("Men")).OrderByDescending(x => x.ProductID).Take(8))
                             {
-                                var cat = item.CategoryID;
-                                foreach (var itemss in pcategory.Where(x => x.Category == cat))
+
+                                var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
+                                var catname = "";
+                                var count = 1;
+                                foreach (var itemss in catids)
+                                {
+                                    var catename = categories.Where(x => x.CategoryID == itemss.Category).FirstOrDefault().CategoryName;
+                                    if (count == 1)
+                                    {
+                                        catname = catename;
+                                    }
+                                    else
+                                    {
+                                        catname = catname + ", " + catename;
+                                    }
+                                    count = count + 1;
+                                }
+
+
+                                var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
+                                var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
+
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <!-- START single card -->
+                                    <div class="ec-product-lsc" style="margin-top: 10px;">
+                                        <div class="ec-product-image">
+                                            <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">
+                                                <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
+                                            </a>
+                                            @*<span class="ec-product-ribbon">New</span>*@
+                                        </div>
+                                        <div class="ec-product-body">
+
+                                            <p class="ec-description">
+                                                @catname
+                                                @if (items.UnitsInStock <= 2)
+                                                {
+
+                                                    <span>Low stock</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>In stock</span>
+                                                }
+                                            </p>
+                                            <div class="col-sm-12">
+                                                <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></p>
+                                            </div>
+                                            <div class="ec-el-price">
+                                                @if (items.Discount != null)
+                                                {
+                                                    var ogprice = items.Price;
+                                                    var dcprice = items.Discount;
+                                                    var newprice = ogprice - dcprice;
+                                                    <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
+                                                    <br />
+                                                    <p class="ec-o-price"> Rs. @newprice </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="ec-o-price"> Rs. @items.Price </p>
+                                                }
+
+                                            </div>
+                                            @*@if (lenght12.Count > 1 || lenght13.Count > 1)
                                 {
 
-                                    var pro = itemss.Product;
-                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Men")).OrderByDescending(x => x.ProductID).Take(8))
+                                <div class="ec-color">
+                                    <div class="ec-pro-color">
+                                        <span class="ec-pro-opt-label">Color</span>
+                                        <ul class="ec-opt-swatch ec-change-img">
+                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                            {
+                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                {
+
+
+                                                    <li class="active">
+                                                        <a class="ec-opt-clr-img"
+                                                           data-src="~/Images/Products/@items.Picture"
+                                                           data-src-hover="~/Images/Products/@items.Picture"
+                                                           data-tooltip="Gray">
+                                                            <span style="background-color:@item.ColorHash;"></span>
+                                                        </a>
+                                                    </li>
+
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <br>
+
+                                <br>
+                                <div class="ec-size" style="margin-top: -15px;">
+                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
                                     {
-                                 
-
-                                        var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
-                                        var catname = "";
-                                        var count = 1;
-                                        foreach (var itemscat in catids)
+                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
                                         {
-                                                            var catename = categories.Where(x => x.CategoryID == itemscat.Category).FirstOrDefault().CategoryName;
-                                                            if (count == 1)
-                                                            {
-                                                                catname = catename;
-                                                            }
-                                                            else
-                                                            {
-                                                                catname = catname + ", " + catename;
-                                                            }
-                                                            count = count + 1;
-                                                        }
+                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
+                                        }
+                                    }
+                                </div>
+                                }*@
 
 
-                                                                    var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
-                                                                    var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
+                                            <div class="ec-link-btn" style="margin-top:10px;">
 
-                                                            <div class="col-lg-3 col-md-6 col-sm-6">
-                                                                <!-- START single card -->
-                                                                <div class="ec-product-lsc" style="margin-top: 10px;">
-                                                                    <div class="ec-product-image">
-                                                                        <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
-                                                                            <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
-                                                                        </a>
-                                                                        @*<span class="ec-product-ribbon">New</span>*@
-                                                                    </div>
-                                                                    <div class="ec-product-body">
+                                                @if (lenght12.Count > 1 || lenght13.Count > 1)
+                                                {
 
-                                                                        <p class="ec-description">
-                                                                            @catname
-                                                                            @if (items.UnitsInStock <= 2)
-                                                                            {
+                                                    <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">Select Product Options</a>
+                                                }
+                                                else
+                                                {
 
-                                                                                <span>Low stock</span>
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                <span>In stock</span>
-                                                                            }
-                                                                        </p>
-                                                                        <div class="col-sm-12">
-                                                                            <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></p>
-                                                                        </div>
-                                                                        <div class="ec-el-price">
-                                                                            @if (items.Discount != null)
-                                                                            {
-                                                                                var ogprice = items.Price;
-                                                                                var dcprice = items.Discount;
-                                                                                var newprice = ogprice - dcprice;
-                                                                                <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
-                                                                                <br />
-                                                                                <p class="ec-o-price"> Rs. @newprice </p>
-                                                                            }
-                                                                            else
-                                                                            {
-                                                                                <p class="ec-o-price"> Rs. @items.Price </p>
-                                                                            }
+                                                    <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">View Product</a>
+                                                }
 
-                                                                        </div>
+                                                @*<div class="ec-link-icon">
 
+                                        <a href="#" data-tip="Add to Wishlist">
+                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
+                                        </a>
 
-
-                                                                        <div class="ec-link-btn" style="margin-top:10px;">
-
-                                                                            @if (lenght12.Count > 1 || lenght13.Count > 1)
-                                                                            {
-
-                                                                                <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">Select Product Options</a>
-                                                                            }
-                                                                            else
-                                                                            {
-
-                                                                                <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
-                                                                            }
-
-
-                                                                        </div>
-                                                                    </div>
+                                    </div>*@
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
-                                    }
-                                }
                             }
                             <!-- Custom tile Ends -->
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop")">Shop All Collection</a></div>
                         </div>
                     </div>
                     <!-- ec 2nd Product tab end -->
-
-
-
                     <!-- ec 3rd Product tab start -->
                     <div class="tab-pane fade" id="tab-pro-for-women">
                         <div class="row">
@@ -369,153 +403,154 @@
 
 
                             <!-- Custom Tile Starts -->
-                            @foreach (var item in categories.Where(x => x.Active == true))
+                            @foreach (var items in products.Where(x => x.Available == true && x.Featured == true && x.UnitsInStock != 0 && x.ProductName.Contains("Women")).OrderByDescending(x => x.ProductID).Take(8))
                             {
-                                var cat = item.CategoryID;
-                                foreach (var itemss in pcategory.Where(x => x.Category == cat))
+
+                                var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
+                                var catname = "";
+                                var count = 1;
+                                foreach (var itemss in catids)
                                 {
-                                    var pro = itemss.Product;
-                                    foreach (var items in products.Where(x => x.ProductGUID == pro && x.Active == true && x.Featured == true && x.ProductName.Contains("Women")).OrderByDescending(x => x.ProductID).Take(8))
+                                    var catename = categories.Where(x => x.CategoryID == itemss.Category).FirstOrDefault().CategoryName;
+                                    if (count == 1)
                                     {
+                                        catname = catename;
+                                    }
+                                    else
+                                    {
+                                        catname = catname + ", " + catename;
+                                    }
+                                    count = count + 1;
+                                }
 
 
-                                        var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
-                                        var catname = "";
-                                        var count = 1;
-                                        foreach (var itemscat in catids)
+                                var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
+                                var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
+
+                                <div class="col-lg-3 col-md-6 col-sm-6">
+                                    <!-- START single card -->
+                                    <div class="ec-product-lsc" style="margin-top: 10px;">
+                                        <div class="ec-product-image">
+                                            <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">
+                                                <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
+                                            </a>
+                                            @*<span class="ec-product-ribbon">New</span>*@
+                                        </div>
+                                        <div class="ec-product-body">
+
+                                            <p class="ec-description">
+                                                @catname
+                                                @if (items.UnitsInStock <= 2)
+                                                {
+
+                                                    <span>Low stock</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>In stock</span>
+                                                }
+                                            </p>
+                                            <div class="col-sm-12">
+                                                <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></p>
+                                            </div>
+                                            <div class="ec-el-price">
+                                                @if (items.Discount != null)
+                                                {
+                                                    var ogprice = items.Price;
+                                                    var dcprice = items.Discount;
+                                                    var newprice = ogprice - dcprice;
+                                                    <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
+                                                    <br />
+                                                    <p class="ec-o-price"> Rs. @newprice </p>
+                                                }
+                                                else
+                                                {
+                                                    <p class="ec-o-price"> Rs. @items.Price </p>
+                                                }
+
+                                            </div>
+                                            @*@if (lenght12.Count > 1 || lenght13.Count > 1)
+                                {
+
+                                <div class="ec-color">
+                                    <div class="ec-pro-color">
+                                        <span class="ec-pro-opt-label">Color</span>
+                                        <ul class="ec-opt-swatch ec-change-img">
+                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                            {
+                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                {
+
+
+                                                    <li class="active">
+                                                        <a class="ec-opt-clr-img"
+                                                           data-src="~/Images/Products/@items.Picture"
+                                                           data-src-hover="~/Images/Products/@items.Picture"
+                                                           data-tooltip="Gray">
+                                                            <span style="background-color:@item.ColorHash;"></span>
+                                                        </a>
+                                                    </li>
+
+                                                }
+                                            }
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <br>
+
+                                <br>
+                                <div class="ec-size" style="margin-top: -15px;">
+                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
+                                    {
+                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
                                         {
-                                            var catename = categories.Where(x => x.CategoryID == itemscat.Category).FirstOrDefault().CategoryName;
-                                            if (count == 1)
-                                            {
-                                                catname = catename;
-                                            }
-                                            else
-                                            {
-                                                catname = catname + ", " + catename;
-                                            }
-                                            count = count + 1;
+                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
                                         }
+                                    }
+                                </div>
+                                }*@
 
 
-                                        var lenght12 = psize.Where(x => x.Product == items.ProductGUID).ToList();
-                                        var lenght13 = pcolor.Where(x => x.Product == items.ProductGUID).ToList();
+                                            <div class="ec-link-btn" style="margin-top:10px;">
 
-                                        <div class="col-lg-3 col-md-6 col-sm-6">
-                                            <!-- START single card -->
-                                            <div class="ec-product-lsc" style="margin-top: 10px;">
-                                                <div class="ec-product-image">
-                                                    <a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">
-                                                        <img src="~/Images/Products/@items.Picture" class="img-center" alt="@items.Picture">
-                                                    </a>
-                                                    @*<span class="ec-product-ribbon">New</span>*@
-                                                </div>
-                                                <div class="ec-product-body">
+                                                @if (lenght12.Count > 1 || lenght13.Count > 1)
+                                                {
 
-                                                    <p class="ec-description">
-                                                        @catname
-                                                        @if (items.UnitsInStock <= 2)
-                                                        {
+                                                    <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">Select Product Options</a>
+                                                }
+                                                else
+                                                {
 
-                                                            <span>Low stock</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span>In stock</span>
-                                                        }
-                                                    </p>
-                                                    <div class="col-sm-12">
-                                                        <p style="font-size:15px;"><a href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">@items.ProductName</a></p>
-                                                    </div>
-                                                    <div class="ec-el-price">
-                                                        @if (items.Discount != null)
-                                                        {
-                                                            var ogprice = items.Price;
-                                                            var dcprice = items.Discount;
-                                                            var newprice = ogprice - dcprice;
-                                                            <p class="ec-d-price" style="margin-left:-60px;"> Rs. @items.Price </p>
-                                                            <br />
-                                                            <p class="ec-o-price"> Rs. @newprice </p>
-                                                        }
-                                                        else
-                                                        {
-                                                            <p class="ec-o-price"> Rs. @items.Price </p>
-                                                        }
+                                                    <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID})">View Product</a>
+                                                }
 
-                                                    </div>
-                                                    @if (lenght12.Count > 1 || lenght13.Count > 1)
-                                                    {
+                                                @*<div class="ec-link-icon">
 
-                                                        <div class="ec-color">
-                                                            <div class="ec-pro-color">
-                                                                <span class="ec-pro-opt-label">Color</span>
-                                                                <ul class="ec-opt-swatch ec-change-img">
-                                                                    @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                                                                    {
-                                                                        foreach (var itemcol in colors.Where(x => x.ColorID == itemsss.AvialableColor))
-                                                                        {
+                                        <a href="#" data-tip="Add to Wishlist">
+                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
+                                        </a>
 
-
-                                                                            <li class="active">
-                                                                                <a class="ec-opt-clr-img"
-                                                                                   data-src="~/Images/Products/@items.Picture"
-                                                                                   data-src-hover="~/Images/Products/@items.Picture"
-                                                                                   data-tooltip="Gray">
-                                                                                    <span style="background-color:@itemcol.ColorHash;"></span>
-                                                                                </a>
-                                                                            </li>
-
-                                                                        }
-                                                                    }
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <br>
-
-                                                        <br>
-                                                        <div class="ec-size" style="margin-top: -15px;">
-                                                            @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                                                            {
-                                                                foreach (var itemsiz in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                                                                {
-                                                                    <a style="width:auto; padding-left:5px; padding-right:5px;">@itemsiz.DisplayName</a>
-                                                                }
-                                                            }
-                                                        </div>
-                                                    }
-
-
-                                                    <div class="ec-link-btn" style="margin-top:10px;">
-
-                                                        @if (lenght12.Count > 1 || lenght13.Count > 1)
-                                                        {
-
-                                                            <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">Select Product Options</a>
-                                                        }
-                                                        else
-                                                        {
-
-                                                            <a class=" ec-add-to-cart" href="@Url.Action("Index", "ProductDetail", new { ProID = items.ProductGUID })">View Product</a>
-                                                        }
-
-
-                                                    </div>
-                                                </div>
+                                    </div>*@
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
 
-                                    }
-                                }
                             }
                             <!-- Custom tile Ends -->
 
+                            
 
 
 
 
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
+
+                    <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop")">Shop All Collection</a></div>
 
 
-                        </div>
+                </div>
                     </div>
                     <!-- ec 3rd Product tab end -->
 
@@ -607,7 +642,7 @@
 
 
             <!-- Custom Tile Starts -->
-            @foreach (var items in products.Where(x => x.Available == true).OrderByDescending(x => x.ProductID).Take(8))
+            @foreach (var items in products.Where(x => x.Available == true && x.UnitsInStock !=0).OrderByDescending(x => x.ProductID).Take(8))
             {
 
                 var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
@@ -751,7 +786,7 @@
 
 
 
-            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop",new { pagenumber=1 })">Shop All Collection</a></div>
+            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop")">Shop All Collection</a></div>
 
         </div>
     </div>
@@ -768,7 +803,7 @@
                 <span class="ec-offer-img" data-animation="zoomIn">@*<img src="#" alt="offer image" />*@</span>
                 <span class="ec-offer-desc">Wide Range</span>
                 <span class="ec-offer-price"></span>
-                <a class="btn btn-primary" href="@Url.Action("Index","Shop",new { pagenumber=1 })" data-animation="zoomIn">Shop Now</a>
+                <a class="btn btn-primary" href="@Url.Action("Index","Shop")" data-animation="zoomIn">Shop Now</a>
             </div>
         </div>
     </div>

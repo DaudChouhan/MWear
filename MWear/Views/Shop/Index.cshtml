@@ -10,8 +10,18 @@
     List<MWear.Models.AvailabeColor> pcolor = ViewBag.productColor;
     List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
     double TotalProductCount = ViewBag.ProductsCount;
-    var pageCount = Math.Ceiling((TotalProductCount / 20));
+    var pageCount = Math.Ceiling((TotalProductCount / 40));
     int currentPageNumber = ViewBag.pagenumber;
+    int pgno = 1;
+    if (ViewBag.PageNo != null)
+    {
+        pgno = ViewBag.PageNo;
+    }
+    int? selectedcatId = 0;
+    if (ViewBag.catId != null)
+    {
+        selectedcatId = ViewBag.catId;
+    }
 }
 
 
@@ -151,7 +161,7 @@
 
                                 
                                 <!-- Custom Tile Starts -->
-                                @foreach (var items in products.Where(x => x.Available == true).OrderByDescending(x => x.ProductID))
+                                @foreach (var items in products.Where(x => x.Available == true  && x.Available == true && x.UnitsInStock != 0).OrderByDescending(x => x.ProductID))
                                 {
 
                                     var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
@@ -164,11 +174,11 @@
                                         {
                                             catname = catename;
                                         }
-                                        else
-                                        {
-                                            catname = catname + ", " + catename;
-                                        }
-                                        count = count + 1;
+                                        //else
+                                        //{
+                                        //    catname = catname + ", " + catename;
+                                        //}
+                                        //count = count + 1;
                                     }
 
 
@@ -249,26 +259,37 @@
                         </div>
                         <!-- Ec Pagination Start -->
                         <div class="ec-pro-pagination">
-                            <span>Showing 20 out of @products.Count() item(s)</span>
+                            <span>Showing 40 out of @TotalProductCount item(s)</span>
                             <ul class="ec-pro-pagination-inner">
+                                @if (pgno > 1)
+                                {
+                                    var prevno = pgno -1;
+                                    <li><a class="next" href="@Url.Action("Index","Shop",new {CatId=selectedcatId,pageNo= prevno})"><i class="ecicon eci-angle-left"></i> Prev</a></li>
+                                }
 
                                 @for (int i = 1; i <= pageCount; i++)
                                 {
                                     if (currentPageNumber == i)
                                     {
-                                        <li><a class="active" href="@Url.Action("Index","Shop",new {pagenumber=i })">@i</a></li>
+                                        <li><a class="active" href="@Url.Action("Index","Shop",new {CatId=selectedcatId,pageNo=i })">@i</a></li>
                                     }
                                     else
                                     {
-                                        <li><a href="@Url.Action("Index","Shop",new {pagenumber=i })">@i</a></li>
+                                        <li><a href="@Url.Action("Index","Shop",new {CatId=selectedcatId,pageNo=i })">@i</a></li>
                                     }
                                 }
+                                @if (pgno < pageCount)
+                                {
+                                    var nextpage = pgno + 1;
+                                    <li><a class="next" href="@Url.Action("Index","Shop",new {CatId=selectedcatId,pageNo= nextpage})">Next <i class="ecicon eci-angle-right"></i></a></li>
+                                }
+
                                 @*<li><a class="active" href="~/Theme/#">1</a></li>
 
-                                <li><a href="~/Theme/#">3</a></li>
-                                <li><a href="~/Theme/#">4</a></li>
-                                <li><a href="~/Theme/#">5</a></li>
-                                <li><a class="next" href="~/Theme/#">Next <i class="ecicon eci-angle-right"></i></a></li>*@
+                                    <li><a href="~/Theme/#">3</a></li>
+                                    <li><a href="~/Theme/#">4</a></li>
+                                    <li><a href="~/Theme/#">5</a></li>*@
+
                             </ul>
                         </div>
                         <!-- Ec Pagination End -->

@@ -14,8 +14,21 @@ namespace MWear.Controllers
         mwearEntities db = new mwearEntities();
         HomeController home = new HomeController();
         // GET: Shop
-        public ActionResult Index(int? CatId,int pagenumber)
+        public ActionResult Index(int? CatId,int? pageNo)
         {
+            int pagenumber = 0;
+
+            if(pageNo == null)
+            {
+                pagenumber = 1;
+            }
+            else
+            {
+                pagenumber = (Int32)pageNo;
+            }
+            ViewBag.PageNo = pageNo;
+            ViewBag.catId = CatId;
+
             ViewBag.WebImages = db.WebImages.Where(x => x.Active == true).ToList();
             var productsCount = db.Products.Where(x => x.Active == true).Count();
 
@@ -32,7 +45,8 @@ namespace MWear.Controllers
             ViewBag.pagenumber = pagenumber;
 
             //Pagination testing
-            var products = db.Products.Where(x => x.Active == true).OrderByDescending(x => x.ProductID).Skip((pagenumber - 1) * 20).Take(20).ToList();
+            List<Product> products = new List<Product>();
+            
 
 
             var sizes = db.Sizes.Where(x => x.Active == true).ToList();
@@ -42,16 +56,22 @@ namespace MWear.Controllers
 
             var pictures = db.Pictures.ToList();
             ViewBag.Pictures = pictures;
-
+            var procount = 0;
             if (CatId != null  && CatId != 0)
             {
                 var catsearch = db.Categories.Where(x => (x.ParentCategory == CatId || x.CategoryID == CatId) && x.Active == true).Select(x => x.CategoryID).ToList();
                 var procat = db.ProductCategories.Where(x => catsearch.Contains(x.Category)).Select(x => x.Product).ToList();
-                products = products.Where(x => procat.Contains(x.ProductGUID)).ToList();
+                products = db.Products.Where(x => procat.Contains(x.ProductGUID) && x.Active == true && x.Available == true && x.UnitsInStock != 0).OrderByDescending(x => x.ProductID).Skip((pagenumber - 1) * 40).Take(40).ToList();
+                procount = db.Products.Where(x => procat.Contains(x.ProductGUID) && x.Active == true && x.Available == true && x.UnitsInStock != 0).Count();
 
             }
+            else
+            {
+                products = db.Products.Where(x => x.Active == true && x.Available == true && x.UnitsInStock != 0).OrderByDescending(x => x.ProductID).Skip((pagenumber - 1) * 40).Take(40).ToList();
+                procount = db.Products.Where(x => x.Active == true && x.Available == true && x.UnitsInStock != 0).Count();
+            }
             ViewBag.Products = products;
-            ViewBag.ProductsCount = productsCount;
+            ViewBag.ProductsCount = procount;
             TempData["cat"] = home.category();
             TempData.Keep();
             return View();
