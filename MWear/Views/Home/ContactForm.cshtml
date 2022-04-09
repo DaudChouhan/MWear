@@ -46,50 +46,54 @@
                             </div>
                         }
 
-                        <div class="ec-contact-form">
+                    <div class="ec-contact-form">
 
 
-                            @using (Html.BeginForm("ContactForm", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
-                            {
+                        @using (Html.BeginForm("ContactForm", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
+                        {
+                            @Html.AntiForgeryToken()
 
-                                <span class="ec-contact-wrap">
-                                    <label>First Name*</label>
-                                    <input type="text" name="FirstName" placeholder="Enter your first name"
-                                           required />
-                                </span>
-                                <span class="ec-contact-wrap">
-                                    <label>Last Name*</label>
-                                    <input type="text" name="LastName" placeholder="Enter your last name"
-                                           required />
-                                </span>
-                                <span class="ec-contact-wrap">
-                                    <label>Email*</label>
-                                    <input type="email" name="ContactEmail" placeholder="Enter your email address"
-                                           required />
-                                </span>
-                                <span class="ec-contact-wrap">
-                                    <label>Phone Number*</label>
-                                    <input type="text" name="ContactPhone" placeholder="Enter your phone number"
-                                           required />
-                                </span>
-                                <span class="ec-contact-wrap">
-                                    <label>Comments/Questions*</label>
-                                    <textarea name="ContactMessage"
-                                              placeholder="Please leave your comments here.."></textarea>
-                                </span>
-                                <div id="divcaptcha"></div>
-                                <span class="ec-contact-wrap" style="margin-bottom:10px;">
-                                    <input type="text" id="txtcaptcha" style="display:none" required />
+                            <span class="ec-contact-wrap">
 
-                                </span>
+                                <label>First Name*</label>
+                                <input type="text" name="FirstName" placeholder="Enter your first name"
+                                       required />
+                            </span>
+                            <span class="ec-contact-wrap">
+                                <label>Last Name*</label>
+                                <input type="text" name="LastName" placeholder="Enter your last name"
+                                       required />
+                            </span>
+                            <span class="ec-contact-wrap">
+                                <label>Email*</label>
+                                <input type="email" name="ContactEmail" placeholder="Enter your email address"
+                                       required />
+                            </span>
+                            <span class="ec-contact-wrap">
+                                <label>Phone Number*</label>
+                                <input type="text" name="ContactPhone" placeholder="Enter your phone number"
+                                       required />
+                            </span>
 
-                                <span class="ec-contact-wrap ec-contact-btn">
-                                    <button class="btn btn-primary" type="submit">Submit</button>
-                                </span>
 
-                            }
+                            <span class="ec-contact-wrap">
+                                <label>Comments/Questions*</label>
+                                <textarea name="ContactMessage"
+                                          placeholder="Please leave your comments here.."></textarea>
+                            </span>
+                            <div id="divcaptcha"></div>
+                            <span class="ec-contact-wrap" style="margin-bottom:10px;">
+                                <input type="text" id="txtcaptcha" style="display:none" required />
 
-                        </div>
+                            </span>
+
+                            <span class="ec-contact-wrap ec-contact-btn">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </span>
+
+                        }
+
+                    </div>
                     </div>
                 </div>
                 <div class="ec-contact-rightside">
