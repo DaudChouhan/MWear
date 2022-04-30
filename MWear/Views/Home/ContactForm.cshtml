@@ -47,9 +47,16 @@
                         }
 
                     <div class="ec-contact-form">
+                        <div class="row g-3">
+                            <p>
+                                For Complaints Email at : support@mwear.pk
+
+                            </p>
 
 
-                        @using (Html.BeginForm("ContactForm", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
+                        </div>
+
+                        @*@using (Html.BeginForm("ContactForm", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row g-3" }))
                         {
                             @Html.AntiForgeryToken()
 
@@ -91,7 +98,7 @@
                                 <button class="btn btn-primary" type="submit">Submit</button>
                             </span>
 
-                        }
+                        }*@
 
                     </div>
                     </div>

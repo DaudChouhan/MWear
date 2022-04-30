@@ -19359,7 +19359,17 @@ body.ec-open:before {
 }
 
 /*----  Main Slider Style  ----*/
+
+
+@media (min-width: 500px) {
+    .navWrap {
+        display: none;
+    }
+}
+
+
 .ec-main-slider .container {
+
   position: absolute;
   left: 0;
   right: 0;

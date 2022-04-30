@@ -12,13 +12,13 @@
                     <a href="~/Theme/product-left-sidebar.html" class="sidMWear_pro_img">
                         <img src="~/Theme/assets/images/product-image/6_1.jpg" alt="product">
                     </a>
+
                     <div class="ec-pro-content">
                         <a href="~/Theme/product-left-sidebar.html" class="cart_pro_title">T-shirt For Women</a>
                         <span class="cart-price">$76.00 x 1</span>
-                        @*<div class="qty-plus-minus">
-                            <input class="qty-input" type="text" name="ec_qtybtn" value="1" disabled/>
-                        </div>*@
+                        
                         <a href="javascript:void(0)" class="remove">×</a>
+
                     </div>
                 </li>
             </ul>
@@ -35,7 +35,7 @@
                 </table>
             </div>
             <div class="cart_btn" id="checkout-btns" style="display:none">
-                <a href="~/Theme/cart.html" class="btn btn-primary" style="display:none">View Cart</a>
+                @*<a href="@Url.Action("Index","Home")" id="clearcart" class="btn btn-primary">Clear Cart</a>*@
                 <a href="@Url.Action("Index","Checkout")" class="btn btn-secondary">Checkout</a>
             </div>
         </div>
@@ -45,12 +45,12 @@
 <script>
     function GetCartData() {
         url = "/Home/GetCartDetails";
-        debugger;
+        //debugger;
         $.ajax({
 
             url: url,
             success: function (data) {
-                debugger;
+                //debugger;
                 //console.log(data);
                 ///alert("If Working");
                 //var element = document.getElementById('cartlist');
@@ -66,14 +66,9 @@
                     var li = $("#cardDeatilsul li:eq(0)").clone().removeAttr("style");
                     $(li).find(".sidMWear_pro_img img").attr("src", "../../Images/Products/" + e.ProductImage);
                     $(li).find(".cart_pro_title").text(e.ProductName);
-                    //if (e.UnitPrice > e.NetPrice) {
-                    //    $(li).find(".price-old").text("Rs. " + e.UnitPrice);
-                    //}
-                    //else {
-                    //    $(li).find(".price-old").css("display", "none");
-                    //}
+                   
                     $(li).find(".cart-price").text("Rs. " + e.NetPrice + " x " + e.Quantity);
-                    //$(li).find("#qtyspan").text(e.Quantity);
+                    
                     var itemtotal = e.Quantity * e.NetPrice;
                     total = total + itemtotal;
                     cartcount = cartcount + 1;
@@ -96,5 +91,10 @@
                 console.log(data);
             }
         });
+
+        
+
     }
+
+  
 </script>

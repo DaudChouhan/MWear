@@ -50,38 +50,7 @@ namespace MWear.Controllers
             return categories;
 
         }
-        //public ActionResult Contact(bool Issuccess = false)
-        //{
-        //    ViewBag.Issuccess = Issuccess;
-        //    TempData["cat"] = category();
-        //    TempData.Keep();
-        //    return View();
-
-        //}
-        //[HttpPost]
-        //public ActionResult Contact(ContactForm Contact)
-        //{
-           
-
-        //        ContactForm con = new ContactForm();
-        //        con.FirstName = Contact.FirstName;
-        //        con.LastName = Contact.LastName;
-        //        con.ContactPhone = Contact.ContactPhone;
-        //        con.ContactEmail = Contact.ContactEmail;
-        //        con.ContactMessage = Contact.ContactMessage;
-        //        con.Active = true;
-        //        con.Seen = false;
-        //        db.ContactForms.Add(con);
-        //        db.SaveChanges();
-        //        TempData["cat"] = category();
-        //        TempData.Keep();
-        //        return RedirectToAction("Contact", new { Issuccess = true });
-          
-         
-
-
-        //}
-
+     
         public ActionResult ContactForm(bool Issuccess = false)
         {
             ViewBag.Issuccess = Issuccess;
@@ -90,29 +59,23 @@ namespace MWear.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult ContactForm(ContactForm Contact)
-        {
-
-
-            ContactForm con = new ContactForm();
-            con.FirstName = Contact.FirstName;
-            con.LastName = Contact.LastName;
-            con.ContactPhone = Contact.ContactPhone;
-            con.ContactEmail = Contact.ContactEmail;
-            con.ContactMessage = Contact.ContactMessage;
-            con.Active = true;
-            con.Seen = false;
-            db.ContactForms.Add(con);
-            db.SaveChanges();
-            TempData["cat"] = category();
-            TempData.Keep();
-            return RedirectToAction("Contact", new { Issuccess = true });
-
-
-
-
-        }
+        //[HttpPost]
+        //public ActionResult ContactForm(ContactForm Contact)
+        //{
+        //    ContactForm con = new ContactForm();
+        //    con.FirstName = Contact.FirstName;
+        //    con.LastName = Contact.LastName;
+        //    con.ContactPhone = Contact.ContactPhone;
+        //    con.ContactEmail = Contact.ContactEmail;
+        //    con.ContactMessage = Contact.ContactMessage;
+        //    con.Active = true;
+        //    con.Seen = false;
+        //    db.ContactForms.Add(con);
+        //    db.SaveChanges();
+        //    TempData["cat"] = category();
+        //    TempData.Keep();
+        //    return RedirectToAction("Contact", new { Issuccess = true });
+        //}
 
 
         public ActionResult AboutUs()

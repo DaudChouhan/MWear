@@ -19,12 +19,14 @@ namespace MWear.Controllers
         public ActionResult Index(string ProID)
         {
 
-            ViewBag.Products = db.Products.Where(x => x.Active == true).ToList();
+            var ppp = db.Products.Where(x => x.Active == true && x.Available == true && x.UnitsInStock != 0).ToList();
+            ViewBag.Products = ppp;
             var categories = db.Categories.Where(x => x.Active == true).ToList();
             ViewBag.Categories = categories;
 
             var productCategory = db.ProductCategories.ToList();
             ViewBag.productCategory = productCategory;
+
 
             var colors = db.Colors.Where(x => x.Active == true).ToList();
             ViewBag.Colors = colors;
@@ -41,6 +43,10 @@ namespace MWear.Controllers
 
             var related = db.RelatedProducts.Where(x => x.Active == true && x.Product == ProID).ToList();
             ViewBag.Related = related;
+
+
+
+
 
             var prod = db.Products.Where(x => x.ProductGUID == ProID).FirstOrDefault();
             TempData["cat"] = home.category();

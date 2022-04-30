@@ -312,9 +312,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\1366X768.jpg" />
+    <Content Include="Images\daud.jpg" />
     <Content Include="Images\Products\1020x350.jpg" />
     <Content Include="Images\Products\1366X768.jpg" />
     <Content Include="Images\Products\1920x630.jpg" />
+    <Content Include="Images\Products\banner.png" />
     <Content Include="Images\Products\banner15a.jpg" />
     <Content Include="Images\Products\banner16a.jpg" />
     <Content Include="Images\Products\Mobile-App-Coming-Soon.jpg" />
@@ -712,6 +714,7 @@
     <Content Include="Images\Products\SPM-00190.jpg" />
     <Content Include="Images\Products\t2.jpg" />
     <Content Include="Images\Products\t3.jpg" />
+    <Content Include="Images\ubaid.jpg" />
     <Content Include="Models\MainDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MainDataModel.edmx</DependentUpon>

@@ -112,17 +112,22 @@
                     </div>
                     <!-- Ec Header Logo End -->
                     <!-- Ec Header Search Start -->
-                    @*<div class="align-self-center">
+                    <div class="align-self-center">
                         <div class="header-search">
-                            <form class="ec-btn-group-form" action="#">
-                                <input class="form-control" placeholder="Enter Your Product Name..." type="text">
-                                <button class="submit" type="submit">
+                            @*<form class="ec-btn-group-form" action="#">*@
+
+                                @*@using (Html.BeginForm("Index","Shop", FormMethod.Post, new { @class = "ec-btn-group-form" })) {*@
+                                <input class="form-control" id="searchTextbox" placeholder="Enter Your Product Name..." type="text" name="searchtxt11">
+                                <button class="submit" type="button" id="btnSearch">
                                     <img src="~/Theme/assets/images/icons/search.svg"
                                          class="svg_img header_svg" alt="" />
                                 </button>
-                            </form>
+                                @*}*@
+
+
+                            @*</form>*@
                         </div>
-                    </div>*@
+                    </div>
                     <!-- Ec Header Search End -->
                     <!-- Ec Header Button Start -->
                     <div class="align-self-center">
@@ -200,4 +205,30 @@
 
     @Html.Partial("Menu")
 </header>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#btnSearch').click(function () {
+            var seartext = $("#searchTextbox").val();
+            var url = "/Shop/Index";
+            var params = "?searchtxt=" + seartext;
+            var finalurl = url + params;
+            window.location.href = finalurl;
+        });
+
+        $("#searchTextbox").keypress(function (e) {
+            keycode = e.keyCode || e.charCode || e.which //for cross browser
+            if (keycode == 13)    //keyCode for enter key
+            {
+                var seartext = $("#searchTextbox").val();
+                var url = "/Shop/Index";
+                var params = "?searchtxt=" + seartext;
+                var finalurl = url + params;
+                window.location.href = finalurl;
+            }
+        });
+    });
+
+   
+</script>
 <!-- Header End  -->

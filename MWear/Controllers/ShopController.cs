@@ -14,7 +14,7 @@ namespace MWear.Controllers
         mwearEntities db = new mwearEntities();
         HomeController home = new HomeController();
         // GET: Shop
-        public ActionResult Index(int? CatId,int? pageNo)
+        public ActionResult Index(int? CatId, string searchtxt, int? pageNo)
         {
             int pagenumber = 0;
 
@@ -65,6 +65,11 @@ namespace MWear.Controllers
                 procount = db.Products.Where(x => procat.Contains(x.ProductGUID) && x.Active == true && x.Available == true && x.UnitsInStock != 0).Count();
 
             }
+            else if (searchtxt != null)
+            {
+                products = db.Products.Where(x => (x.ProductName.ToLower().Contains(searchtxt) || x.SKU.ToLower().Contains(searchtxt))&& x.Active == true && x.Available == true && x.UnitsInStock != 0).OrderByDescending(x => x.ProductID).Skip((pagenumber - 1) * 40).Take(40).ToList();
+                procount = db.Products.Where(x => (x.ProductName.ToLower().Contains(searchtxt) || x.SKU.ToLower().Contains(searchtxt)) && x.Active == true && x.Available == true && x.UnitsInStock != 0).Count();
+            }
             else
             {
                 products = db.Products.Where(x => x.Active == true && x.Available == true && x.UnitsInStock != 0).OrderByDescending(x => x.ProductID).Skip((pagenumber - 1) * 40).Take(40).ToList();
@@ -76,5 +81,11 @@ namespace MWear.Controllers
             TempData.Keep();
             return View();
         }
+
+        
+
+
+
+
     }
 }

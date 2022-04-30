@@ -46,6 +46,26 @@
 
     <link rel="stylesheet" href="~/theme/assets/css/demo1.css" />
 
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1042480306650353');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=1042480306650353&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
 
 </head>
 <body class="aboutus_page">
@@ -92,9 +112,12 @@
     <script src="~/Theme/assets/js/main.js"></script>
     <script>
         $(document).ready(function () {
-    GetCartData();
-    });
+            GetCartData();
+        });
     </script>
 
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6475db760f78465bbb138817cc6ec3cc"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>

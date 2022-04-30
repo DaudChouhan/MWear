@@ -10,29 +10,32 @@
     List<MWear.Models.ProductCategory> pcategory = ViewBag.productCategory;
     List<MWear.Models.AvailabeColor> pcolor = ViewBag.productColor;
     List<MWear.Models.AvailableSize> psize = ViewBag.productSize;
-    
+
 
 }
+
+
 <!-- Main Slider Start -->
-<div class="sticky-header-next-sec ec-main-slider section section-space-pb">
+
+<div class="sticky-header-next-sec ec-main-slider section section-space-pb" id="slider">
     <div class="ec-slider swiper-container main-slider-nav main-slider-dot">
         <!-- Main slider -->
         <div class="swiper-wrapper">
-            @foreach (var item in sliders.Where(x => x.Position=="Main"))
+            @foreach (var item in sliders.Where(x => x.Position == "Main"))
             {
                 <div class="ec-slide-item swiper-slide d-flex ec-slide-1" style="background-image:url(../../Images/Products/@item.ImagePath); width:1536px; height:550px;">
                     <div class="container align-self-center">
                         <div class="row">
                             <div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center">
-                                <div class="ec-slide-content slider-animation">
-                                    <a href="@Url.Action("Index","Shop")" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
-                                </div>
+                                @*<div class="ec-slide-content slider-animation">
+                                        <a href="@Url.Action("Index","Shop")" class="btn btn-lg btn-secondary" style="margin-top:400px">View All</a>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
                 </div>
             }
-            
+
         </div>
         <div class="swiper-pagination swiper-pagination-white"></div>
         <div class="swiper-buttons">
@@ -42,21 +45,13 @@
     </div>
 </div>
 <!-- Main Slider End -->
-
-
-
-
-
-
-
 <!-- Product tab Area Start -->
 <section class="section ec-product-tab section-space-p">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
                 <div class="section-title">
-                    <h2 class="ec-bg-title">Our Top Collection</h2>
-                    <h2 class="ec-title">Our Top Collection</h2>
+                    <h1 style="text-align:center">Our Top Collection</h1>
                     <p class="sub-title">Browse The Collection of Top Products</p>
                 </div>
             </div>
@@ -83,11 +78,11 @@
                         </a>
                     </li>
                     @*<li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#tab-pro-for-child">
-                            For
-                            Children
-                        </a>
-                    </li>*@
+                            <a class="nav-link" data-bs-toggle="tab" href="#tab-pro-for-child">
+                                For
+                                Children
+                            </a>
+                        </li>*@
                 </ul>
             </div>
             <!-- Tab End -->
@@ -167,46 +162,46 @@
 
                                             </div>
                                             @*@if (lenght12.Count > 1 || lenght13.Count > 1)
-                                {
-
-                                <div class="ec-color">
-                                    <div class="ec-pro-color">
-                                        <span class="ec-pro-opt-label">Color</span>
-                                        <ul class="ec-opt-swatch ec-change-img">
-                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                                            {
-                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
                                                 {
 
+                                                <div class="ec-color">
+                                                    <div class="ec-pro-color">
+                                                        <span class="ec-pro-opt-label">Color</span>
+                                                        <ul class="ec-opt-swatch ec-change-img">
+                                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                                            {
+                                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                                {
 
-                                                    <li class="active">
-                                                        <a class="ec-opt-clr-img"
-                                                           data-src="~/Images/Products/@items.Picture"
-                                                           data-src-hover="~/Images/Products/@items.Picture"
-                                                           data-tooltip="Gray">
-                                                            <span style="background-color:@item.ColorHash;"></span>
-                                                        </a>
-                                                    </li>
 
-                                                }
-                                            }
-                                        </ul>
-                                    </div>
+                                                                    <li class="active">
+                                                                        <a class="ec-opt-clr-img"
+                                                                           data-src="~/Images/Products/@items.Picture"
+                                                                           data-src-hover="~/Images/Products/@items.Picture"
+                                                                           data-tooltip="Gray">
+                                                                            <span style="background-color:@item.ColorHash;"></span>
+                                                                        </a>
+                                                                    </li>
 
-                                </div>
-                                <br>
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    </div>
 
-                                <br>
-                                <div class="ec-size" style="margin-top: -15px;">
-                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                                    {
-                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                                        {
-                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
-                                        }
-                                    }
-                                </div>
-                                }*@
+                                                </div>
+                                                <br>
+
+                                                <br>
+                                                <div class="ec-size" style="margin-top: -15px;">
+                                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
+                                                    {
+                                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                                        {
+                                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
+                                                        }
+                                                    }
+                                                </div>
+                                                }*@
 
 
                                             <div class="ec-link-btn" style="margin-top:10px;">
@@ -224,12 +219,12 @@
 
                                                 @*<div class="ec-link-icon">
 
-                                        <a href="#" data-tip="Add to Wishlist">
-                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
-                                        </a>
+                                                        <a href="#" data-tip="Add to Wishlist">
+                                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
+                                                        </a>
 
-                                    </div>*@
+                                                    </div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -321,46 +316,46 @@
 
                                             </div>
                                             @*@if (lenght12.Count > 1 || lenght13.Count > 1)
-                                {
-
-                                <div class="ec-color">
-                                    <div class="ec-pro-color">
-                                        <span class="ec-pro-opt-label">Color</span>
-                                        <ul class="ec-opt-swatch ec-change-img">
-                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                                            {
-                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
                                                 {
 
+                                                <div class="ec-color">
+                                                    <div class="ec-pro-color">
+                                                        <span class="ec-pro-opt-label">Color</span>
+                                                        <ul class="ec-opt-swatch ec-change-img">
+                                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                                            {
+                                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                                {
 
-                                                    <li class="active">
-                                                        <a class="ec-opt-clr-img"
-                                                           data-src="~/Images/Products/@items.Picture"
-                                                           data-src-hover="~/Images/Products/@items.Picture"
-                                                           data-tooltip="Gray">
-                                                            <span style="background-color:@item.ColorHash;"></span>
-                                                        </a>
-                                                    </li>
 
-                                                }
-                                            }
-                                        </ul>
-                                    </div>
+                                                                    <li class="active">
+                                                                        <a class="ec-opt-clr-img"
+                                                                           data-src="~/Images/Products/@items.Picture"
+                                                                           data-src-hover="~/Images/Products/@items.Picture"
+                                                                           data-tooltip="Gray">
+                                                                            <span style="background-color:@item.ColorHash;"></span>
+                                                                        </a>
+                                                                    </li>
 
-                                </div>
-                                <br>
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    </div>
 
-                                <br>
-                                <div class="ec-size" style="margin-top: -15px;">
-                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                                    {
-                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                                        {
-                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
-                                        }
-                                    }
-                                </div>
-                                }*@
+                                                </div>
+                                                <br>
+
+                                                <br>
+                                                <div class="ec-size" style="margin-top: -15px;">
+                                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
+                                                    {
+                                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                                        {
+                                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
+                                                        }
+                                                    }
+                                                </div>
+                                                }*@
 
 
                                             <div class="ec-link-btn" style="margin-top:10px;">
@@ -378,12 +373,12 @@
 
                                                 @*<div class="ec-link-icon">
 
-                                        <a href="#" data-tip="Add to Wishlist">
-                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
-                                        </a>
+                                                        <a href="#" data-tip="Add to Wishlist">
+                                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
+                                                        </a>
 
-                                    </div>*@
+                                                    </div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -470,46 +465,46 @@
 
                                             </div>
                                             @*@if (lenght12.Count > 1 || lenght13.Count > 1)
-                                {
-
-                                <div class="ec-color">
-                                    <div class="ec-pro-color">
-                                        <span class="ec-pro-opt-label">Color</span>
-                                        <ul class="ec-opt-swatch ec-change-img">
-                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                                            {
-                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
                                                 {
 
+                                                <div class="ec-color">
+                                                    <div class="ec-pro-color">
+                                                        <span class="ec-pro-opt-label">Color</span>
+                                                        <ul class="ec-opt-swatch ec-change-img">
+                                                            @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                                            {
+                                                                foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                                {
 
-                                                    <li class="active">
-                                                        <a class="ec-opt-clr-img"
-                                                           data-src="~/Images/Products/@items.Picture"
-                                                           data-src-hover="~/Images/Products/@items.Picture"
-                                                           data-tooltip="Gray">
-                                                            <span style="background-color:@item.ColorHash;"></span>
-                                                        </a>
-                                                    </li>
 
-                                                }
-                                            }
-                                        </ul>
-                                    </div>
+                                                                    <li class="active">
+                                                                        <a class="ec-opt-clr-img"
+                                                                           data-src="~/Images/Products/@items.Picture"
+                                                                           data-src-hover="~/Images/Products/@items.Picture"
+                                                                           data-tooltip="Gray">
+                                                                            <span style="background-color:@item.ColorHash;"></span>
+                                                                        </a>
+                                                                    </li>
 
-                                </div>
-                                <br>
+                                                                }
+                                                            }
+                                                        </ul>
+                                                    </div>
 
-                                <br>
-                                <div class="ec-size" style="margin-top: -15px;">
-                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                                    {
-                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                                        {
-                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
-                                        }
-                                    }
-                                </div>
-                                }*@
+                                                </div>
+                                                <br>
+
+                                                <br>
+                                                <div class="ec-size" style="margin-top: -15px;">
+                                                    @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
+                                                    {
+                                                        foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                                        {
+                                                            <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
+                                                        }
+                                                    }
+                                                </div>
+                                                }*@
 
 
                                             <div class="ec-link-btn" style="margin-top:10px;">
@@ -527,12 +522,12 @@
 
                                                 @*<div class="ec-link-icon">
 
-                                        <a href="#" data-tip="Add to Wishlist">
-                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
-                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
-                                        </a>
+                                                        <a href="#" data-tip="Add to Wishlist">
+                                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
+                                                        </a>
 
-                                    </div>*@
+                                                    </div>*@
                                             </div>
                                         </div>
                                     </div>
@@ -541,30 +536,28 @@
                             }
                             <!-- Custom tile Ends -->
 
-                            
 
 
 
 
 
-                    <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop")">Shop All Collection</a></div>
 
+                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="@Url.Action("Index","Shop")">Shop All Collection</a></div>
 
-                </div>
-                    </div>
-                    <!-- ec 3rd Product tab end -->
-
-
-                    <!-- ec 4th Product tab start -->
-                    @*<div class="tab-pane fade" id="tab-pro-for-child">
-                        <div class="row">
-
-
-
-                            <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
 
                         </div>
-                    </div>*@
+                    </div>
+                    <!-- ec 3rd Product tab end -->
+                    <!-- ec 4th Product tab start -->
+                    @*<div class="tab-pane fade" id="tab-pro-for-child">
+                            <div class="row">
+
+
+
+                                <div class="col-sm-12 shop-all-btn" style="margin-top: 30px;"><a href="~/Theme/shop-left-sidebar-col-3.html">Shop All Collection</a></div>
+
+                            </div>
+                        </div>*@
                     <!-- ec 4th Product tab end -->
 
 
@@ -589,26 +582,26 @@
                         <div class="bnr-overlay">
                             <img src="~/Images/Products/New-Features-Coming-Soon.jpg" alt="" />
                             @*<div class="banner-text">
-                                <span class="ec-banner-stitle">New Arrivals</span>
-                                <span class="ec-banner-title">mens<br> Sport shoes</span>
-                                <span class="ec-banner-discount">30% Discount</span>
-                            </div>
-                            <div class="banner-content">
-                                <span class="ec-banner-btn"><a href="~/Theme/#">Order Now</a></span>
-                            </div>*@
+                                    <span class="ec-banner-stitle">New Arrivals</span>
+                                    <span class="ec-banner-title">mens<br> Sport shoes</span>
+                                    <span class="ec-banner-discount">30% Discount</span>
+                                </div>
+                                <div class="banner-content">
+                                    <span class="ec-banner-btn"><a href="~/Theme/#">Order Now</a></span>
+                                </div>*@
                         </div>
                     </div>
                     <div class="banner-block col-lg-6 col-md-12" data-animation="slideInLeft">
                         <div class="bnr-overlay">
                             <img src="~/Images/Products/Mobile-App-Coming-Soon.jpg" alt="" />
                             @*<div class="banner-text">
-                                <span class="ec-banner-stitle">New Trending</span>
-                                <span class="ec-banner-title">Smart<br> watches</span>
-                                <span class="ec-banner-discount">Buy any 3 Items & get <br>20% Discount</span>
-                            </div>
-                            <div class="banner-content">
-                                <span class="ec-banner-btn"><a href="~/Theme/#">Order Now</a></span>
-                            </div>*@
+                                    <span class="ec-banner-stitle">New Trending</span>
+                                    <span class="ec-banner-title">Smart<br> watches</span>
+                                    <span class="ec-banner-discount">Buy any 3 Items & get <br>20% Discount</span>
+                                </div>
+                                <div class="banner-content">
+                                    <span class="ec-banner-btn"><a href="~/Theme/#">Order Now</a></span>
+                                </div>*@
                         </div>
                     </div>
                 </div>
@@ -619,8 +612,6 @@
     </div>
 </section>
 <!-- ec Banner Section End -->
-
-
 <!-- Category Section End -->
 <!--  Feature & Special Section Start -->
 <!-- Feature & Special Section End -->
@@ -639,10 +630,8 @@
         <div class="row">
             <!-- New Product Content -->
             <!-- Custom Tile Starts -->
-
-
             <!-- Custom Tile Starts -->
-            @foreach (var items in products.Where(x => x.Available == true && x.UnitsInStock !=0).OrderByDescending(x => x.ProductID).Take(8))
+            @foreach (var items in products.Where(x => x.Available == true && x.UnitsInStock != 0).OrderByDescending(x => x.ProductID).Take(8))
             {
 
                 var catids = pcategory.Where(x => x.Product == items.ProductGUID).ToList();
@@ -709,46 +698,46 @@
 
                             </div>
                             @*@if (lenght12.Count > 1 || lenght13.Count > 1)
-        {
+                                {
 
-            <div class="ec-color">
-                <div class="ec-pro-color">
-                    <span class="ec-pro-opt-label">Color</span>
-                    <ul class="ec-opt-swatch ec-change-img">
-                        @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
-                        {
-                            foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
-                            {
+                                    <div class="ec-color">
+                                        <div class="ec-pro-color">
+                                            <span class="ec-pro-opt-label">Color</span>
+                                            <ul class="ec-opt-swatch ec-change-img">
+                                                @foreach (var itemsss in pcolor.Where(x => x.Product == items.ProductGUID))
+                                                {
+                                                    foreach (var item in colors.Where(x => x.ColorID == itemsss.AvialableColor))
+                                                    {
 
 
-                                <li class="active">
-                                    <a class="ec-opt-clr-img"
-                                       data-src="~/Images/Products/@items.Picture"
-                                       data-src-hover="~/Images/Products/@items.Picture"
-                                       data-tooltip="Gray">
-                                        <span style="background-color:@item.ColorHash;"></span>
-                                    </a>
-                                </li>
+                                                        <li class="active">
+                                                            <a class="ec-opt-clr-img"
+                                                               data-src="~/Images/Products/@items.Picture"
+                                                               data-src-hover="~/Images/Products/@items.Picture"
+                                                               data-tooltip="Gray">
+                                                                <span style="background-color:@item.ColorHash;"></span>
+                                                            </a>
+                                                        </li>
 
-                            }
-                        }
-                    </ul>
-                </div>
+                                                    }
+                                                }
+                                            </ul>
+                                        </div>
 
-            </div>
-            <br>
+                                    </div>
+                                    <br>
 
-            <br>
-            <div class="ec-size" style="margin-top: -15px;">
-                @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
-                {
-                    foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
-                    {
-                        <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
-                    }
-                }
-            </div>
-        }*@
+                                    <br>
+                                    <div class="ec-size" style="margin-top: -15px;">
+                                        @foreach (var itemsss in psize.Where(x => x.Product == items.ProductGUID))
+                                        {
+                                            foreach (var item in sizes.Where(x => x.SizeID == itemsss.AvialableSize))
+                                            {
+                                                <a style="width:auto; padding-left:5px; padding-right:5px;">@item.DisplayName</a>
+                                            }
+                                        }
+                                    </div>
+                                }*@
 
 
                             <div class="ec-link-btn" style="margin-top:10px;">
@@ -766,12 +755,12 @@
 
                                 @*<div class="ec-link-icon">
 
-                <a href="#" data-tip="Add to Wishlist">
-                    <img src="~/Theme/assets/images/icons/wishlist.svg"
-                         class="svg_img header_svg pro_svg" alt="wishlist" />
-                </a>
+                                        <a href="#" data-tip="Add to Wishlist">
+                                            <img src="~/Theme/assets/images/icons/wishlist.svg"
+                                                 class="svg_img header_svg pro_svg" alt="wishlist" />
+                                        </a>
 
-            </div>*@
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -862,3 +851,18 @@
     </div>
 </section>
 <!--services Section End -->
+
+<script>
+
+    var windowsize = $(window).width();
+
+    $(window).resize(function () {
+        var windowsize = $(window).width();
+    });
+
+    if (windowsize < 500) {
+        //if the window is greater than 440px wide then turn on jScrollPane..
+        $('#slider').hide();
+    }
+
+</script>

@@ -1,158 +1,283 @@
 ﻿@model MWear.Models.Order
 @{
     ViewBag.Title = "CheckoutSuccess";
-    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+    Layout = null;
     List<MWear.Models.OrderDetail> orderDetails = ViewBag.orderdetails;
     List<MWear.Models.Product> products = ViewBag.Products;
 }
 
-<!-- Ec breadcrumb start -->
-<div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="row ec_breadcrumb_inner">
-                    <div class="col-md-6 col-sm-12">
-                        <h2 class="ec-breadcrumb-title">Order</h2>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <!-- ec-breadcrumb-list start -->
-                        <ul class="ec-breadcrumb-list">
-                            <li class="ec-breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                            <li class="ec-breadcrumb-item active">Order Successfully Recieved</li>
-                        </ul>
-                        <!-- ec-breadcrumb-list end -->
+<!--=========================================================
+
+ ============================================================-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+
+    <title>MWear | Online Shop in Pakistan!.</title>
+    <meta name="keywords" content="Mwear, Online Store, Pakistan, Female, Male, Jewellery, Jewelery, Sunglasses, Sunglasses in Pakistan, in Pakistan" />
+    <meta name="description" content="Best Onlne Ecommerce Store In Pakistan">
+    <meta name="author" content="Dawood Chouhan">
+
+    <!-- site Favicon -->
+    <link rel="icon" href="~/Theme/assets/images/favicon/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="~/Theme/assets/images/favicon/favicon.png" />
+    <meta name="msapplication-TileImage" content="~/Theme/assets/images/favicon/favicon.png" />
+
+    <!-- css Icon Font -->
+    <link rel="stylesheet" href="~/Theme/assets/css/vendor/ecicons.min.css" />
+
+    <!-- Select2 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+    <!-- css All Plugins Files -->
+    <link rel="stylesheet" href="~/Theme/assets/css/plugins/animate.css" />
+    <link rel="stylesheet" href="~/Theme/assets/css/plugins/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="~/Theme/assets/css/plugins/jquery-ui.min.css" />
+    <link rel="stylesheet" href="~/Theme/assets/css/plugins/countdownTimer.css" />
+    <link rel="stylesheet" href="~/Theme/assets/css/plugins/slick.min.css" />
+    <link rel="stylesheet" href="~/Theme/assets/css/plugins/nouislider.css" />
+    <link rel="stylesheet" href="~/Theme/assets/css/plugins/bootstrap.css" />
+
+    <!-- Main Style -->
+    <link rel="stylesheet" href="~/Theme/assets/css/style.css" />
+
+    <!-- Background css -->
+    <link rel="stylesheet" id="bg-switcher-css" href="~/Theme/assets/css/backgrounds/bg-4.css">
+
+    <link rel="stylesheet" href="~/theme/assets/css/demo1.css" />
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1042480306650353');
+        fbq('track', 'PageView');
+        fbq('track', 'Purchase', { value: @Model.NetAmount, currency: 'PKR' });
+    </script>
+    <noscript>
+        <img height="1" width="1" src="https://www.facebook.com/tr?id=1042480306650353&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+</head>
+<body class="aboutus_page">
+    <div id="ec-overlay"><span class="loader_img"></span></div>
+
+    @Html.Partial("HeaderTopBar")
+
+    @Html.Partial("_cart")
+
+
+    <!-- Ec breadcrumb start -->
+    <div class="sticky-header-next-sec  ec-breadcrumb section-space-mb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row ec_breadcrumb_inner">
+                        <div class="col-md-6 col-sm-12">
+                            <h2 class="ec-breadcrumb-title">Order</h2>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <!-- ec-breadcrumb-list start -->
+                            <ul class="ec-breadcrumb-list">
+                                <li class="ec-breadcrumb-item"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                <li class="ec-breadcrumb-item active">Order Successfully Recieved</li>
+                            </ul>
+                            <!-- ec-breadcrumb-list end -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Ec breadcrumb end -->
-<!-- Start Privacy & Policy page -->
-<section class="ec-page-content section-space-p">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="section-title">
-                    <h2 class="ec-bg-title">Thank you.</h2>
-                    <h2 class="ec-title">Thank you.</h2>
-                    <p class="sub-title mb-3"> Your order has been received.</p>
-                </div>
-            </div>
-            <div class="col-md-12">
+    <!-- Ec breadcrumb end -->
+    <!-- Start Privacy & Policy page -->
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            <div class="row">
                 <div class="col-md-12 text-center">
-                    <ul>
-
-                        <li>
-                            Order number:<strong>@Model.OrderID</strong>
-                        </li>
-
-                        <li>
-                            Date:<strong>@Model.OrderDate</strong>
-                        </li>
-
-
-                        <li>
-                            Total:<strong><span>₨</span>@Model.NetAmount</strong>
-                        </li>
-                    </ul>
+                    <div class="section-title">
+                        <h2 class="ec-bg-title">Thank you.</h2>
+                        <h2 class="ec-title">Thank you.</h2>
+                        <p class="sub-title mb-3"> Your order has been received.</p>
+                    </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="col-md-12 text-center">
+                        <ul>
 
-                @if (Model.PaymentMethod != "COD") { 
-                    <p>
-                Kindly transfer/deposit your order total amount in one of our bank account or mobile account and send the payment slip/transaction id with your order ID/No. in reference to sales@mwear.pk or you can WhatsApp the details on our Mobile No.  03020209222<br>
-                برائے مہربانی اپنے آرڈر کی کل رقم ہمارے بینک اکاؤنٹ یا موبائل اکاؤنٹ میں منتقل کریں اور ادائیگی کی پرچی/ٹرانزیکشن آئی ڈی اپنے آرڈر آئی ڈی/نمبر کے ساتھ<br>
-                یا ہمارے موبائل نمبر 03020209222 پر تفصیلات واٹس ایپ کریں sales@mwear.pk
-                    </p>
-                
-                }
-               
+                            <li>
+                                Order number:<strong>@Model.OrderID</strong>
+                            </li>
 
-
-            <section>
-                @if (Model.PaymentMethod == "Bank Transfer")
-                {
-                    <h4 class="ec-title">Our bank details</h4>
-                    <ul>
-                        <li> <h4>Meezan Bank</h4></li>
-                        <li>Account number: <strong>0104624838</strong></li>
-                        <li>Sort code: <strong>9993</strong></li>
-                    </ul><br />
-                }
-                @if (Model.PaymentMethod == "Jazz Cash")
-                {
-                    <ul>
-                        <li><h4>JazzCash Mobile Account</h4></li>
-                        <li>Account number: <strong>0302-0209222</strong></li>
-                    </ul><br />
-                }
+                            <li>
+                                Date:<strong>@Model.OrderDate</strong>
+                            </li>
 
 
-            </section>
+                            <li>
+                                Total:<strong><span>₨</span>@Model.NetAmount</strong>
+                            </li>
+                        </ul>
+                    </div>
 
-            </div>
-        </div>
-    </div>
-</section>
+                    @if (Model.PaymentMethod != "COD")
+                    {
+                        <p>
+                            Kindly transfer/deposit your order total amount in one of our bank account or mobile account and send the payment slip/transaction id with your order ID/No. in reference to sales@mwear.pk or you can WhatsApp the details on our Mobile No.  03020209222<br>
+                            برائے مہربانی اپنے آرڈر کی کل رقم ہمارے بینک اکاؤنٹ یا موبائل اکاؤنٹ میں منتقل کریں اور ادائیگی کی پرچی/ٹرانزیکشن آئی ڈی اپنے آرڈر آئی ڈی/نمبر کے ساتھ<br>
+                            یا ہمارے موبائل نمبر 03020209222 پر تفصیلات واٹس ایپ کریں sales@mwear.pk
+                        </p>
 
-<section class="ec-page-content section-space-p">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-7">
+                    }
 
-                <h2>Order details</h2>
 
-                <table>
 
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>&nbsp;&nbsp; Total</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        @foreach (var item in orderDetails.Where(x => x.OrderGuid == Model.OrderGuid))
+                    <section>
+                        @if (Model.PaymentMethod == "Bank Transfer")
                         {
+                            <h4 class="ec-title">Our bank details</h4>
+                            <ul>
+                                <li> <h4>Meezan Bank</h4></li>
+                                <li>Account number: <strong>0104624838</strong></li>
+                                <li>Sort code: <strong>9993</strong></li>
+                            </ul><br />
+                        }
+                        @if (Model.PaymentMethod == "Jazz Cash")
+                        {
+                            <ul>
+                                <li><h4>JazzCash Mobile Account</h4></li>
+                                <li>Account number: <strong>0302-0209222</strong></li>
+                            </ul><br />
+                        }
 
-                            foreach (var items in products.Where(x => x.ProductID == item.ProductID))
-                            {
-                        <tr>
-                            <td>
-                                <a>@items.ProductName</a> <strong>×&nbsp;@item.Quantity</strong>
-                            </td>
 
-                            <td>
-                                <span><bdi><span>&nbsp;&nbsp;₨</span>@item.NetPrice</bdi></span>
-                            </td>
+                    </section>
 
-                        </tr>
-                                    }
-
-                                    }
-
-                            </tbody>
-
-                    <tfoot>
-                        <tr>
-                            <th>Subtotal:</th>
-                            <td><span><span>&nbsp;&nbsp;₨</span>@Model.GrossAmout</span></td>
-                        </tr>
-                        <tr>
-                            <th>Shipping:</th>
-                            <td><span><span>&nbsp;&nbsp;₨</span>@Model.DeliverCharges</span>&nbsp;<small></small></td>
-                        </tr>
-                        <tr>
-                            <th>Total:</th>
-                            <td><span><span>&nbsp;&nbsp;₨</span>@Model.NetAmount</span></td>
-                        </tr>
-                    </tfoot>
-                </table>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-</section>
+    <section class="ec-page-content section-space-p">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-7">
+
+                    <h2>Order details</h2>
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>&nbsp;&nbsp; Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var item in orderDetails.Where(x => x.OrderGuid == Model.OrderGuid))
+                            {
+
+                                foreach (var items in products.Where(x => x.ProductID == item.ProductID))
+                                {
+                                    <tr>
+                                        <td>
+                                            <a>@items.ProductName</a> <strong>×&nbsp;@item.Quantity</strong>
+                                        </td>
+
+                                        <td>
+                                            <span><bdi><span>&nbsp;&nbsp;₨</span>@item.NetPrice</bdi></span>
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            }
+
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <th>Subtotal:</th>
+                                <td><span><span>&nbsp;&nbsp;₨</span>@Model.GrossAmout</span></td>
+                            </tr>
+                            <tr>
+                                <th>Shipping:</th>
+                                <td><span><span>&nbsp;&nbsp;₨</span>@Model.DeliverCharges</span>&nbsp;<small></small></td>
+                            </tr>
+                            <tr>
+                                <th>Total:</th>
+                                <td><span><span>&nbsp;&nbsp;₨</span>@Model.NetAmount</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+    @Html.Partial("_footernavigation")
+
+    <!-- Recent Purchase Popup  -->
+    @Html.Partial("_floatingtools")
+    <!-- Vendor JS -->
+    <script src="~/Theme/assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="~/Theme/assets/js/vendor/popper.min.js"></script>
+    <script src="~/Theme/assets/js/vendor/bootstrap.min.js"></script>
+    <script src="~/Theme/assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="~/Theme/assets/js/vendor/modernizr-3.11.2.min.js"></script>
+
+
+
+    <!--Plugins JS-->
+    <script src="~/Theme/assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="~/Theme/assets/js/plugins/countdownTimer.min.js"></script>
+    <script src="~/Theme/assets/js/plugins/scrollup.js"></script>
+    <script src="~/Theme/assets/js/plugins/jquery.zoom.min.js"></script>
+    <script src="~/Theme/assets/js/plugins/slick.min.js"></script>
+    <script src="~/Theme/assets/js/plugins/infiniteslidev2.js"></script>
+    <script src="~/Theme/assets/js/vendor/jquery.magnific-popup.min.js"></script>
+    <script src="~/Theme/assets/js/plugins/jquery.sticky-sidebar.js"></script>
+    <!-- Google translate Js -->
+    <script src="~/Theme/assets/js/vendor/google-translate.js"></script>
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <!-- Main Js -->
+    <script src="~/Theme/assets/js/vendor/index.js"></script>
+    <script src="~/Theme/assets/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            GetCartData();
+        });
+    </script>
+
+
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6475db760f78465bbb138817cc6ec3cc"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
